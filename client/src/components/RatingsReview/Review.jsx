@@ -8,7 +8,6 @@ export default class Review extends React.Component {
     let reviewsArr = ["Comfortable and practical.", "They are very dark. But that's good because I'm in very sunny spots"]
 
     let reviewList = reviewsArr.map( (review, key) => {
-     console.log(review, key)
      return <li>{review}</li>
     })
     return (
