@@ -14,8 +14,10 @@ export default class Overview extends React.Component {
     return (
       <div className="overview-container">
         <ImageGallery />
-        <StyleSelector />
-        <AddToCart />
+        <div className="user-selection-bar">
+          <StyleSelector />
+          <AddToCart />
+        </div>
         <ProductInfo />
       </div>
     );
