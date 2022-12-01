@@ -1,5 +1,7 @@
 const authentication = function (req, res, next) {
-  console.log('authenticated');
+  !process.env.API_KEY ?
+    console.log('please set an API Key environment variable') :
+    req.headers.Authorization = process.env.API_KEY;
   next();
 };
 
