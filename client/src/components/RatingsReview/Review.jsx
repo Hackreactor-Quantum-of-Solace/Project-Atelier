@@ -73,21 +73,30 @@ export default class Review extends React.Component {
       reviewer_name,
       helpfulness
     }) => {
+     let ratingStyle = {
+      color: 'blue'
+     }
+     console.log(typeof date, 'line 79')
+     console.log(new Date(date), 'line 80')
      return (
-      <li>
-        <h3>{summary}</h3>
-       <span>review_id: {review_id}</span>
-       <br />
-       <span>date: {date}</span>
-       <br />
-       <span>rating: {rating}</span>
-       <br />
-       <span>body: {body}</span>
-       <br />
-       <span>recommend: {recommend}</span>
-       <br />
-       <span>helpfulness: {helpfulness}</span>
-      </li>
+      <div>
+        {/* <li> */}
+
+          <h3>{summary}</h3>
+          <span style={ratingStyle}>rating (need to convert to stars): {rating}</span>
+          <br />
+          <span>review_id: {review_id}</span>
+          <br />
+          <span>{date}</span>
+          <br />
+          <p>{body}</p>
+          <br />
+          <span>recommend: {recommend}</span>
+          <br />
+          <span>helpfulness: {helpfulness}</span>
+        {/* </li> */}
+      </div>
+
       )
     })
 
