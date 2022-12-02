@@ -4,7 +4,7 @@
   "description": "Front End Capstone",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "client-dev": "webpack --watch",
     "server-dev": "nodemon ./server/server.js"
   },
@@ -16,6 +16,9 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/nsfoster87/Project-Atelier/issues"
+  },
+  "jest": {
+    "testEnvironment": "jsdom"
   },
   "homepage": "https://github.com/nsfoster87/Project-Atelier#readme",
   "dependencies": {
@@ -29,11 +32,17 @@
     "morgan": "^1.10.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-test-renderer": "^18.2.0",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.0"
   },
   "devDependencies": {
+    "@testing-library/react": "^13.4.0",
+    "@types/jest": "^29.2.3",
+    "jest": "^29.3.1",
+    "jest-environment-jsdom": "^29.3.1",
     "live-server": "^1.2.2",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "prettier": "^2.8.0"
   }
 }
