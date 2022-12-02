@@ -1,4 +1,5 @@
 import React from 'react';
+import Overview from './Overview.jsx';
 import ReviewList from './RatingsReview/ReviewList.jsx';
 import Review from './RatingsReview/Review.jsx';
 
@@ -10,7 +11,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>Hello World</h1>
+        <Overview />
         <ReviewList />
       </div>
     );
