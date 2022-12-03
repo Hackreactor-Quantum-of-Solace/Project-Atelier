@@ -1,10 +1,10 @@
 import React from 'react';
 
 //maps through all the reviews and formats them into 'tiles'
-export default class Review extends React.Component {
+export default function ReviewTile (props) {
+  //props is array of results retrieved from API
 
 
-  render () {
     let reviewObj = {
       "product": "2",
       "page": 0,
@@ -45,23 +45,7 @@ export default class Review extends React.Component {
       ]
     }
 
-    // console.log(reviewObj.results[0].summary)
-    // console.log(reviewObj.results[1].summary)
-
-
-    let reviewsArr = ["Comfortable and practical.", "They are very dark. But that's good because I'm in very sunny spots"]
-
-    // let reviewList1 =
-    // reviewsArr.forEach ((review) => {
-    //   console.log(review, 'line 56')
-    //   // return <li>{review}</li>
-    // })
-
-
-    // let reviewList = reviewsArr.map( (review) => {
-    //  return <li>{review}</li>
-    // })
-
+    //will eventually map over props
     let reviewList = reviewObj.results.map( ({
       review_id,
       rating,
@@ -78,6 +62,13 @@ export default class Review extends React.Component {
      }
      console.log(typeof date, 'line 79')
      console.log(new Date(date), 'line 80')
+
+     let formattedDate = new Date(date)
+     let month = formattedDate.getMonth()
+     console.log(month)
+     let formattedDateString = formattedDate.toDateString()
+
+     console.log(typeof formattedDateString)
      return (
       <div>
         {/* <li> */}
@@ -87,19 +78,19 @@ export default class Review extends React.Component {
           <br />
           <span>review_id: {review_id}</span>
           <br />
-          <span>{date}</span>
+          <span>{formattedDateString}</span>
           <br />
           <p>{body}</p>
           <br />
           <span>recommend: {recommend}</span>
           <br />
           <span>helpfulness: {helpfulness}</span>
+
         {/* </li> */}
       </div>
 
       )
     })
-
 
     return (
       <div>
@@ -108,6 +99,6 @@ export default class Review extends React.Component {
        </ul>
       </div>
     )
-  }
+
 }
 
