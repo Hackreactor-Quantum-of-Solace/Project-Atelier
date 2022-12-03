@@ -13,7 +13,7 @@ Anytime you want to run development build:
 2. In a separate terminal window start server: npm run server-dev
 3. navigate to designated url in browser (likely http://localhost:3000)
 
-How to set up your own repo:
+## How to set up your own repo:
 1. go to your local folder of this repo (cli: cd <FolderName>)
 2. clone it from remote to your local(cli: git clone https://github.com/Hackreactor-Quantum-of-Solace/Project-Atelier.git)
 3. set up the upstream to your local main branch(cli: git remote add upstream https://github.com/Hackreactor-Quantum-of-Solace/Project-Atelier.git)
@@ -29,3 +29,10 @@ git merge main
 git push -u origin <branch name you want to create on remote>
 8. pull request to merge your code into main
 work it on remote your own branch, find merge button, write commit
+
+## How to set up a new test:
+1. create a new file in testing/src with the format *tested_component*.test.js. ex: Overview.test.js
+
+2. set up the imports as in the App.test.js and make sure you have at least a relative path to your tested component where 'App' is
+
+3. documentation for writing tests can be found here https://jestjs.io/
