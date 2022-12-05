@@ -1,7 +1,7 @@
 export default function() {
   return (
     <div>
-      <h2>Ask your own!</h2>
+      <h3>Ask your own!</h3>
     </div>
   );
 }

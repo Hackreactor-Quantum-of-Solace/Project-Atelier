@@ -12,6 +12,7 @@ export default class QuestionsAnswers extends React.Component {
   render() {
     return (
       <div>
+        <h1>Q&A section</h1>
         <QuestionsList />
         <div>
           <Questions />

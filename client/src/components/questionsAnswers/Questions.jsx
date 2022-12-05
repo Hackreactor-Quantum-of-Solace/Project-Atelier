@@ -1,7 +1,7 @@
 export default function() {
   return (
     <div>
-      <h2>I have a question!</h2>
+      <h3>I have a question!</h3>
     </div>
   );
 }
