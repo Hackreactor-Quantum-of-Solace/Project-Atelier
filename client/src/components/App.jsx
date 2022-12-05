@@ -13,6 +13,7 @@ export default class App extends React.Component {
       <div>
         <Overview />
         <ReviewList />
+        <RelatedItems />
       </div>
     );
   }
