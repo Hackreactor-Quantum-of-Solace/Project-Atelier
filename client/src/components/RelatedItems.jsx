@@ -10,7 +10,8 @@ export default class RelatedItems extends React.Component {
     super(props);
     this.state = {
       //save relatedItemsId of the overview product
-      relatedItemsId: []
+      relatedItemsId: [],
+      hasRelatedItems:false
     }
 
     this.getRelatedItemsId = this.getRelatedItemsId.bind(this);
@@ -27,13 +28,17 @@ export default class RelatedItems extends React.Component {
     })
     .then((response) => {
       //console.log(response.data);
-      this.setState({relatedItemsId: response.data});
+      this.setState({
+        relatedItemsId: response.data,
+        hasRelatedItems: true
+      });
+
     })
   }
   render() {
     return (
       <div className = "relatedItems">
-        < RelatedProductsList relatedItemsId={this.state.relatedItemsId}/>
+        {this.state.hasRelatedItems ? < RelatedProductsList relatedItemsId={this.state.relatedItemsId}/> : null}
         < OutfitList />
       </div>
     )
