@@ -5,7 +5,7 @@ import AddToCart from './overview/AddToCart.jsx';
 import ImageGallery from './overview/ImageGallery.jsx';
 import ProductInfo from './overview/ProductInfo.jsx';
 import StyleSelector from './overview/StyleSelector.jsx';
-import Description from './overview/Description.jsx';
+import ProductOverview from './overview/ProductOverview.jsx';
 
 export default class Overview extends React.Component {
   constructor(props) {
@@ -37,7 +37,7 @@ export default class Overview extends React.Component {
           <StyleSelector product_info={this.state.product_info} />
           <AddToCart product_info={this.state.product_info} />
         </div>
-        <Description product_info={this.state.product_info} />
+        <ProductOverview product_info={this.state.product_info} />
       </div>
     );
   }
