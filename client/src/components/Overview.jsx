@@ -5,6 +5,7 @@ import AddToCart from './overview/AddToCart.jsx';
 import ImageGallery from './overview/ImageGallery.jsx';
 import ProductInfo from './overview/ProductInfo.jsx';
 import StyleSelector from './overview/StyleSelector.jsx';
+import Description from './overview/Description.jsx';
 
 export default class Overview extends React.Component {
   constructor(props) {
@@ -32,10 +33,11 @@ export default class Overview extends React.Component {
       <div className="overview-container">
         <ImageGallery product_info={this.state.product_info} />
         <div className="user-selection-bar">
-          <StyleSelector product_id={this.state.product_info} />
-          <AddToCart product_id={this.state.product_info} />
+          <ProductInfo product_info={this.state.product_info} />
+          <StyleSelector product_info={this.state.product_info} />
+          <AddToCart product_info={this.state.product_info} />
         </div>
-        <ProductInfo product_id={this.state.product_info} />
+        <Description product_info={this.state.product_info} />
       </div>
     );
   }
