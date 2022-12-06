@@ -1,6 +1,6 @@
 import React from "react";
 import render from "react-test-renderer";
-import App from "/home/sprung/hackreactor/Project-Atelier/client/src/components/App.jsx";
+import App from "../../client/src/components/App.jsx";
 
 
 describe("App Component", function () {
