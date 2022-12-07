@@ -2,7 +2,7 @@ import React from 'react';
 import Overview from './Overview.jsx';
 import ReviewList from './RatingsReview/List/ReviewList.jsx';
 import Review from './RatingsReview/List/ReviewTile.jsx';
-import RelatedItems from './RelatedItems.jsx';
+import QuestionsAnswers from './QuestionsAnswers.jsx';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -14,7 +14,7 @@ export default class App extends React.Component {
       <div>
         <Overview />
         <ReviewList />
-        <RelatedItems />
+        <QuestionsAnswers />
       </div>
     );
   }
