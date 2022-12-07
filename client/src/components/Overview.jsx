@@ -11,9 +11,12 @@ export default class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product_info: {}
+      product_info: {},
+      product_styles: {},
+      currentStyle: {}
     };
     this.getProductInfo = this.getProductInfo.bind(this);
+    this.getProductStyles = this.getProductStyles.bind(this);
   }
 
   getProductInfo(id) {
@@ -22,10 +25,20 @@ export default class Overview extends React.Component {
     .catch(err => console.log(`unable to retrieve product info for product with id ${id}`, err));
   }
 
+  getProductStyles(id) {
+    axios.get(`/products/${id}/styles`)
+    .then(response => {
+      let currentStyle = response.data.results.find(style => style['default?'] === true);
+      this.setState({ product_styles: response.data, currentStyle });
+    })
+    .catch(err => console.log(`unable to retrieve product styles for product with id ${id}`, err));
+  }
+
   componentDidMount() {
     const queryParams = new URLSearchParams(window.location.search);
     const product_id = queryParams.get('id');
     this.getProductInfo(product_id);
+    this.getProductStyles(product_id);
   }
 
   render() {
@@ -34,7 +47,7 @@ export default class Overview extends React.Component {
         <ImageGallery product_info={this.state.product_info} />
         <div className="user-selection-bar">
           <ProductInfo product_info={this.state.product_info} />
-          <StyleSelector product_info={this.state.product_info} />
+          <StyleSelector styles={this.state.product_styles} currentStyle={this.state.currentStyle} />
           <AddToCart product_info={this.state.product_info} />
         </div>
         <ProductOverview product_info={this.state.product_info} />

@@ -1,7 +1,8 @@
-export default function() {
+export default function(props) {
+  let currentStyle = props.currentStyle || {};
   return (
     <div className="style-selector">
-      <h2>Style Selector</h2>
+      <h4 className="style-label">Style ><span className="current-style-name">{currentStyle.name}</span></h4>
     </div>
   );
 }
