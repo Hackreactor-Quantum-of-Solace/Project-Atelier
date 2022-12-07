@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function ReviewSort(props) {
+export default function ReviewsSort(props) {
   return (
     <h3>create sort dropdown here?</h3>
 
