@@ -22,16 +22,10 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-<<<<<<< HEAD
-        <Overview />
-        <ReviewList />
-        <QuestionsAnswers />
-        <RelatedItems />
-=======
         <Overview productId={this.state.product_id} />
         <ReviewList productId={this.state.product_id} />
         <QuestionsAnswers productId={this.state.product_id} />
->>>>>>> main
+        <RelatedItems productId={this.state.product_id}/>
       </div>
     );
   }
