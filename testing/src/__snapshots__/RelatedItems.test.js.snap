@@ -1,0 +1,146 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`relatedItems Component should have relatedItems  1`] = `
+<div>
+  <div
+    className="overview-container"
+  >
+    <div
+      className="image-gallery"
+    >
+      <h2>
+        Image Gallery
+      </h2>
+    </div>
+    <div
+      className="user-selection-bar"
+    >
+      <div
+        className="style-selector"
+      >
+        <h2>
+          Style Selector
+        </h2>
+      </div>
+      <div
+        className="add-to-cart"
+      >
+        <h2>
+          Add to Cart
+        </h2>
+      </div>
+    </div>
+    <div
+      className="product-info"
+    >
+      <h2>
+        Product Info
+      </h2>
+    </div>
+  </div>
+  <div>
+    <h2>
+      Review Section
+    </h2>
+    <h3>
+      These are hard coded reviews.
+    </h3>
+    <div>
+      <ul>
+        <div>
+          <h3>
+            I'm enjoying wearing these shades
+          </h3>
+          <span
+            style={
+              {
+                "color": "blue",
+              }
+            }
+          >
+            rating (need to convert to stars): 
+            3
+          </span>
+          <br />
+          <span>
+            review_id: 
+            5
+          </span>
+          <br />
+          <span>
+            Sat Apr 13 2019
+          </span>
+          <br />
+          <p>
+            Comfortable and practical.
+          </p>
+          <br />
+          <span>
+            recommend: 
+          </span>
+          <br />
+          <span>
+            helpfulness: 
+            5
+          </span>
+        </div>
+        <div>
+          <h3>
+            I am liking these glasses
+          </h3>
+          <span
+            style={
+              {
+                "color": "blue",
+              }
+            }
+          >
+            rating (need to convert to stars): 
+            4
+          </span>
+          <br />
+          <span>
+            review_id: 
+            3
+          </span>
+          <br />
+          <span>
+            Sat Jun 22 2019
+          </span>
+          <br />
+          <p>
+            They are very dark. But that's good because I'm in very sunny spots
+          </p>
+          <br />
+          <span>
+            recommend: 
+          </span>
+          <br />
+          <span>
+            helpfulness: 
+            5
+          </span>
+        </div>
+      </ul>
+    </div>
+  </div>
+  <div
+    className="relatedItems"
+  >
+    <div
+      className="relatedProductsList"
+    >
+      <h2>
+        relatedProductsList
+      </h2>
+    </div>
+    <div
+      className="outfitList"
+    >
+      <h2>
+        outfitlist
+      </h2>
+    </div>
+  </div>
+</div>
+`;
