@@ -7,14 +7,23 @@ import QuestionsAnswers from './QuestionsAnswers.jsx';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      product_id: '71697'
+    }
+  }
+
+  componentDidMount() {
+    const queryParams = new URLSearchParams(window.location.search);
+    const product_id = queryParams.get('id');
+    this.setState({ product_id });
   }
 
   render() {
     return (
       <div>
-        <Overview />
-        <ReviewList />
-        <QuestionsAnswers />
+        <Overview productId={this.state.product_id} />
+        <ReviewList productId={this.state.product_id} />
+        <QuestionsAnswers productId={this.state.product_id} />
       </div>
     );
   }
