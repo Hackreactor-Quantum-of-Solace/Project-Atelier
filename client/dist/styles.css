@@ -1,7 +1,7 @@
 /********** STYLES **********/
 
 html {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "adobe-clean", sans-serif;
   color: #444;
 }
 
@@ -106,4 +106,10 @@ html {
 
 .ov-po-right-column {
   width: 30%;
+}
+
+/********** ADD TO CART **********/
+
+.clickable-star {
+  font-size: 20px;
 }
