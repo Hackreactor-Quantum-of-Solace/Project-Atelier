@@ -23,12 +23,32 @@ html {
 /*********** OVERVIEW SIDEBAR **********/
 
 .star-rating {
-  display: flex;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
 }
 
 .star-icon {
-  width: 24px;
+  width: 20px;
+  display: flex;
+  margin-right: 2px;
+  color: #f8d448;
 }
+
+.star-icon:last-of-type {
+  margin-right: 0;
+}
+
+.stars-overlay {
+  background-color: black;
+  mix-blend-mode: color;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
 
 .user-selection-bar {
   width: 30%;
@@ -39,6 +59,12 @@ html {
 .ov-product-info {
   width: 100%;
   border: 1px solid red;
+}
+
+.ov-product-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 /********** STYLE SELECTOR **********/

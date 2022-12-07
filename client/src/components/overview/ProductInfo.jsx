@@ -8,7 +8,9 @@ export default function(props) {
     <div className="ov-product-info">
       <div className="ov-product-rating">
         <StarRating rating={props.rating} />
-        <span className="ov-reviews-link"><a href="#">Read all reviews</a></span>
+        <span className="ov-reviews-link">
+          <a href="#">Read all reviews</a>
+        </span>
       </div>
       <p className="ov-category">{product_info.category}</p>
       <h2 className="ov-product-name">{product_info.name}</h2>

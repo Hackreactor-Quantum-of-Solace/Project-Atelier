@@ -9,14 +9,8 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product_id: '71697' // load default product
+      product_id: new URLSearchParams(window.location.search).get('id')
     }
-  }
-
-  componentDidMount() {
-    const queryParams = new URLSearchParams(window.location.search);
-    const product_id = queryParams.get('id');
-    this.setState({ product_id });
   }
 
   render() {
