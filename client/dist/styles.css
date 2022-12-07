@@ -33,6 +33,28 @@ html {
   border: 1px solid red;
 }
 
+/********** STYLE SELECTOR **********/
+.style-icons {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.style-icon {
+  width: 21%;
+  box-sizing: border-box;
+}
+
+.style-icon > img {
+  width: 100%;
+  border-radius: 50%;
+  height: auto;
+}
+
+.currently-selected {
+  border: 2px solid red;
+  border-radius: 50%;
+}
+
 /********** PRODUCT OVERVIEW ***********/
 
 .ov-product-overview {
