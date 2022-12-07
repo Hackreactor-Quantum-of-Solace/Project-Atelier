@@ -13,11 +13,13 @@ export default class Overview extends React.Component {
     this.state = {
       product_info: {},
       product_styles: [],
-      currentStyle: {}
+      currentStyle: {},
+      product_rating: 0
     };
     this.getProductInfo = this.getProductInfo.bind(this);
     this.getProductStyles = this.getProductStyles.bind(this);
     this.changeCurrentStyle = this.changeCurrentStyle.bind(this);
+    this.getProductRating = this.getProductRating.bind(this);
   }
 
   getProductInfo(id) {
@@ -35,6 +37,21 @@ export default class Overview extends React.Component {
     .catch(err => console.log(`unable to retrieve product styles for product with id ${id}`, err));
   }
 
+  getProductRating(id) {
+    axios.get(`/reviews/meta?product_id=${id}`)
+    .then(response => {
+      let total = 0;
+      let count = 0;
+      for (const [key, value] of Object.entries(response.data.ratings)) {
+        count += parseInt(value);
+        total += parseInt(key) * parseInt(value);
+      }
+      const average = total / count;
+      this.setState({ product_rating: average });
+    })
+    .catch(err => console.log(`unable to retrieve rating for product with id ${id}`, err));
+  }
+
   changeCurrentStyle(style) {
     this.setState({ currentStyle: style });
   }
@@ -44,6 +61,7 @@ export default class Overview extends React.Component {
     const product_id = queryParams.get('id');
     this.getProductInfo(product_id);
     this.getProductStyles(product_id);
+    this.getProductRating(product_id);
   }
 
   render() {
@@ -51,7 +69,7 @@ export default class Overview extends React.Component {
       <div className="overview-container">
         <ImageGallery product_info={this.state.product_info} />
         <div className="user-selection-bar">
-          <ProductInfo product_info={this.state.product_info} />
+          <ProductInfo product_info={this.state.product_info} rating={this.state.product_rating} />
           <StyleSelector
             styles={this.state.product_styles}
             currentStyle={this.state.currentStyle}

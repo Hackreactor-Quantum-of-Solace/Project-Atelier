@@ -4,7 +4,7 @@ export default function(props) {
 
   return (
     <div className="ov-product-info">
-      <p className="ov-product-rating">star rating
+      <p className="ov-product-rating">{props.rating.toFixed(2)} stars
         <span className="ov-reviews-link"><a href="#">Read all reviews</a></span>
       </p>
       <p className="ov-category">{product_info.category}</p>
