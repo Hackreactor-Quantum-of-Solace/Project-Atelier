@@ -22,6 +22,14 @@ html {
 
 /*********** OVERVIEW SIDEBAR **********/
 
+.star-rating {
+  display: flex;
+}
+
+.star-icon {
+  width: 24px;
+}
+
 .user-selection-bar {
   width: 30%;
   border: 1px solid blue;

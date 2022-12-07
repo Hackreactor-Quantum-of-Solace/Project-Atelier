@@ -1,5 +1,17 @@
+import StarIcon from '../../../images/star-icon.svg';
+import { roundToNearestQuarter } from '../../../../helpers/helpers.js';
+
 export default function(props) {
+  const rating = roundToNearestQuarter(props.rating);
   return (
-    <span className="star-rating">{props.rating.toFixed(2)} stars</span>
+    <div className="star-rating">
+      <img className="star-icon" src={StarIcon} alt="star-icon" />
+      <img className="star-icon" src={StarIcon} alt="star-icon" />
+      <img className="star-icon" src={StarIcon} alt="star-icon" />
+      <img className="star-icon" src={StarIcon} alt="star-icon" />
+      <img className="star-icon" src={StarIcon} alt="star-icon" />
+
+      <div className="stars-overlay"></div>
+    </div>
   );
 }
