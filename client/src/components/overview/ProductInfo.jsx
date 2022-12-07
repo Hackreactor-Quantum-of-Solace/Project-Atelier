@@ -1,7 +1,15 @@
-export default function() {
+export default function(props) {
+  const product_info = props.product_info || {};
+  const price = product_info.default_price ? `$${product_info.default_price}` : '';
+
   return (
-    <div className="product-info">
-      <h2>Product Info</h2>
+    <div className="ov-product-info">
+      <p className="ov-product-rating">{props.rating.toFixed(2)} stars
+        <span className="ov-reviews-link"><a href="#">Read all reviews</a></span>
+      </p>
+      <p className="ov-category">{product_info.category}</p>
+      <h2 className="ov-product-name">{product_info.name}</h2>
+      <p className="ov-price">{price}</p>
     </div>
   );
 }
