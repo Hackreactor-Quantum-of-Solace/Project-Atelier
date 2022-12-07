@@ -57,11 +57,9 @@ export default class Overview extends React.Component {
   }
 
   componentDidMount() {
-    const queryParams = new URLSearchParams(window.location.search);
-    const product_id = queryParams.get('id');
-    this.getProductInfo(product_id);
-    this.getProductStyles(product_id);
-    this.getProductRating(product_id);
+    this.getProductInfo(parseInt(this.props.productId));
+    this.getProductStyles(this.props.productId);
+    this.getProductRating(this.props.productId);
   }
 
   render() {
