@@ -3,7 +3,6 @@ import Overview from './Overview.jsx';
 import ReviewList from './RatingsReview/List/ReviewList.jsx';
 import Review from './RatingsReview/List/ReviewTile.jsx';
 import QuestionsAnswers from './QuestionsAnswers.jsx';
-import RelatedItems from './RelatedItems.jsx';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -22,16 +21,9 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-<<<<<<< HEAD
-        <Overview />
-        <ReviewList />
-        <QuestionsAnswers />
-        <RelatedItems />
-=======
         <Overview productId={this.state.product_id} />
         <ReviewList productId={this.state.product_id} />
         <QuestionsAnswers productId={this.state.product_id} />
->>>>>>> main
       </div>
     );
   }
