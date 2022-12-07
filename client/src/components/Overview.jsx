@@ -17,6 +17,7 @@ export default class Overview extends React.Component {
     };
     this.getProductInfo = this.getProductInfo.bind(this);
     this.getProductStyles = this.getProductStyles.bind(this);
+    this.changeCurrentStyle = this.changeCurrentStyle.bind(this);
   }
 
   getProductInfo(id) {
@@ -34,6 +35,10 @@ export default class Overview extends React.Component {
     .catch(err => console.log(`unable to retrieve product styles for product with id ${id}`, err));
   }
 
+  changeCurrentStyle(style) {
+    this.setState({ currentStyle: style });
+  }
+
   componentDidMount() {
     const queryParams = new URLSearchParams(window.location.search);
     const product_id = queryParams.get('id');
@@ -47,7 +52,10 @@ export default class Overview extends React.Component {
         <ImageGallery product_info={this.state.product_info} />
         <div className="user-selection-bar">
           <ProductInfo product_info={this.state.product_info} />
-          <StyleSelector styles={this.state.product_styles} currentStyle={this.state.currentStyle} />
+          <StyleSelector
+            styles={this.state.product_styles}
+            currentStyle={this.state.currentStyle}
+            changeCurrentStyle={this.changeCurrentStyle} />
           <AddToCart product_info={this.state.product_info} />
         </div>
         <ProductOverview product_info={this.state.product_info} />

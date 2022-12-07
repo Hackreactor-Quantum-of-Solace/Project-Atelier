@@ -11,6 +11,7 @@ export default function(props) {
             key={i}
             style={style}
             currentStyle={props.currentStyle.style_id === style.style_id}
+            onClick={props.changeCurrentStyle}
           />
         ))}
       </div>
