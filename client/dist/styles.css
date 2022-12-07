@@ -1,5 +1,10 @@
 /********** STYLES **********/
 
+html {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #444;
+}
+
 /********** OVERVIEW **********/
 
 .overview-container {
@@ -7,11 +12,15 @@
   flex-wrap: wrap;
 }
 
+/********** IMAGE GALLERY **********/
+
 .image-gallery {
   width: 70%;
   border: 1px solid black;
   box-sizing: border-box;
 }
+
+/*********** OVERVIEW SIDEBAR **********/
 
 .user-selection-bar {
   width: 30%;
@@ -19,7 +28,25 @@
   box-sizing: border-box;
 }
 
-.product-info {
+.ov-product-info {
   width: 100%;
   border: 1px solid red;
+}
+
+/********** PRODUCT OVERVIEW ***********/
+
+.ov-product-overview {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid green;
+}
+
+.ov-po-left-column {
+  width: 70%;
+  border-right: 1px solid #444;
+}
+
+.ov-po-right-column {
+  width: 30%;
 }
