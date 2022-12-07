@@ -40,7 +40,7 @@ html {
 }
 
 .stars-overlay {
-  background-color: black;
+  background-color: white;
   mix-blend-mode: color;
   position: absolute;
   top: 0;
