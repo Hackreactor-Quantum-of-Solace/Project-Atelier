@@ -12,7 +12,7 @@ export default class Overview extends React.Component {
     super(props);
     this.state = {
       product_info: {},
-      product_styles: {},
+      product_styles: [],
       currentStyle: {}
     };
     this.getProductInfo = this.getProductInfo.bind(this);
@@ -29,7 +29,7 @@ export default class Overview extends React.Component {
     axios.get(`/products/${id}/styles`)
     .then(response => {
       let currentStyle = response.data.results.find(style => style['default?'] === true);
-      this.setState({ product_styles: response.data, currentStyle });
+      this.setState({ product_styles: response.data.results, currentStyle });
     })
     .catch(err => console.log(`unable to retrieve product styles for product with id ${id}`, err));
   }
