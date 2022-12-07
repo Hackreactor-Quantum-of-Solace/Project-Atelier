@@ -26,7 +26,7 @@ export default class RatingsReviews extends React.Component {
     let config = {
       url: `/reviews?product_id=${id}`,
       method: 'get'
-    }
+    };
 
     axios(config)
       .then ( (reviews) => {
