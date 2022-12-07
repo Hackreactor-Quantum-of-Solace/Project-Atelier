@@ -6,12 +6,11 @@ import OutfitList from './relatedItems/OutfitList.jsx';
 
 export default class RelatedItems extends React.Component {
   constructor(props) {
-    //suppose overview product_id is 71697 which should be props in APP.jsx
+    //suppose each product will be loaded with procudct_id in the url
     super(props);
     this.state = {
       //save relatedItemsId of the overview product
-      relatedItemsId: [],
-
+      relatedItemsId: []
     }
 
     this.getRelatedItemsId = this.getRelatedItemsId.bind(this);
@@ -22,18 +21,18 @@ export default class RelatedItems extends React.Component {
   getRelatedItemsId() {
     axios({
       method: 'get',
-      //the correct url should be <`/products/${this.props.id}/related` >
-      //this url is a given product_id test
-      url: '/products/71697/related'
+      url: `/products/${this.props.productId}/related`,
     })
     .then((response) => {
       //console.log(response.data);
       this.setState({
-        relatedItemsId: response.data,
-
+        relatedItemsId: response.data
       });
-
     })
+    .catch((err) => {
+      console.log('getRelatedItemsID ERROR', err);
+    })
+
   }
   render() {
     return (
