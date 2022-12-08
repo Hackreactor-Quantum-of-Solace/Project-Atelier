@@ -18,10 +18,23 @@ export default class AddToCart extends React.Component {
 
   selectSize(size) {
     console.log(`selecting size: ${size}`);
-    this.setState({
-      current_sku: this.props.sizeInfo[size].sku,
-      current_size: size
-    });
+    if (size === 'Select Size') {
+      this.setState({
+        current_sku: '',
+        current_size: '',
+        current_quantity: 0
+      });
+    } else {
+      let current_quantity = this.state.current_quantity || 1;
+      if (current_quantity > this.props.sizeInfo[size].quantity) {
+        current_quantity = this.props.sizeInfo[size].quantity;
+      }
+      this.setState({
+        current_sku: this.props.sizeInfo[size].sku,
+        current_size: size,
+        current_quantity
+      });
+    }
   }
 
   selectQuantity(qty) {
@@ -38,7 +51,11 @@ export default class AddToCart extends React.Component {
     return (
       <div className="add-to-cart">
         <SizeSelector sizeOptions={sizeOptions} selectSize={this.selectSize} />
-        <QuantitySelector maxQuantity={maxQuantity} selectQuantity={this.selectQuantity} />
+        <QuantitySelector
+          maxQuantity={maxQuantity}
+          currentQuantity={this.state.current_quantity}
+          selectQuantity={this.selectQuantity}
+        />
         <button className="add-to-cart-button">Add to Cart</button>
         <ClickableStar />
       </div>

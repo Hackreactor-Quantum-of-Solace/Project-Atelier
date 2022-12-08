@@ -1,7 +1,11 @@
 export default function(props) {
   let options = [];
   for (let i = 1; i <= props.maxQuantity; i++) {
-    options.push(<option key={i}>{i}</option>);
+    let option = <option key={i}>{i}</option>;
+    if (props.currentQuantity && i === props.currentQuantity) {
+      option = <option key={i} selected>{i}</option>;
+    }
+    options.push(option);
   }
 
   return (
