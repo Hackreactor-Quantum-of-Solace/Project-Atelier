@@ -1,7 +1,7 @@
 /********** STYLES **********/
 
 html {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "adobe-clean", sans-serif;
   color: #444;
 }
 
@@ -22,6 +22,34 @@ html {
 
 /*********** OVERVIEW SIDEBAR **********/
 
+.star-rating {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+}
+
+.star-icon {
+  width: 20px;
+  display: flex;
+  margin-right: 2px;
+  color: #f8d448;
+}
+
+.star-icon:last-of-type {
+  margin-right: 0;
+}
+
+.stars-overlay {
+  background-color: white;
+  mix-blend-mode: color;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+
 .user-selection-bar {
   width: 30%;
   border: 1px solid blue;
@@ -33,6 +61,12 @@ html {
   border: 1px solid red;
 }
 
+.ov-product-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 /********** STYLE SELECTOR **********/
 .style-icons {
   display: flex;
@@ -42,6 +76,7 @@ html {
 .style-icon {
   width: 21%;
   box-sizing: border-box;
+  cursor: pointer;
 }
 
 .style-icon > img {
@@ -71,4 +106,10 @@ html {
 
 .ov-po-right-column {
   width: 30%;
+}
+
+/********** ADD TO CART **********/
+
+.clickable-star {
+  font-size: 20px;
 }
