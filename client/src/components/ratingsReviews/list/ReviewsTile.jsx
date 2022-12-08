@@ -2,7 +2,8 @@ import React from 'react';
 
 //maps through all the reviews and formats them into 'tiles'
 export default function ReviewsTile (props) {
-
+  console.log(props.review, 'ReviewsTile, line 5')
+  console.log(props.review.photos, 'line 6')
   let reviewList = props.review.map( ({
     review_id,
     rating,
@@ -12,7 +13,8 @@ export default function ReviewsTile (props) {
     body,
     date,
     reviewer_name,
-    helpfulness
+    helpfulness,
+    photos
   }) => {
 
     let ratingStyle = {
