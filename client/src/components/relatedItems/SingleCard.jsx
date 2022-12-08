@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-
+//use helper function get QuarterNumber
+import { roundToNearestQuarter} from '../../../../helpers/helpers.js'
 export default class SingleCard extends React.Component {
   constructor(props) {
     super(props);
@@ -42,6 +43,7 @@ export default class SingleCard extends React.Component {
       })
       //console.log(this.state);
     })
+    .catch((err) => {console.log('fetchCategoryAndName ERROR', err)})
 
   }
   fetchDiscountPriceAndImage() {
@@ -66,6 +68,7 @@ export default class SingleCard extends React.Component {
       this.setState(discountAndImgObj);
       //console.log(this.state)
     })
+    .catch((err) => {console.log('fetchDiscountPriceAndImage ERROR', err)})
   }
   fetchRateAndChangeToUse() {
     axios({
@@ -75,7 +78,7 @@ export default class SingleCard extends React.Component {
     .then((response) => {
       var rates = response.data.ratings;
       //console.log(rates)
-      var getAvgRateAndChangeTOOneQuarter = (rates) => {
+      var getAvgRate = (rates) => {
         var totalRates = 0;
         var totalCounts = 0;
         var avgRealRate = 0;
@@ -83,32 +86,20 @@ export default class SingleCard extends React.Component {
           totalRates += key * rates[key];
           totalCounts += rates[key] * 1;
         }
-        //console.log(totalRates, totalCounts)
+
         if (totalCounts === 0) {
           avgRealRate = 0;
         } else {
           avgRealRate = totalRates / totalCounts;
         }
-        var simpleAvgRate = 0;
-        var intPart = Math.floor(avgRealRate);
-        var decPart = avgRealRate - intPart;
-        if (decPart === 0) {
-          simpleAvgRate = intPart;
-        } else if (decPart > 0 && decPart <= 0.25) {
-          simpleAvgRate = intPart + 0.25;
-        } else if (decPart > 0.25 && decPart <= 0.5) {
-          simpleAvgRate = intPart + 0.5;
-        } else if (decPart > 0.5 && decPart <= 0.75) {
-          simpleAvgRate = intPart + 0.75;
-        } else {
-          simpleAvgRate = intPart + 1;
-        }
-        return {rate: simpleAvgRate};
+       //console.log(avgRealRate);
+       return avgRealRate;
       }
-      var rateObj = getAvgRateAndChangeTOOneQuarter(rates);
-      this.setState(rateObj);
-      console.log(this.state)
-
+      var avgRate = getAvgRate(rates);
+      //use helper function roundToNearestQuarter make QuarterNumber
+      var rate = roundToNearestQuarter(avgRate);
+      this.setState({rate});
+      console.log(this.state);
     })
   }
   render() {
