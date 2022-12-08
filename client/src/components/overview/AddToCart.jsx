@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 import SizeSelector from './SizeSelector.jsx';
 import QuantitySelector from './QuantitySelector.jsx';
@@ -12,8 +12,8 @@ export default class AddToCart extends React.Component {
       sizeInfo[skuInfo.size] = { sku, quantity: skuInfo.quantity }
     }
     this.state = {
-      sizes: sizeInfo
-      currrent_sku: ''
+      sizes: sizeInfo,
+      current_sku: ''
     }
     this.selectSize = this.selectSize.bind(this);
   }
@@ -24,10 +24,10 @@ export default class AddToCart extends React.Component {
 
   render() {
     const sizeOptions = Object.keys(this.state.sizes);
-    const maxQuantity = this.props.currentStyle.skus[this.state.current_sku].quantity
+    const maxQuantity = this.state.current_sku ? this.props.currentStyle.skus[this.state.current_sku].quantity : 0;
     return (
       <div className="add-to-cart">
-        <SizeSelector sizeOptions={sizeOptions} />
+        <SizeSelector sizeOptions={sizeOptions} selectSize={this.selectSize} />
         <QuantitySelector maxQuantity={maxQuantity} />
         <button className="add-to-cart-button">Add to Cart</button>
         <ClickableStar />
