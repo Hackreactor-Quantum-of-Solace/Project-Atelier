@@ -24,7 +24,7 @@ export default class RatingsReviews extends React.Component {
   }
   getRatingsReviews(id) {
     let config = {
-      url: `/reviews?product_id=71697`,
+      url: `/reviews?product_id=${id}`,
       method: 'get'
     };
 
