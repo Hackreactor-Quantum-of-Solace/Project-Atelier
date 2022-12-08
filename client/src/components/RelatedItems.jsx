@@ -6,7 +6,7 @@ import OutfitList from './relatedItems/OutfitList.jsx';
 
 export default class RelatedItems extends React.Component {
   constructor(props) {
-    //suppose each product will be loaded with procudct_id in the url
+    //suppose each product will be loaded with `?id=${givenNumber}` in the url
     super(props);
     //console.log('relateItems',this.props.productId)
     this.state = {
