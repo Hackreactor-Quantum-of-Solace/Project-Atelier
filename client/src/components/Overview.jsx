@@ -72,7 +72,7 @@ export default class Overview extends React.Component {
             styles={this.state.product_styles}
             currentStyle={this.state.currentStyle}
             changeCurrentStyle={this.changeCurrentStyle} />
-          <AddToCart product_info={this.state.product_info} />
+          <AddToCart currentStyle={this.state.currentStyle} />
         </div>
         <ProductOverview product_info={this.state.product_info} />
       </div>
