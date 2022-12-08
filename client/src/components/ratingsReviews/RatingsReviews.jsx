@@ -10,10 +10,9 @@ export default class RatingsReviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      results: [],
+      reviews: [],
       dropdown: 'relevant'
     };
-    this.componentDidMount = this.componentDidMount.bind(this);
     this.getRatingsReviews = this.getRatingsReviews.bind(this);
   }
 
@@ -31,7 +30,7 @@ export default class RatingsReviews extends React.Component {
     axios(config)
       .then ( (reviews) => {
         this.setState({
-          results: reviews.data.results
+          reviews: reviews.data.results
         })
       })
       .catch( (err) => {
@@ -53,7 +52,7 @@ export default class RatingsReviews extends React.Component {
       {/* <DropDownSort /> */}
       <div className='list-container'>
         {/* map here, then send each single reivew to  */}
-       <ReviewsTile review={this.state.results} />
+       <ReviewsTile review={this.state.reviews} />
       </div>
 
       </div>
