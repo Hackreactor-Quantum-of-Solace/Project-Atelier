@@ -11,9 +11,12 @@ export default class RatingsReviews extends React.Component {
     super(props);
     this.state = {
       reviews: [],
-      dropdown: 'relevant'
+      sortValue: 'relevant'
     };
     this.getRatingsReviews = this.getRatingsReviews.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+
   }
 
   componentDidMount () {
@@ -38,22 +41,35 @@ export default class RatingsReviews extends React.Component {
       });
   }
 
-  handleChange () {
-    //for dropdown
-    //pass down
+  handleChange(event) {
     //reset state
+    this.setState({sortValue: event.target.value});
+  }
 
+  handleSubmit(event) {
+    console.log('sorting by' + this.state.sortValue);
+    event.preventDefault();
   }
 
   render() {
     return (
       <div>
        <h2>Sorted List of Reviews</h2>
-      {/* <DropDownSort /> */}
-      <div className='list-container'>
+
+       <div className='list-container'>
         {/* map here, then send each single reivew to  */}
-       <ReviewsTile review={this.state.reviews} />
-      </div>
+       <ReviewsTile review={this.state.reviews} sortValue={this.state.sortValue}/>
+       </div>
+       <form onSubmit={this.handleSubmit}>
+        <label>
+          Sort by:
+          <select sortValue={this.state.value} onChange={this.handleChange}>
+            <option sortValue="date">date</option>
+            <option sortValue="helpfulness">helpfulness</option>
+            <option sortValue="relevant">relevant</option>
+          </select>
+        </label>
+       </form>
 
       </div>
 

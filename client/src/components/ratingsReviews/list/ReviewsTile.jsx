@@ -1,9 +1,32 @@
 import React from 'react';
+import ReviewsList from './ReviewsList.jsx';
 
 //maps through all the reviews and formats them into 'tiles'
 export default function ReviewsTile (props) {
 
-  // console.log(props, 'line 6')
+  // console.log(props.review, 'line 7 date')
+  console.log(props.sortValue, 'line 8')
+
+  // function compareHelpfulness(a, b) {
+  //   return a - b;
+  // }
+  // let sortedReviews = props.review.sort(compareHelpfulness);
+
+
+  if (props.sortValue === 'helpfulness') {
+    props.review.sort( (a, b) => {
+      return b.helpfulness - a.helpfulness
+    });
+  } else if (props.sortValue === 'date') {
+    props.review.sort( function(a, b) {
+      return new Date(b.date) - new Date(a.date);
+    });
+  } else {
+    props.review.sort( function(a, b) {
+      return b.helpfulness - a.helpfulness || new Date(b.date) - new Date(a.date);
+    });
+  }
+
 
   let reviewsList = props.review.map( (reviewObj) => {
 
@@ -38,11 +61,14 @@ export default function ReviewsTile (props) {
     )
   })
 
+
+
   return (
     <div>
       <ul>
-      {reviewsList}
+        {reviewsList}
       </ul>
+      {/* <ReviewsList reviews={reviewsList} /> */}
     </div>
   )
 }
