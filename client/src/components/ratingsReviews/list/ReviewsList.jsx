@@ -1,14 +1,14 @@
 import React from 'react';
-import ReviewTile from './ReviewTile.jsx'
+import ReviewsTile from './ReviewsTile.jsx'
 
 //returns a list format of reviews
-export default function ReviewList(props) {
+export default function ReviewsList(props) {
 
     return (
       <div>
         <h2>Review Section</h2>
         <h3>These are hard coded reviews.</h3>
-        <ReviewTile/>
+        {/* <ReviewTile/> */}
       </div>
     )
 
