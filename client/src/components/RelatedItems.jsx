@@ -8,9 +8,10 @@ export default class RelatedItems extends React.Component {
   constructor(props) {
     //suppose each product will be loaded with procudct_id in the url
     super(props);
+    //console.log('relateItems',this.props.productId)
     this.state = {
       //save relatedItemsId of the overview product
-      relatedItemsId: []
+      relatedItemsId: [],
     }
 
     this.getRelatedItemsId = this.getRelatedItemsId.bind(this);
@@ -18,6 +19,7 @@ export default class RelatedItems extends React.Component {
   componentDidMount() {
     this.getRelatedItemsId();
   }
+
   getRelatedItemsId() {
     axios({
       method: 'get',
