@@ -36,14 +36,7 @@ export default class NewReviewForm extends React.Component {
           </label>
         </form>
       </div>
-
     )
   }
 }
 
-/**
- * NOTES/QUESTIONS/CONFIRM:
- *
- * Add A Review button can be rendered here
- *
- */

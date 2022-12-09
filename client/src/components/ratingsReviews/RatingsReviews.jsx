@@ -60,7 +60,7 @@ export default class RatingsReviews extends React.Component {
 
        <div className='list-container'>
         {/* map here, then send each single reivew to  */}
-       <ReviewsTile review={this.state.reviews} value={this.state.sortValue}/>
+       <ReviewsList review={this.state.reviews} value={this.state.sortValue}/>
        </div>
        <form onSubmit={this.handleSubmit}>
         <label>
