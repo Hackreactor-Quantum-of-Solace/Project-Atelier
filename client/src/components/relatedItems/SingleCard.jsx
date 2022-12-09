@@ -14,7 +14,7 @@ export default class SingleCard extends React.Component {
       'default_price': 0,
       // null or number, if discount_price is null means no discount
       'discount_price': 0,
-      // default image used to test,'https://cdn.pixabay.com/photo/2015/01/21/13/21/sale-606687__340.png'
+      // null, '' or url, default image used to test,'https://cdn.pixabay.com/photo/2015/01/21/13/21/sale-606687__340.png'
       img:'',
       rate: 0,
     };
@@ -59,7 +59,7 @@ export default class SingleCard extends React.Component {
           if (arr[i]['default?'] === true) {
             return {
               'discount_price':results[i]['sale_price'],
-              img:results[i]['photos'][0]['url']
+              img:results[i]['photos'][0]['url']? results[i]['photos'][0]['url'] : 'https://cdn.pixabay.com/photo/2015/01/21/13/21/sale-606687__340.png'
             };
           }
         }
@@ -104,14 +104,22 @@ export default class SingleCard extends React.Component {
   }
   render() {
     return (
-      <div className = "singleCard">
-        <h2>singleCard</h2>
-        <p>{this.state.category}</p>
-        <p>{this.state.name}</p>
-        <p>{this.state.default_price}</p>
-        <p>{this.state.discount_price}</p>
-        <p>{this.state.img}</p>
-        <p>{this.state.rate}</p>
+      <div id="container">
+        <div class="singleCard">
+          <h2>singleCard</h2>
+          <div class="img">
+            <img src={this.state.img} alt="Product image" onError={ event => {
+              event.target.src= "https://cdn.pixabay.com/photo/2015/01/21/13/21/sale-606687__340.png"
+              event.onerror = null
+            }}/>
+          </div>
+
+          <p class="category">{this.state.category}</p>
+          <p class="name">{this.state.name}</p>
+          <p>${this.state.default_price}</p>
+          <p>${this.state.discount_price}</p>
+          <p>{this.state.rate}</p>
+        </div>
       </div>
     )
   }
