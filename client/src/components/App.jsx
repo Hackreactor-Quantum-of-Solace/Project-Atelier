@@ -1,6 +1,6 @@
 import React from 'react';
 import Overview from './Overview.jsx';
-import RatingsReviews from '../components/ratingsReviews/RatingsReviews.jsx';
+import RatingsReviews from './ratingsReviews/RatingsReviews.jsx';
 import QuestionsAnswers from './QuestionsAnswers.jsx';
 import RelatedItems from './RelatedItems.jsx';
 
