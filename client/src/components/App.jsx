@@ -13,14 +13,29 @@ export default class App extends React.Component {
       outfit: []
     }
     this.addToCart = this.addToCart.bind(this);
+    this.removeFromCart = this.removeFromCart.bind(this);
   }
 
   addToCart(sku, qty) {
-    let currentQuantityInCart = this.state.cart.sku || 0;
+    let currentQuantityInCart = this.state.cart[sku] || 0;
     this.setState({
       cart: {
         ...this.state.cart,
-        sku: currentQuantityInCart + qty
+        [sku]: currentQuantityInCart + qty
+      }
+    });
+  }
+
+  // TODO - delete item if none left in cart...currently the cart will hold
+  // the sku with a quantity of 0
+  removeFromCart(sku, qty) {
+    if (!this.state.cart[sku]) return;
+    let newQuantity = this.state.cart[sku] - qty;
+    newQuantity = newQuantity > 0 ? newQuantity : 0;
+    this.setState({
+      cart: {
+        ...this.state.cart,
+        [sku]: newQuantity
       }
     });
   }
