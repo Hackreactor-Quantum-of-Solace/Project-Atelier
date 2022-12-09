@@ -64,7 +64,12 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <Overview productId={this.state.product_id} />
+        <Overview
+          productId={this.state.product_id}
+          addToCart={this.addToCart}
+          addToOutfit={this.addToOutfit}
+          removeFromOutfit={this.removeFromOutfit}
+        />
         <RatingsReviews productId={this.state.product_id} />
         <QuestionsAnswers productId={this.state.product_id} />
         <RelatedItems productId={this.state.product_id}/>
