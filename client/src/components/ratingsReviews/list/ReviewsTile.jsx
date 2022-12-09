@@ -28,7 +28,7 @@ export default function ReviewsTile (props) {
   }
 
 
-  let reviewsList = props.review.map( (reviewObj) => {
+  let reviewsList = props.review.map( (reviewObj, index) => {
 
     // console.log(reviewObj.photos, 'line 10')
     let images = reviewObj.photos.map( (photosObj) => {
@@ -44,19 +44,14 @@ export default function ReviewsTile (props) {
     let formattedDateString = formattedDate.toDateString()
 
     return (
-      <div>
+      <div key ={index}>
         <h3>{reviewObj.summary}</h3>
-        <span style={ratingStyle}>rating (need to convert to stars): {reviewObj.rating}</span>
-        <br />
-        <span>{formattedDateString}</span>
-        <br />
+        <p style={ratingStyle}>rating (need to convert to stars): {reviewObj.rating}</p>
+        <p>{formattedDateString}</p>
         <p>{reviewObj.body}</p>
-        <br />
-        <span>{reviewObj.reviewer_name}</span>
-        <br />
-        <span>recommend: {reviewObj.recommend}</span>
-        <br />
-        <span>helpfulness: {reviewObj.helpfulness}</span>
+        <p>name:{reviewObj.reviewer_name}</p>
+        <p>recommend: {reviewObj.recommend}</p>
+        <p>helpfulness: {reviewObj.helpfulness}</p>
      </div>
     )
   })

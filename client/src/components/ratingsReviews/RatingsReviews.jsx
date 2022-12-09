@@ -4,6 +4,7 @@ import axios from 'axios';
 import ReviewsList from './list/ReviewsList.jsx';
 import ReviewsTile from './list/ReviewsTile.jsx';
 import ReviewsSort from './list/ReviewsSort.jsx';
+import NewReviewForm from './form/NewReviewForm.jsx';
 
 
 export default class RatingsReviews extends React.Component {
@@ -47,8 +48,9 @@ export default class RatingsReviews extends React.Component {
   }
 
   handleSubmit(event) {
-    console.log('sorting by' + this.state.sortValue);
     event.preventDefault();
+    console.log('sorting by' + this.state.sortValue);
+
   }
 
   render() {
@@ -58,18 +60,19 @@ export default class RatingsReviews extends React.Component {
 
        <div className='list-container'>
         {/* map here, then send each single reivew to  */}
-       <ReviewsTile review={this.state.reviews} sortValue={this.state.sortValue}/>
+       <ReviewsTile review={this.state.reviews} value={this.state.sortValue}/>
        </div>
        <form onSubmit={this.handleSubmit}>
         <label>
           Sort by:
-          <select sortValue={this.state.value} onChange={this.handleChange}>
-            <option sortValue="date">date</option>
-            <option sortValue="helpfulness">helpfulness</option>
-            <option sortValue="relevant">relevant</option>
+          <select value={this.state.value} onChange={this.handleChange}>
+            <option value="date">date</option>
+            <option value="helpfulness">helpfulness</option>
+            <option value="relevant">relevant</option>
           </select>
         </label>
        </form>
+       <NewReviewForm />
 
       </div>
 
