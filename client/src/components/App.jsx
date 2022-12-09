@@ -8,8 +8,21 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product_id: new URLSearchParams(window.location.search).get('id')
+      product_id: new URLSearchParams(window.location.search).get('id'),
+      cart: {},
+      outfit: []
     }
+    this.addToCart = this.addToCart.bind(this);
+  }
+
+  addToCart(sku, qty) {
+    let currentQuantityInCart = this.state.cart.sku || 0;
+    this.setState({
+      cart: {
+        ...this.state.cart,
+        sku: currentQuantityInCart + qty
+      }
+    });
   }
 
   render() {
