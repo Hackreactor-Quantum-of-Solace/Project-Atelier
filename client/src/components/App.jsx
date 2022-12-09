@@ -14,6 +14,8 @@ export default class App extends React.Component {
     }
     this.addToCart = this.addToCart.bind(this);
     this.removeFromCart = this.removeFromCart.bind(this);
+    this.addToOutfit = this.addToOutfit.bind(this);
+    this.removeFromOutfit = this.removeFromOutfit.bind(this);
   }
 
   addToCart(sku, qty) {
@@ -38,6 +40,25 @@ export default class App extends React.Component {
         [sku]: newQuantity
       }
     });
+  }
+
+  addToOutfit(product_id) {
+    if (!this.state.outfit.includes(product_id)) {
+      this.setState({
+        outfit: [
+          ...this.state.outfit,
+          product_id
+        ]
+      });
+    }
+  }
+
+  removeFromOutfit(product_id) {
+    if (this.state.outfit.includes(product_id)) {
+      let index = this.state.outfit.indexOf(product_id);
+      let outfit = this.state.outfit.slice(0, index).concat(this.state.outfit.slice(index + 1));
+      this.setState({ outfit });
+    }
   }
 
   render() {
