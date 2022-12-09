@@ -10,7 +10,7 @@ export default class RelatedProductsList extends React.Component {
   }
   render() {
     return (
-      <div className = "relatedProductsList">
+      <div class= "relatedProductsList">
         <h2>Related Products</h2>
         {this.props.relatedItemsId.map(id => (
           <SingleCard key={id} id={id} icon={this.state.icon}/>
