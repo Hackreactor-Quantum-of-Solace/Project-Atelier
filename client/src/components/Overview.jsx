@@ -20,6 +20,7 @@ export default class Overview extends React.Component {
     this.getProductStyles = this.getProductStyles.bind(this);
     this.changeCurrentStyle = this.changeCurrentStyle.bind(this);
     this.getProductRating = this.getProductRating.bind(this);
+    this._getSizeInfoForStyle = this._getSizeInfoForStyle.bind(this);
   }
 
   getProductInfo(id) {
@@ -62,7 +63,17 @@ export default class Overview extends React.Component {
     this.getProductRating(this.props.productId);
   }
 
+  _getSizeInfoForStyle(style) {
+    let sizeInfo = {};
+    for (const sku in style.skus) {
+      const skuInfo = style.skus[sku];
+      sizeInfo[skuInfo.size] = { sku, quantity: skuInfo.quantity }
+    }
+    return sizeInfo;
+  }
+
   render() {
+    const sizeInfo = this._getSizeInfoForStyle(this.state.currentStyle);
     return (
       <div className="overview-container">
         <ImageGallery product_info={this.state.product_info} />
@@ -72,7 +83,10 @@ export default class Overview extends React.Component {
             styles={this.state.product_styles}
             currentStyle={this.state.currentStyle}
             changeCurrentStyle={this.changeCurrentStyle} />
-          <AddToCart product_info={this.state.product_info} />
+          <AddToCart
+            currentStyle={this.state.currentStyle}
+            sizeInfo={sizeInfo}
+          />
         </div>
         <ProductOverview product_info={this.state.product_info} />
       </div>
