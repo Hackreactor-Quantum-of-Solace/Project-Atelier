@@ -13,7 +13,7 @@ export default class SingleCard extends React.Component {
       name: '',
       'default_price': 0,
       // null or number, if discount_price is null means no discount
-      'discount_price': 0,
+      'discount_price': null,
       // null, '' or url, default image used to test,'https://cdn.pixabay.com/photo/2015/01/21/13/21/sale-606687__340.png'
       img:'',
       rate: 0,
@@ -99,26 +99,30 @@ export default class SingleCard extends React.Component {
       //use helper function roundToNearestQuarter make QuarterNumber
       var rate = roundToNearestQuarter(avgRate);
       this.setState({rate});
-      console.log(this.state);
+      //console.log(this.state);
     })
   }
   render() {
     return (
-      <div id="container">
-        <div class="singleCard">
-          <h2>singleCard</h2>
-          <div class="img">
-            <img src={this.state.img} alt="Product image" onError={ event => {
-              event.target.src= "https://cdn.pixabay.com/photo/2015/01/21/13/21/sale-606687__340.png"
-              event.onerror = null
-            }}/>
-          </div>
+      <div class="card">
 
-          <p class="category">{this.state.category}</p>
-          <p class="name">{this.state.name}</p>
-          <p>${this.state.default_price}</p>
-          <p>${this.state.discount_price}</p>
+        <img class="card-img" src={this.state.img} alt="Product image" onError={ event => {
+          event.target.src= "https://cdn.pixabay.com/photo/2015/01/21/13/21/sale-606687__340.png"
+          event.onerror = null
+        }}/>
+
+        <div class="product-info">
+
+          <span class="category">{this.state.category}</span>
+          <br></br>
+          <span class="name">{this.state.name}</span>
+
+          {(this.state.discount_price) ? <p class="discount-price">${this.state.discount_price}</p> : null}
+          <p class="default-price" style={(this.state.discount_price) ? {"text-decoration": "line-through"} : null}>${this.state.default_price}</p>
+
+
           <p>{this.state.rate}</p>
+
         </div>
       </div>
     )
