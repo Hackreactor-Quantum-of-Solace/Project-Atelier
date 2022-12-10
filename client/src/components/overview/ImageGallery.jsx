@@ -4,7 +4,7 @@ export default class ImageGallery extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentImage: {}
+      currentImage: {} // TO DO: Just keep track of the index of photo in currentStyle.photos
     }
     this.changeMainImage = this.changeMainImage.bind(this);
     this.handleThumbnailClick = this.handleThumbnailClick.bind(this);
