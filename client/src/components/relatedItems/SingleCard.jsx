@@ -1,115 +1,130 @@
 import React from 'react';
 import axios from 'axios';
+
 //use helper function get QuarterNumber
-import { roundToNearestQuarter} from '../../../../helpers/helpers.js'
+import { roundToNearestQuarter} from '../../../../helpers/helpers.js';
+
 export default class SingleCard extends React.Component {
   constructor(props) {
     super(props);
-    //console.log(this.props)
     this.state = {
-      // '' no category or a string
-      category: '',
-      // '' no name or a string
-      name: '',
-      'default_price': 0,
-      // null or number, if discount_price is null means no discount
-      'discount_price': null,
-      // null, '' or url, default image used to test,'https://cdn.pixabay.com/photo/2015/01/21/13/21/sale-606687__340.png'
-      img:'',
-      rate: 0,
+      category : 'CATEGORY',
+      name : 'NAME',
+      default_price : 0,
+      //if discount_price is null or zero means there's no discount
+      discount_price : null,
+      //default url image used to test
+      img : 'https://cdn.pixabay.com/photo/2015/01/21/13/21/sale-606687__340.png',
+      rate : 0
     };
 
     this.fetchCategoryAndName = this.fetchCategoryAndName.bind(this);
-    this.fetchDiscountPriceAndImage = this.fetchDiscountPriceAndImage.bind(this);
+    this.fetchPriceAndImage = this.fetchPriceAndImage.bind(this);
     this.fetchRateAndChangeToUse = this.fetchRateAndChangeToUse.bind(this);
   }
   componentDidMount() {
    this.fetchCategoryAndName();
-   this.fetchDiscountPriceAndImage();
+   this.fetchPriceAndImage();
    this.fetchRateAndChangeToUse();
 
   }
 
   fetchCategoryAndName() {
     axios({
-      method: 'get',
-      url: `/products/${this.props.id}`
+      method : 'get',
+      url : `/products/${this.props.id}`
     })
     .then((response) => {
       this.setState({
-        category: response.data.category,
-        name: response.data.name,
-        'default_price': response.data['default_price']
+        category : response.data.category,
+        name : response.data.name
       })
-      //console.log(this.state);
     })
-    .catch((err) => {console.log('fetchCategoryAndName ERROR', err)})
+    .catch((err) => { console.log('Fetch Category And Name ERROR', err);
+    });
 
   }
-  fetchDiscountPriceAndImage() {
+  fetchPriceAndImage() {
     axios({
-      method: 'get',
-      url: `/products/${this.props.id}/styles`
+      method : 'get',
+      url : `/products/${this.props.id}/styles`
     })
     .then((response) => {
       var results = response.data.results;
-      //find default param is true which is the required img and price
+
+      //getDefault function: find the default parameter which is the required image and price
       var getDefault = (arr) => {
-        for(var i = 0; i < arr.length; i ++) {
+        // in case no default parameter
+        var priceAndImgObj = {
+          default_price : arr[0]['original_price'],
+          discount_price : arr[0]['sale_price'],
+          img : arr[0]['photos'][0]['url'] ? arr[0]['photos'][0]['url'] : 'https://cdn.pixabay.com/photo/2015/01/21/13/21/sale-606687__340.png'
+        };
+        for (var i = 0; i < arr.length; i ++) {
           if (arr[i]['default?'] === true) {
-            return {
-              'discount_price':results[i]['sale_price'],
-              img:results[i]['photos'][0]['url']? results[i]['photos'][0]['url'] : 'https://cdn.pixabay.com/photo/2015/01/21/13/21/sale-606687__340.png'
+            priceAndImgObj = {
+              default_price : arr[i]['original_price'],
+              discount_price : arr[i]['sale_price'],
+              img : arr[i]['photos'][0]['url'] ? arr[i]['photos'][0]['url'] : 'https://cdn.pixabay.com/photo/2015/01/21/13/21/sale-606687__340.png'
             };
+            break;
           }
         }
+        return priceAndImgObj;
       };
-      var discountAndImgObj = getDefault(results);
-      this.setState(discountAndImgObj);
+
+      this.setState(getDefault(results));
       //console.log(this.state)
     })
-    .catch((err) => {console.log('fetchDiscountPriceAndImage ERROR', err)})
+    .catch((err) => { console.log('Fetch Price And Image ERROR', err);
+    });
   }
   fetchRateAndChangeToUse() {
     axios({
-      url: `/reviews/meta?product_id=${this.props.id}`,
-      method: 'get'
+      url : `/reviews/meta?product_id=${this.props.id}`,
+      method : 'get'
     })
     .then((response) => {
       var rates = response.data.ratings;
-      //console.log(rates)
+
       var getAvgRate = (rates) => {
         var totalRates = 0;
         var totalCounts = 0;
         var avgRealRate = 0;
-        for(var key in rates) {
+        for (var key in rates) {
           totalRates += key * rates[key];
           totalCounts += rates[key] * 1;
         }
-
         if (totalCounts === 0) {
           avgRealRate = 0;
         } else {
           avgRealRate = totalRates / totalCounts;
         }
-       //console.log(avgRealRate);
        return avgRealRate;
-      }
+      };
+
       var avgRate = getAvgRate(rates);
+
       //use helper function roundToNearestQuarter make QuarterNumber
       var rate = roundToNearestQuarter(avgRate);
+
       this.setState({rate});
-      //console.log(this.state);
+      // console.log(this.state);
     })
+    .catch((err) => { console.log('Fetch Rates And Change to use ERROR', err);
+    });
   }
   render() {
     return (
-      <div class="card">
+      // when client click card, it will redirect page to detail product page
+      <div class="card" onClick={()=> { window.location.href = `http://localhost:3000/?id=${this.props.id}`}}>
 
-        <img class="card-img" src={this.state.img} alt="Product image" onError={ event => {
-          event.target.src= "https://cdn.pixabay.com/photo/2015/01/21/13/21/sale-606687__340.png"
-          event.onerror = null
-        }}/>
+        <img class="card-img" src={this.state.img} alt="Product image"
+        // onError={ event => {
+        //   event.target.src= "https://cdn.pixabay.com/photo/2015/01/21/13/21/sale-606687__340.png"
+        //   event.onerror = null
+        // }}
+        />
 
         <div class="product-info">
 
