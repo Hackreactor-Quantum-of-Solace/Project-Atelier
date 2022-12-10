@@ -22,6 +22,13 @@ export default class SingleCard extends React.Component {
     this.fetchPriceAndImage = this.fetchPriceAndImage.bind(this);
     this.fetchRateAndChangeToUse = this.fetchRateAndChangeToUse.bind(this);
   }
+  relatedProductCompare() {
+
+  }
+
+  deleteOutfitProcuct() {
+
+  }
   componentDidMount() {
    this.fetchCategoryAndName();
    this.fetchPriceAndImage();
@@ -127,6 +134,8 @@ export default class SingleCard extends React.Component {
         />
 
         <div class="product-info">
+          {/* icon is not designed */}
+          {<p>{this.props.icon}</p>}
 
           <span class="category">{this.state.category}</span>
           <br></br>
@@ -135,8 +144,8 @@ export default class SingleCard extends React.Component {
           {(this.state.discount_price) ? <p class="discount-price">${this.state.discount_price}</p> : null}
           <p class="default-price" style={(this.state.discount_price) ? {"text-decoration": "line-through"} : null}>${this.state.default_price}</p>
 
-
-          <p>{this.state.rate}</p>
+          {/* rate is not designed */}
+          {(this.state.rate) ? <p>{this.state.rate}</p> : null}
 
         </div>
       </div>
