@@ -18,7 +18,7 @@ export default function ReviewsTile (props) {
     let formattedDateString = formattedDate.toDateString()
 
   return (
-    <div>
+    <div class="tile">
       <h3>{props.review.summary}</h3>
          <p style={ratingStyle}>rating (need to convert to stars): {props.review.rating}</p>
          <p>{formattedDateString}</p>

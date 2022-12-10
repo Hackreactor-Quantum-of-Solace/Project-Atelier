@@ -144,3 +144,11 @@ html {
   color:red
 }
 
+/********** RATINGS AND REVIEWS **********/
+
+/********** reviews tile **********/
+
+.tile {
+  border: 1px solid black;
+  max-width: 500px;
+}
