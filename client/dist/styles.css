@@ -21,11 +21,42 @@ html {
 }
 
 .main-image-container {
-
+  position: relative;
 }
 
 .main-image-container > img {
   width: 100%;
+}
+
+.thumbnails-container {
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  gap: 5px;
+  position: absolute;
+  z-index: 2;
+  left: 20px;
+  top: 20px;
+  cursor: pointer;
+}
+
+.img-gallery-thumbnail {
+  width: 100px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #222;
+}
+
+.selected-thumbnail {
+  border: 1px solid red;
+}
+
+.img-gallery-thumbnail > img {
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
 }
 
 /*********** OVERVIEW SIDEBAR **********/
