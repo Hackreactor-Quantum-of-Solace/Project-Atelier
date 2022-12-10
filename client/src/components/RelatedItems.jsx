@@ -11,35 +11,52 @@ export default class RelatedItems extends React.Component {
     //console.log('relateItems',this.props.productId)
     this.state = {
       //save relatedItemsId of the overview product
-      relatedItemsId: [],
+      relatedItemsId : [],
+      currentProductFeature : []
     }
 
     this.getRelatedItemsId = this.getRelatedItemsId.bind(this);
+    this.getCurrentProductFeature = this.getCurrentProductFeature.bind(this);
   }
   componentDidMount() {
     this.getRelatedItemsId();
+    this.getCurrentProductFeature();
   }
 
   getRelatedItemsId() {
     axios({
-      method: 'get',
-      url: `/products/${this.props.productId}/related`,
+      method : 'get',
+      url : `/products/${this.props.productId}/related`,
     })
     .then((response) => {
-      //console.log(response.data);
       this.setState({
         relatedItemsId: response.data
       });
     })
     .catch((err) => {
-      console.log('getRelatedItemsID ERROR', err);
-    })
+      console.log('Get Related Items ID ERROR', err);
+    });
 
+  }
+  getCurrentProductFeature() {
+    axios({
+      method: 'get',
+      url: `/products/${this.props.productId}`,
+    })
+    .then((response) => {
+      this.setState({
+        currentProductFeature : response.data.features
+      });
+      // console.log(this.state)
+    })
+    .catch((err) => {
+      console.log('Get Current Product Feature ERROR', err);
+    });
   }
   render() {
     return (
       <div className = "relatedItems">
-         < RelatedProductsList relatedItemsId={this.state.relatedItemsId}/>
+         < RelatedProductsList relatedItemsId={this.state.relatedItemsId} currentProductFeature={this.state.currentProductFeature}/>
 
         < OutfitList />
       </div>

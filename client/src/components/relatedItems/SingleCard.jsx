@@ -1,15 +1,19 @@
 import React from 'react';
 import axios from 'axios';
 
+import ComparisonMedal from './ComparisonMedal.jsx';
+
 //use helper function get QuarterNumber
 import { roundToNearestQuarter} from '../../../../helpers/helpers.js';
 
 export default class SingleCard extends React.Component {
   constructor(props) {
     super(props);
+    // console.log('before',this.props)
     this.state = {
       category : 'CATEGORY',
       name : 'NAME',
+      features: [],
       default_price : 0,
       //if discount_price is null or zero means there's no discount
       discount_price : null,
@@ -18,7 +22,7 @@ export default class SingleCard extends React.Component {
       rate : 0
     };
 
-    this.fetchCategoryAndName = this.fetchCategoryAndName.bind(this);
+    this.fetchCategoryNameAndFeatures = this.fetchCategoryNameAndFeatures.bind(this);
     this.fetchPriceAndImage = this.fetchPriceAndImage.bind(this);
     this.fetchRateAndChangeToUse = this.fetchRateAndChangeToUse.bind(this);
   }
@@ -30,13 +34,13 @@ export default class SingleCard extends React.Component {
 
   }
   componentDidMount() {
-   this.fetchCategoryAndName();
+   this.fetchCategoryNameAndFeatures();
    this.fetchPriceAndImage();
    this.fetchRateAndChangeToUse();
 
   }
 
-  fetchCategoryAndName() {
+  fetchCategoryNameAndFeatures() {
     axios({
       method : 'get',
       url : `/products/${this.props.id}`
@@ -44,10 +48,14 @@ export default class SingleCard extends React.Component {
     .then((response) => {
       this.setState({
         category : response.data.category,
-        name : response.data.name
+        name : response.data.name,
+        features : response.data.features
       })
+      //for test
+      // console.log('singlecard',this.state);
     })
-    .catch((err) => { console.log('Fetch Category And Name ERROR', err);
+    .catch((err) => {
+      console.log('Fetch Category, Name And Features ERROR', err);
     });
 
   }
@@ -81,9 +89,9 @@ export default class SingleCard extends React.Component {
       };
 
       this.setState(getDefault(results));
-      //console.log(this.state)
     })
-    .catch((err) => { console.log('Fetch Price And Image ERROR', err);
+    .catch((err) => {
+      console.log('Fetch Price And Image ERROR', err);
     });
   }
   fetchRateAndChangeToUse() {
@@ -116,9 +124,9 @@ export default class SingleCard extends React.Component {
       var rate = roundToNearestQuarter(avgRate);
 
       this.setState({rate});
-      // console.log(this.state);
     })
-    .catch((err) => { console.log('Fetch Rates And Change to use ERROR', err);
+    .catch((err) => {
+      console.log('Fetch Rates And Change to use ERROR', err);
     });
   }
   render() {
@@ -136,6 +144,7 @@ export default class SingleCard extends React.Component {
         <div class="product-info">
           {/* icon is not designed */}
           {<p>{this.props.icon}</p>}
+          < ComparisonMedal currentProductFeature={this.props.currentProductFeature} relatedProductFeature={this.state.features} />
 
           <span class="category">{this.state.category}</span>
           <br></br>
