@@ -1,126 +1,162 @@
 import React from 'react';
 import axios from 'axios';
 
+import ComparisonMedal from './ComparisonMedal.jsx';
+
+//use helper function get QuarterNumber
+import { roundToNearestQuarter} from '../../../../helpers/helpers.js';
+
 export default class SingleCard extends React.Component {
   constructor(props) {
     super(props);
-    //console.log(this.props)
+    // console.log('before',this.props)
     this.state = {
-      // '' no category or a string
-      category: '',
-      // '' no name or a string
-      name: '',
-      'default_price': 0,
-      // null or number, if discount_price is null means no discount
-      'discount_price': 0,
-      // default image used to test,'https://cdn.pixabay.com/photo/2015/01/21/13/21/sale-606687__340.png'
-      img:'',
-      rate: 0,
+      category : 'CATEGORY',
+      name : 'NAME',
+      features: [],
+      default_price : 0,
+      //if discount_price is null or zero means there's no discount
+      discount_price : null,
+      //default url image used to test
+      img : 'https://cdn.pixabay.com/photo/2015/01/21/13/21/sale-606687__340.png',
+      rate : 0
     };
 
-    this.fetchCategoryAndName = this.fetchCategoryAndName.bind(this);
-    this.fetchDiscountPriceAndImage = this.fetchDiscountPriceAndImage.bind(this);
+    this.fetchCategoryNameAndFeatures = this.fetchCategoryNameAndFeatures.bind(this);
+    this.fetchPriceAndImage = this.fetchPriceAndImage.bind(this);
     this.fetchRateAndChangeToUse = this.fetchRateAndChangeToUse.bind(this);
   }
+  relatedProductCompare() {
+
+  }
+
+  deleteOutfitProcuct() {
+
+  }
   componentDidMount() {
-   this.fetchCategoryAndName();
-   this.fetchDiscountPriceAndImage();
+   this.fetchCategoryNameAndFeatures();
+   this.fetchPriceAndImage();
    this.fetchRateAndChangeToUse();
 
   }
 
-  fetchCategoryAndName() {
+  fetchCategoryNameAndFeatures() {
     axios({
-      method: 'get',
-      url: `/products/${this.props.id}`
+      method : 'get',
+      url : `/products/${this.props.id}`
     })
     .then((response) => {
       this.setState({
-        category: response.data.category,
-        name: response.data.name,
-        'default_price': response.data['default_price']
+        category : response.data.category,
+        name : response.data.name,
+        features : response.data.features
       })
-      //console.log(this.state);
+      //for test
+      // console.log('singlecard',this.state);
     })
+    .catch((err) => {
+      console.log('Fetch Category, Name And Features ERROR', err);
+    });
 
   }
-  fetchDiscountPriceAndImage() {
+  fetchPriceAndImage() {
     axios({
-      method: 'get',
-      url: `/products/${this.props.id}/styles`
+      method : 'get',
+      url : `/products/${this.props.id}/styles`
     })
     .then((response) => {
       var results = response.data.results;
-      //find default param is true which is the required img and price
+
+      //getDefault function: find the default parameter which is the required image and price
       var getDefault = (arr) => {
-        for(var i = 0; i < arr.length; i ++) {
+        // in case no default parameter
+        var priceAndImgObj = {
+          default_price : arr[0]['original_price'],
+          discount_price : arr[0]['sale_price'],
+          img : arr[0]['photos'][0]['url'] ? arr[0]['photos'][0]['url'] : 'https://cdn.pixabay.com/photo/2015/01/21/13/21/sale-606687__340.png'
+        };
+        for (var i = 0; i < arr.length; i ++) {
           if (arr[i]['default?'] === true) {
-            return {
-              'discount_price':results[i]['sale_price'],
-              img:results[i]['photos'][0]['url']
+            priceAndImgObj = {
+              default_price : arr[i]['original_price'],
+              discount_price : arr[i]['sale_price'],
+              img : arr[i]['photos'][0]['url'] ? arr[i]['photos'][0]['url'] : 'https://cdn.pixabay.com/photo/2015/01/21/13/21/sale-606687__340.png'
             };
+            break;
           }
         }
+        return priceAndImgObj;
       };
-      var discountAndImgObj = getDefault(results);
-      this.setState(discountAndImgObj);
-      //console.log(this.state)
+
+      this.setState(getDefault(results));
     })
+    .catch((err) => {
+      console.log('Fetch Price And Image ERROR', err);
+    });
   }
   fetchRateAndChangeToUse() {
     axios({
-      url: `/reviews/meta?product_id=${this.props.id}`,
-      method: 'get'
+      url : `/reviews/meta?product_id=${this.props.id}`,
+      method : 'get'
     })
     .then((response) => {
       var rates = response.data.ratings;
-      //console.log(rates)
-      var getAvgRateAndChangeTOOneQuarter = (rates) => {
+
+      var getAvgRate = (rates) => {
         var totalRates = 0;
         var totalCounts = 0;
         var avgRealRate = 0;
-        for(var key in rates) {
+        for (var key in rates) {
           totalRates += key * rates[key];
           totalCounts += rates[key] * 1;
         }
-        //console.log(totalRates, totalCounts)
         if (totalCounts === 0) {
           avgRealRate = 0;
         } else {
           avgRealRate = totalRates / totalCounts;
         }
-        var simpleAvgRate = 0;
-        var intPart = Math.floor(avgRealRate);
-        var decPart = avgRealRate - intPart;
-        if (decPart === 0) {
-          simpleAvgRate = intPart;
-        } else if (decPart > 0 && decPart <= 0.25) {
-          simpleAvgRate = intPart + 0.25;
-        } else if (decPart > 0.25 && decPart <= 0.5) {
-          simpleAvgRate = intPart + 0.5;
-        } else if (decPart > 0.5 && decPart <= 0.75) {
-          simpleAvgRate = intPart + 0.75;
-        } else {
-          simpleAvgRate = intPart + 1;
-        }
-        return {rate: simpleAvgRate};
-      }
-      var rateObj = getAvgRateAndChangeTOOneQuarter(rates);
-      this.setState(rateObj);
-      console.log(this.state)
+       return avgRealRate;
+      };
 
+      var avgRate = getAvgRate(rates);
+
+      //use helper function roundToNearestQuarter make QuarterNumber
+      var rate = roundToNearestQuarter(avgRate);
+
+      this.setState({rate});
     })
+    .catch((err) => {
+      console.log('Fetch Rates And Change to use ERROR', err);
+    });
   }
   render() {
     return (
-      <div className = "singleCard">
-        <h2>singleCard</h2>
-        <p>{this.state.category}</p>
-        <p>{this.state.name}</p>
-        <p>{this.state.default_price}</p>
-        <p>{this.state.discount_price}</p>
-        <p>{this.state.img}</p>
-        <p>{this.state.rate}</p>
+      // when client click card, it will redirect page to detail product page
+      <div class="card" onClick={()=> { window.location.href = `http://localhost:3000/?id=${this.props.id}`}}>
+
+        <img class="card-img" src={this.state.img} alt="Product image"
+        // onError={ event => {
+        //   event.target.src= "https://cdn.pixabay.com/photo/2015/01/21/13/21/sale-606687__340.png"
+        //   event.onerror = null
+        // }}
+        />
+
+        <div class="product-info">
+          {/* icon is not designed */}
+          {<p>{this.props.icon}</p>}
+          < ComparisonMedal currentProductFeature={this.props.currentProductFeature} relatedProductFeature={this.state.features} />
+
+          <span class="category">{this.state.category}</span>
+          <br></br>
+          <span class="name">{this.state.name}</span>
+
+          {(this.state.discount_price) ? <p class="discount-price">${this.state.discount_price}</p> : null}
+          <p class="default-price" style={(this.state.discount_price) ? {"text-decoration": "line-through"} : null}>${this.state.default_price}</p>
+
+          {/* rate is not designed */}
+          {(this.state.rate) ? <p>{this.state.rate}</p> : null}
+
+        </div>
       </div>
     )
   }
