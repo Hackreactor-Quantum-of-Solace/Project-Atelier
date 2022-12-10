@@ -18,6 +18,7 @@ html {
   width: 70%;
   border: 1px solid black;
   box-sizing: border-box;
+  height: 70%;
 }
 
 .main-image-container {
@@ -38,12 +39,12 @@ html {
   left: 20px;
   top: 20px;
   cursor: pointer;
-  height: 80%;
+  height: 425px;
   overflow: hidden;
 }
 
 .img-gallery-thumbnail {
-  width: 100px;
+  width: 80px;
   height: 80px;
   display: flex;
   align-items: center;
@@ -59,6 +60,28 @@ html {
   max-width: 100%;
   max-height: 100%;
   margin: auto;
+}
+
+.img-icon {
+  font-weight: bold;
+  color: white;
+  position: absolute;
+  cursor: pointer;
+}
+
+.img-left-arrow {
+  top: 50%;
+  left: 120px;
+}
+
+.img-right-arrow {
+  top: 50%;
+  right: 20px;
+}
+
+.img-expand-icon {
+  top: 10px;
+  right: 10px;
 }
 
 /*********** OVERVIEW SIDEBAR **********/
