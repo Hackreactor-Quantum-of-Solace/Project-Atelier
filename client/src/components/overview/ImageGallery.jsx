@@ -3,12 +3,28 @@ import React from 'react';
 export default class ImageGallery extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      currentImage: {}
+    }
   }
 
   render() {
+    let currentImage = this.props.currentStyle.photos ? this.props.currentStyle.photos[0] : {};
     return (
       <div className="image-gallery">
-        <h2>Image Gallery</h2>
+        <div className="main-image-container">
+          <img src={currentImage.url} alt={this.props.currentStyle.name}></img>
+
+          <div className="thumbnails-container">
+            {this.props.currentStyle.photos && this.props.currentStyle.photos.map((photo, i) => {
+              if (i === this.props.currentStyle.photos.indexOf(currentImage)) {
+                return <img key={i} className="img-gallery-thumbnail selected-thumbnail" src={photo.thumbnail_url}></img>
+              } else {
+                return <img key={i} className="img-gallery-thumbnail" src={photo.thumbnail_url}></img>;
+              }
+            })}
+          </div>
+        </div>
       </div>
     );
   }

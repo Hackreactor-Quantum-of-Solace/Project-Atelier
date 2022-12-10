@@ -20,6 +20,14 @@ html {
   box-sizing: border-box;
 }
 
+.main-image-container {
+
+}
+
+.main-image-container > img {
+  width: 100%;
+}
+
 /*********** OVERVIEW SIDEBAR **********/
 
 .star-rating {
