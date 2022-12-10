@@ -4,17 +4,20 @@ import axios from 'axios';
 import ReviewsList from './list/ReviewsList.jsx';
 import ReviewsTile from './list/ReviewsTile.jsx';
 import ReviewsSort from './list/ReviewsSort.jsx';
+import NewReviewForm from './form/NewReviewForm.jsx';
 
 
 export default class RatingsReviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      results: [],
-      dropdown: 'relevant'
+      reviews: [],
+      sortValue: 'relevant'
     };
-    this.componentDidMount = this.componentDidMount.bind(this);
     this.getRatingsReviews = this.getRatingsReviews.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+
   }
 
   componentDidMount () {
@@ -31,7 +34,7 @@ export default class RatingsReviews extends React.Component {
     axios(config)
       .then ( (reviews) => {
         this.setState({
-          results: reviews.data.results
+          reviews: reviews.data.results
         })
       })
       .catch( (err) => {
@@ -39,10 +42,14 @@ export default class RatingsReviews extends React.Component {
       });
   }
 
-  handleChange () {
-    //for dropdown
-    //pass down
+  handleChange(event) {
     //reset state
+    this.setState({sortValue: event.target.value});
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log('sorting by' + this.state.sortValue);
 
   }
 
@@ -50,11 +57,22 @@ export default class RatingsReviews extends React.Component {
     return (
       <div>
        <h2>Sorted List of Reviews</h2>
-      {/* <DropDownSort /> */}
-      <div className='list-container'>
+
+       <div className='list-container'>
         {/* map here, then send each single reivew to  */}
-       <ReviewsTile review={this.state.results} />
-      </div>
+       <ReviewsList review={this.state.reviews} value={this.state.sortValue}/>
+       </div>
+       <form onSubmit={this.handleSubmit}>
+        <label>
+          Sort by:
+          <select value={this.state.value} onChange={this.handleChange}>
+            <option value="date">date</option>
+            <option value="helpfulness">helpfulness</option>
+            <option value="relevant">relevant</option>
+          </select>
+        </label>
+       </form>
+       <NewReviewForm />
 
       </div>
 
