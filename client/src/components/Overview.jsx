@@ -76,7 +76,7 @@ export default class Overview extends React.Component {
     const sizeInfo = this._getSizeInfoForStyle(this.state.currentStyle);
     return (
       <div className="overview-container">
-        <ImageGallery product_info={this.state.product_info} />
+        <ImageGallery currentStyle={this.state.currentStyle} />
         <div className="user-selection-bar">
           <ProductInfo product_info={this.state.product_info} rating={this.state.product_rating} />
           <StyleSelector
