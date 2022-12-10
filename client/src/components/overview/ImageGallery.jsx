@@ -4,32 +4,33 @@ export default class ImageGallery extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentImage: {} // TO DO: Just keep track of the index of photo in currentStyle.photos
+      currentImageIndex: 0
     }
     this.changeMainImage = this.changeMainImage.bind(this);
     this.handleThumbnailClick = this.handleThumbnailClick.bind(this);
   }
 
-  changeMainImage(image) {
-    this.setState({ currentImage: image });
+  componentDidMount() {
+    this.setState({ currentImageIndex: 0 });
+  }
+
+  changeMainImage(index) {
+    this.setState({ currentImageIndex: index });
   }
 
   handleThumbnailClick(e) {
     if (e.target.className === 'thumbnails-container') return;
     if (e.target.className === 'thumbnail-img') {
       console.log(e.target.parentElement.dataset.index);
-      this.changeMainImage(this.props.currentStyle.photos[e.target.parentElement.dataset.index]);
+      this.changeMainImage(e.target.parentElement.dataset.index);
     } else {
       console.log(e.target.dataset.index);
-      this.changeMainImage(this.props.currentStyle.photos[e.target.dataset.index]);
+      this.changeMainImage(e.target.dataset.index);
     }
   }
 
   render() {
-    let currentImage = this.state.currentImage;
-    if (!currentImage.url) {
-      currentImage = this.props.currentStyle.photos ? this.props.currentStyle.photos[0] : {};
-    }
+    let currentImage = this.props.currentStyle.photos ? this.props.currentStyle.photos[this.state.currentImageIndex] : {};
     return (
       <div className="image-gallery">
         <div className="main-image-container">
@@ -40,7 +41,7 @@ export default class ImageGallery extends React.Component {
 
           <div className="thumbnails-container" onClick={this.handleThumbnailClick}>
             {this.props.currentStyle.photos && this.props.currentStyle.photos.map((photo, i) => {
-              if (i === this.props.currentStyle.photos.indexOf(currentImage)) {
+              if (i === this.state.currentImageIndex) {
                 return (
                   <div className="img-gallery-thumbnail selected-thumbnail" key={i} data-index={i}>
                     <img className="thumbnail-img" src={photo.thumbnail_url}></img>
