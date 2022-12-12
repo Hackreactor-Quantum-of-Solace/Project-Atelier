@@ -43,6 +43,7 @@ export default class App extends React.Component {
   }
 
   addToOutfit(product_id) {
+    console.log(`adding to outfit: ${product_id}`);
     if (!this.state.outfit.includes(product_id)) {
       this.setState({
         outfit: [
@@ -54,6 +55,7 @@ export default class App extends React.Component {
   }
 
   removeFromOutfit(product_id) {
+    console.log(`removing from outfit: ${product_id}`);
     if (this.state.outfit.includes(product_id)) {
       let index = this.state.outfit.indexOf(product_id);
       let outfit = this.state.outfit.slice(0, index).concat(this.state.outfit.slice(index + 1));
@@ -69,6 +71,7 @@ export default class App extends React.Component {
           addToCart={this.addToCart}
           addToOutfit={this.addToOutfit}
           removeFromOutfit={this.removeFromOutfit}
+          inOutfit={this.state.outfit.includes(this.state.product_id)}
         />
         <RatingsReviews productId={this.state.product_id} />
         <QuestionsAnswers productId={this.state.product_id} />
