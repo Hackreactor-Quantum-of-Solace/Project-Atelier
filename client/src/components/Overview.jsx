@@ -82,13 +82,14 @@ export default class Overview extends React.Component {
   render() {
     const sizeInfo = this._getSizeInfoForStyle(this.state.currentStyle);
     let expandedView = this.state.imageGalleryView === 'default' ? '' : ' expanded-view';
+    let collapsedSideBar = this.state.imageGalleryView === 'default' ? '' : ' collapsed-sidebar';
     return (
       <div className={`overview-container${expandedView}`}>
         <ImageGallery
           currentStyle={this.state.currentStyle}
           toggleView={this.toggleImageGalleryView}
         />
-        <div className="user-selection-bar">
+        <div className={`user-selection-bar${collapsedSideBar}`}>
           <ProductInfo product_info={this.state.product_info} rating={this.state.product_rating} />
           <StyleSelector
             styles={this.state.product_styles}
