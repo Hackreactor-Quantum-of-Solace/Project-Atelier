@@ -35,7 +35,7 @@ export default class ImageGallery extends React.Component {
       <div className="image-gallery">
         <div className="main-image-container">
           <img src={currentImage.url} alt={this.props.currentStyle.name}></img>
-          <div className="img-expand-icon img-icon">&#x26F6;</div>
+          <div className="img-expand-icon img-icon" onClick={this.props.toggleView}>&#x26F6;</div>
           <div className="img-left-arrow img-icon">&#706;</div>
           <div className="img-right-arrow img-icon">&#707;</div>
 
