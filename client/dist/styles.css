@@ -18,6 +18,77 @@ html {
   width: 70%;
   border: 1px solid black;
   box-sizing: border-box;
+  height: 80%;
+}
+
+.main-image-container {
+  position: relative;
+  overflow: hidden;
+  height: 500px;
+  background-color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-image-container > img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.thumbnails-container {
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  gap: 5px;
+  position: absolute;
+  z-index: 2;
+  left: 20px;
+  top: 20px;
+  cursor: pointer;
+  height: 425px;
+  overflow: hidden;
+}
+
+.img-gallery-thumbnail {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #222;
+}
+
+.selected-thumbnail {
+  border: 1px solid red;
+}
+
+.img-gallery-thumbnail > img {
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+}
+
+.img-icon {
+  font-weight: bold;
+  color: white;
+  position: absolute;
+  cursor: pointer;
+}
+
+.img-left-arrow {
+  top: 50%;
+  left: 120px;
+}
+
+.img-right-arrow {
+  top: 50%;
+  right: 20px;
+}
+
+.img-expand-icon {
+  top: 10px;
+  right: 10px;
 }
 
 /*********** OVERVIEW SIDEBAR **********/
@@ -144,3 +215,11 @@ html {
   color:red
 }
 
+/********** RATINGS AND REVIEWS **********/
+
+/********** reviews tile **********/
+
+.tile {
+  border: 1px solid black;
+  max-width: 500px;
+}
