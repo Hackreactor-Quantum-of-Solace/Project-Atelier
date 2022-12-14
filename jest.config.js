@@ -4,5 +4,6 @@ module.exports = {
       `${__dirname}/testing/__mocks__/fileMock.js`,
     '\\.(css|less)$': `${__dirname}/testing/__mocks__/styleMock.js`,
   },
-  testEnvironment: "jsdom"
+  testEnvironment: "jsdom",
+  coverageDirectory: `${__dirname}/testing/coverage`
 };
