@@ -1,7 +1,6 @@
 import React from 'react';
 import ReviewsTile from './ReviewsTile.jsx'
 
-//returns a list format of reviews
 export default function ReviewsList(props) {
 
 
@@ -33,9 +32,5 @@ export default function ReviewsList(props) {
     )
   }
 
-// console.log(reviewObj.photos, 'line 10')
-// let images = reviewObj.photos.map( (photosObj) => {
-//   // console.log(photosObj, 'line 12')
-// })
 
 
