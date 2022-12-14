@@ -7,8 +7,3 @@ export default function ReviewsSort(props) {
   )
 }
 
-/**
- * NOTES/QUESTIONS/CONFIRMATIONS
- *
- *
- */
