@@ -17,9 +17,6 @@
   "bugs": {
     "url": "https://github.com/nsfoster87/Project-Atelier/issues"
   },
-  "jest": {
-    "testEnvironment": "jsdom"
-  },
   "homepage": "https://github.com/nsfoster87/Project-Atelier#readme",
   "dependencies": {
     "@babel/cli": "^7.19.3",
