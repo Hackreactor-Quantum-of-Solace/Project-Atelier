@@ -1,4 +1,7 @@
 import { roundToNearestQuarter } from '../../helpers/helpers.js';
+import { unmountComponentAtNode } from 'react-dom';
+
+/***** Unit Tests for roundToNearestQuarter helper function *****/
 
 describe('roundToNearestQuarter', function() {
   it('should round numbers to nearest quarter of a point', function() {
@@ -9,5 +12,24 @@ describe('roundToNearestQuarter', function() {
     expect(roundToNearestQuarter(3.402342)).toBe(3.5);
     expect(roundToNearestQuarter(3.12)).toBe(3);
     expect(roundToNearestQuarter(3.13)).toBe(3.25);
+  });
+});
+
+/***** React Component Tests *****/
+
+describe('Overview Component and Subcomponents', function() {
+  let container = null;
+
+  beforeEach(() => {
+    // setup a DOM element as a render target
+    container = document.createElement("div");
+    document.body.appendChild(container);
+  });
+
+  afterEach(() => {
+    // cleanup on exiting
+    unmountComponentAtNode(container);
+    container.remove();
+    container = null;
   });
 });
