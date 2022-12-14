@@ -59,7 +59,6 @@ export default class RatingsReviews extends React.Component {
        <h2>Sorted List of Reviews</h2>
 
        <div className='list-container'>
-        {/* map here, then send each single reivew to  */}
        <ReviewsList review={this.state.reviews} value={this.state.sortValue}/>
        </div>
        <form onSubmit={this.handleSubmit}>
