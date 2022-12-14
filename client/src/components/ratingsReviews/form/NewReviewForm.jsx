@@ -11,13 +11,13 @@ export default class NewReviewForm extends React.Component {
         body: ""
       }
 
-      this.handleClick = this.handleClick.bind(this);
+      this.handleClickForm = this.handleClickForm.bind(this);
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
       this.renderReviewForm = this.renderReviewForm.bind(this);
   }
 
-  handleClick(event) {
+  handleClickForm(event) {
     //want form to appear
     this.setState({showForm: true});
     console.log(this.state.showForm, 'line 22')
@@ -67,7 +67,7 @@ export default class NewReviewForm extends React.Component {
   render () {
     return (
       <div>
-        <button type="button" onClick={this.handleClick}>Add Review</button>
+        <button type="button" onClick={this.handleClickForm}>Add Review</button>
         {this.state.showForm && this.renderReviewForm()}
       </div>
     )

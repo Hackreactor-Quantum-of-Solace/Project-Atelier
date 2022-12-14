@@ -4,7 +4,7 @@ import ReviewsList from './ReviewsList.jsx';
 //maps through all the reviews and formats them into 'tiles'
 export default function ReviewsTile (props) {
 
-  //   // console.log(reviewObj.photos, 'line 10')
+    // console.log(reviewObj.photos, 'line 10')
   //   let images = reviewObj.photos.map( (photosObj) => {
   //     // console.log(photosObj, 'line 12')
   //   })
