@@ -225,12 +225,22 @@ html {
 
 /********** RATINGS AND REVIEWS **********/
 
+.reviews-section-container {
+  background-color: #222;
+}
+.list-container {
+  background-color: rgb(194, 189, 189);
+}
+
 /********** reviews tile **********/
 
 .tile {
   border: 1px solid black;
   max-width: 500px;
+  background-color: rgb(160, 170, 167);
 }
+
+
 
 /********** reviews images ********/
 
@@ -240,11 +250,29 @@ html {
 
 }
 
-.reviews-img {
+.review-images {
+  display: inline;
+  margin: 20px;
+}
+
+/* .reviews-img {
   width: 100%;
   height: 240px;
   object-fit: cover;
   /*color board website :https://flatuicolors.com/palette/us */
-  border-bottom: 1px solid #636e72;
+  /* border-bottom: 1px solid #636e72;
+} */
 
+#date {
+  color: blue;
 }
+
+#name {
+  color: green;
+  font-style: italic;
+}
+
+
+
+
+

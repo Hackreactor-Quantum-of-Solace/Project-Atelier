@@ -55,7 +55,7 @@ export default class RatingsReviews extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='reviews-section-container'>
        <h2>Sorted List of Reviews</h2>
 
        <div className='list-container'>
