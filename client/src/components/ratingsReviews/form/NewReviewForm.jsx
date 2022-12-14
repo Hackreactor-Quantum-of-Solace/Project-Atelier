@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import axios from 'axios';
 
 export default class NewReviewForm extends React.Component {
   constructor(props) {
@@ -17,26 +18,36 @@ export default class NewReviewForm extends React.Component {
       this.renderReviewForm = this.renderReviewForm.bind(this);
   }
 
-  handleClickForm(event) {
-    //want form to appear
+  handleClickForm() {
     this.setState({showForm: true});
-    console.log(this.state.showForm, 'line 22')
-    // this.renderReviewForm();
-
-
   }
+
   handleChange(event) {
-    this.setState({[event.target.name]: event.target.value})
-    //need multi targets
+    this.setState({[event.target.name]: event.target.value});
    }
 
-  handleSubmit(event) {
+  handleSubmit() {
     event.preventDefault();
     console.log(this.state.name)
     console.log(this.state.date)
     console.log(this.state.summary)
     console.log(this.state.body)
-    //axios.post request
+
+    let config = {
+      url: `/reviews?product_id=71697`,
+      method: 'post',
+      data: {
+        name: this.state.name
+      }
+    };
+
+    axios(config)
+      .then ( (review) => {
+        console.log('post successful')
+      })
+      .catch( (err) => {
+        console.log(err);
+      });
   }
 
   renderReviewForm () {
@@ -45,7 +56,7 @@ export default class NewReviewForm extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <label>
             Name:
-            <input name="name" type="text" placeholder="input name" value={this.state.name} onChange={this.handleChange}/>
+            <input name="name" type="text" placeholder="input name" value={this.state.name} onChange={(e) => {this.handleChange(e)}}/>
             <br />
             Date:
             <input name="date" type="text" placeholder="input date" value={this.state.date} onChange={this.handleChange}/>
@@ -57,9 +68,11 @@ export default class NewReviewForm extends React.Component {
             <input name="body" type="text" placeholder="input review" value={this.state.body} onChange={this.handleChange}/>
             <br />
           </label>
-
+          {/* <button type="button" onClick={(e) => {this.handleSubmit(e)}}>Submit</button> */}
+          <button type="button" onClick={this.handleSubmit}>Submit</button>
         </form>
-        <button type="button" onClick={this.handleClick}>Submit</button>
+
+
       </div>
     )
   }
