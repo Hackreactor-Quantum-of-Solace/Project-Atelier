@@ -62,7 +62,11 @@ export default class AddToCart extends React.Component {
           onClick={() => this.props.addToCart(this.state.current_sku, this.state.current_quantity)}
           disabled={disableCart}>Add to Cart
           </button>
-        <ClickableStar />
+        <ClickableStar
+          inOutfit={this.props.inOutfit}
+          addToOutfit={this.props.addToOutfit}
+          removeFromOutfit={this.props.removeFromOutfit}
+        />
       </div>
     );
   }

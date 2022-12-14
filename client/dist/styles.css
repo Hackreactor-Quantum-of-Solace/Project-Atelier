@@ -91,6 +91,10 @@ html {
   right: 10px;
 }
 
+.expanded-view > .image-gallery {
+  width: 100%;
+}
+
 /*********** OVERVIEW SIDEBAR **********/
 
 .star-rating {
@@ -136,6 +140,10 @@ html {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.collapsed-sidebar {
+  visibility: hidden;
 }
 
 /********** STYLE SELECTOR **********/

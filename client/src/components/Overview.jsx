@@ -14,13 +14,15 @@ export default class Overview extends React.Component {
       product_info: {},
       product_styles: [],
       currentStyle: {},
-      product_rating: 0
+      product_rating: 0,
+      imageGalleryView: 'default' // 'default' or 'expanded'
     };
     this.getProductInfo = this.getProductInfo.bind(this);
     this.getProductStyles = this.getProductStyles.bind(this);
     this.changeCurrentStyle = this.changeCurrentStyle.bind(this);
     this.getProductRating = this.getProductRating.bind(this);
     this._getSizeInfoForStyle = this._getSizeInfoForStyle.bind(this);
+    this.toggleImageGalleryView = this.toggleImageGalleryView.bind(this);
   }
 
   getProductInfo(id) {
@@ -63,6 +65,11 @@ export default class Overview extends React.Component {
     this.getProductRating(this.props.productId);
   }
 
+  toggleImageGalleryView() {
+    let imageGalleryView = this.state.imageGalleryView === 'default' ? 'expanded' : 'default';
+    this.setState({ imageGalleryView });
+  }
+
   _getSizeInfoForStyle(style) {
     let sizeInfo = {};
     for (const sku in style.skus) {
@@ -74,19 +81,29 @@ export default class Overview extends React.Component {
 
   render() {
     const sizeInfo = this._getSizeInfoForStyle(this.state.currentStyle);
+    let expandedView = this.state.imageGalleryView === 'default' ? '' : ' expanded-view';
+    let collapsedSideBar = this.state.imageGalleryView === 'default' ? '' : ' collapsed-sidebar';
     return (
-      <div className="overview-container">
-        <ImageGallery currentStyle={this.state.currentStyle} />
-        <div className="user-selection-bar">
+      <div className={`overview-container${expandedView}`}>
+        <ImageGallery
+          currentStyle={this.state.currentStyle}
+          toggleView={this.toggleImageGalleryView}
+        />
+        <div className={`user-selection-bar${collapsedSideBar}`}>
           <ProductInfo product_info={this.state.product_info} rating={this.state.product_rating} />
           <StyleSelector
             styles={this.state.product_styles}
             currentStyle={this.state.currentStyle}
-            changeCurrentStyle={this.changeCurrentStyle} />
+            changeCurrentStyle={this.changeCurrentStyle}
+          />
           <AddToCart
             currentStyle={this.state.currentStyle}
             sizeInfo={sizeInfo}
             addToCart={this.props.addToCart}
+            inOutfit={this.props.inOutfit}
+            addToCart={this.props.addToCart}
+            addToOutfit={() => this.props.addToOutfit(this.props.productId)}
+            removeFromOutfit={() => this.props.removeFromOutfit(this.props.productId)}
           />
         </div>
         <ProductOverview product_info={this.state.product_info} />
