@@ -12,6 +12,7 @@ export default class RatingsReviews extends React.Component {
     super(props);
     this.state = {
       reviews: [],
+      visibleReviews: [],
       sortValue: 'relevant'
     };
     this.getRatingsReviews = this.getRatingsReviews.bind(this);
@@ -34,7 +35,8 @@ export default class RatingsReviews extends React.Component {
     axios(config)
       .then ( (reviews) => {
         this.setState({
-          reviews: reviews.data.results
+          reviews: reviews.data.results,
+          visibleReviews: reviews.data.results.slice(0,2)
         })
       })
       .catch( (err) => {
@@ -59,7 +61,7 @@ export default class RatingsReviews extends React.Component {
        <h2>Sorted List of Reviews</h2>
 
        <div className='list-container'>
-       <ReviewsList review={this.state.reviews} value={this.state.sortValue}/>
+       <ReviewsList review={this.state.reviews} visibleReviews={this.state.visibleReviews} value={this.state.sortValue}/>
        </div>
        <form onSubmit={this.handleSubmit}>
         <label>
