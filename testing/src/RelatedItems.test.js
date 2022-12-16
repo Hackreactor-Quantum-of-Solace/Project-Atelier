@@ -1,19 +1,21 @@
 import React from "react";
 import render from "react-test-renderer";
-import App from "../../client/src/components/App.jsx";
+import RelatedItems from "../../client/src/components/relatedItems.jsx";
 
+//snapshot test of RelatedItems
 describe("relatedItems Component", function () {
   it("should have relatedItems ", function () {
     const component = render.create(
-      <App/>
-    );
+      <RelatedItems productId={71697}/>
+      );
     let tree = component.toJSON();
     expect(tree).toMatchSnapshot();
-    // let getByText = renderer(<App />);
-    // expect(getByText("Hello World")).toMatchInlineSnapshot(`
-    //   <h1>
-    //     Hello world
-    //   </h1>
-    // `);
   });
 });
+//unit test
+describe('My test suite', function () {
+  it('My test case', function () {
+    expect(true).toEqual(true);
+  })
+})
+
