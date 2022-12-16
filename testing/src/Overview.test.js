@@ -1,4 +1,6 @@
-import { unmountComponentAtNode } from 'react-dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { render, fireEvent } from '@testing-library/react';
 
 /***** React Component Tests *****/
 
