@@ -3,7 +3,6 @@ import ReviewsTile from './ReviewsTile.jsx'
 
 export default function ReviewsList(props) {
 
-
   // function compareHelpfulness(a, b) {
   //   return a - b;
   // }
@@ -26,8 +25,8 @@ export default function ReviewsList(props) {
 
     return (
       <div>
-        <h2>Review Section</h2>
-        {props.review.map( (reviewObj, index) => <ReviewsTile key ={index} review={reviewObj}/> )}
+        <h2>{props.review.length} Reviews, sorted by {props.value}</h2>
+        {props.review.map( (reviewObj, index) => <ReviewsTile key ={index} review={reviewObj}/>)}
       </div>
     )
   }

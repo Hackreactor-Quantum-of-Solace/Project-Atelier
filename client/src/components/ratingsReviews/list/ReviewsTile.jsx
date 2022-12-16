@@ -6,24 +6,24 @@ export default function ReviewsTile (props) {
 
 
   let imagesArr = props.review.photos
-  let ratingStyle = {
-  color: 'blue'
-  }
 
   let formattedDate = new Date(props.review.date)
   let month = formattedDate.getMonth()
   let formattedDateString = formattedDate.toDateString()
+  let dateArr = formattedDateString.split(' ');
+  let newDateArr = dateArr.splice(1);
+  let date = newDateArr.join(' ');
 
   return (
-    <div class="tile">
-      <h3>{props.review.summary}</h3>
-         <p style={ratingStyle}>rating (need to convert to stars): {props.review.rating}</p>
-         <p id="date">{formattedDateString}</p>
-         <p>{props.review.body}</p>
-         {imagesArr.map( (imagesObj, index) => <ReviewsImages key={index} images ={imagesObj}/>)}
-         <p id="name">name:{props.review.reviewer_name}</p>
-         <p>recommend: {props.review.recommend}</p>
-         <p>helpfulness: {props.review.helpfulness}</p>
+    <div className="tile">
+      <h3 className="summary">{props.review.summary}</h3>
+      <p className="rating">rating (need to convert to stars): {props.review.rating}</p>
+      <p className="date">{date}</p>
+      <p className="review-body">{props.review.body}</p>
+      {imagesArr.map( (imagesObj, index) => <ReviewsImages key={index} images ={imagesObj}/>)}
+      <p className="name">{props.review.reviewer_name}</p>
+      <p className="recommend">recommend: {props.review.recommend}</p>
+      <p className="helpfulness">helpfulness: {props.review.helpfulness}</p>
     </div>
   )
 }
