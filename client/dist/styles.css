@@ -295,12 +295,12 @@ html {
 
 .recommend {
   grid-row: 5;
-  grid-column: 1;
+  grid-column: 3;
 }
 
 .helpfulness {
   grid-row: 5;
-  grid-column: 3;
+  grid-column: 1;
 }
 
 /********** reviews images ********/

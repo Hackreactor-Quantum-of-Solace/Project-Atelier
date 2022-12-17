@@ -13,7 +13,7 @@ export default class RatingsReviews extends React.Component {
     this.state = {
       reviews: [],
       visibleReviews: [],
-      sortValue: 'relevant'
+      sortValue: 'relevance'
     };
     this.getRatingsReviews = this.getRatingsReviews.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -67,18 +67,19 @@ export default class RatingsReviews extends React.Component {
        </div>
 
        <div className='reviews-container'>
-       <ReviewsList review={this.state.reviews} visibleReviews={this.state.visibleReviews} value={this.state.sortValue}/>
-       </div>
        <form onSubmit={this.handleSubmit}>
         <label>
-          Sort by:
+          {this.state.reviews.length} reviews, sorted by
           <select value={this.state.value} onChange={this.handleChange}>
             <option value="date">date</option>
             <option value="helpfulness">helpfulness</option>
-            <option value="relevant">relevant</option>
+            <option value="relevance">relevant</option>
           </select>
         </label>
        </form>
+       <ReviewsList review={this.state.reviews} visibleReviews={this.state.visibleReviews} value={this.state.sortValue}/>
+       </div>
+
        <NewReviewForm />
 
       </div>
