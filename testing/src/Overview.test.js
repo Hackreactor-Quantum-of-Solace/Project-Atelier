@@ -16,7 +16,7 @@ import StarRating from '../../client/src/components/overview/StarRating.jsx';
 import StyleIcon from '../../client/src/components/overview/StyleIcon.jsx';
 import StyleSelector from '../../client/src/components/overview/StyleSelector';
 
-import exampleData from '../../exampleData/exampleData.json';
+import exampleData from '../../exampleData/exampleData';
 
 /***** React Component Tests *****/
 
@@ -37,9 +37,36 @@ describe('Overview Component and Subcomponents', function() {
   });
 
   describe('StyleIcon', () => {
+    const renderStyleIcon = (currentlySelected = true, onClick) => {
+      ReactDOM.render(
+        <StyleIcon
+          currentStyle={currentlySelected}
+          style={exampleData.styles71697.results[0]}
+          onClick={onClick}
+        />,
+        container
+      );
+    }
+
     it('should render StyleIcon component to the DOM', () => {
-      render(<StyleIcon currentStyle={exampleData.styles71697.results[0]} />, container);
+      act(renderStyleIcon);
       expect(container.querySelector('.style-icon')).not.toBe(null);
+    });
+    it('should have className "currently-selected" if style is currentStyle', () => {
+      act(renderStyleIcon);
+      expect(container.querySelector('.style-icon').className.split(' ')).toContain('currently-selected');
+    });
+    it('should not have className "currently-selected if style is not currentStyle', () => {
+      act(() => renderStyleIcon(false));
+      expect(container.querySelector('.style-icon').className.split(' ')).not.toContain('currently-selected');
+    });
+    it('should handle click', () => {
+      const onClick = jest.fn();
+      act(() => renderStyleIcon(true, onClick));
+      act(() => {
+        container.querySelector('.style-icon').dispatchEvent(new MouseEvent("click", { bubbles: true }));
+      });
+      expect(onClick).toHaveBeenCalledTimes(1);
     });
   })
 });
