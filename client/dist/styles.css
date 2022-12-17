@@ -225,26 +225,118 @@ html {
 
 /********** RATINGS AND REVIEWS **********/
 
-/********** reviews tile **********/
+/** CSS GRID LAYOUT **/
+.reviews-section-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  column-gap: 75px;
+  /* row-gap: 60px; */
+  align-items: start;
+  background-color: rgb(156, 156, 156);
+}
+
+.reviews-section-header {
+  grid-column: 1 / -1
+}
+
+.ratings-container {
+  display: grid;
+  grid-column: 1;
+  background-color: rgb(128, 128, 128);
+
+}
+
+.reviews-container {
+  display:grid;
+  grid-column: 2;
+  background-color: rgb(189, 189, 189);
+
+}
+
+/********** REVIEWS TILE **********/
 
 .tile {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr);
   border: 1px solid black;
-  max-width: 500px;
+  max-width: 600px;
+  background-color: rgb(160, 170, 167);
+  /* align-items: center; */
+}
+
+.rating {
+  grid-column: 1 / span 3
+}
+
+.name {
+  grid-column: 4;
+  grid-row: 1;
+  color: green;
+  font-style: italic;
+}
+
+.date {
+  grid-column: 5 / -1;
+  color: blue;
+}
+
+.summary {
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
+
+
+.review-body {
+  grid-column: 1 / -1;
+  grid-row: 3;
+
+}
+
+.recommend {
+  grid-row: 5;
+  grid-column: 3;
+}
+
+.helpfulness {
+  grid-row: 5;
+  grid-column: 1;
 }
 
 /********** reviews images ********/
 
-.images-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+/* .images-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+} */
 
+/* .review-images {
+  display: inline;
+  margin: 20px;
+} */
+
+.review-images {
+
+  grid-row: 4;
+  gap: 5px;
 }
 
-.reviews-img {
+/* .reviews-img {
   width: 100%;
   height: 240px;
   object-fit: cover;
   /*color board website :https://flatuicolors.com/palette/us */
-  border-bottom: 1px solid #636e72;
+  /* border-bottom: 1px solid #636e72;
+} */
 
+
+button {
+  background-color: green;
 }
+
+
+
+
+
+
