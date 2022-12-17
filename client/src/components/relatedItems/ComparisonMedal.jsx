@@ -6,14 +6,9 @@ export default class ComparisonMedal extends React.Component {
     this.state = {
 
     }
-    this.featureCompare = this.featureCompare.bind(this);
-  }
-  featureCompare() {
 
   }
-  componentDidMount() {
-    this.featureCompare();
-  }
+
 
   render() {
     return (
