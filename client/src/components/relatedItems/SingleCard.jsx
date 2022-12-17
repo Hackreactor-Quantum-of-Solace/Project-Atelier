@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 
-import ComparisonMedal from './ComparisonMedal.jsx';
-
+import ComparisonModal from './ComparisonModal.jsx';
+import Modal from './Modal.jsx'
 //use helper function get QuarterNumber
 import { roundToNearestQuarter} from '../../../../helpers/helpers.js';
 
@@ -19,15 +19,20 @@ export default class SingleCard extends React.Component {
       discount_price : null,
       //default url image used to test
       img : 'https://cdn.pixabay.com/photo/2015/01/21/13/21/sale-606687__340.png',
-      rate : 0
+      rate : 0,
+      isCompareOn: false
     };
 
     this.fetchCategoryNameAndFeatures = this.fetchCategoryNameAndFeatures.bind(this);
     this.fetchPriceAndImage = this.fetchPriceAndImage.bind(this);
     this.fetchRateAndChangeToUse = this.fetchRateAndChangeToUse.bind(this);
+    this.onCompare = this.onCompare.bind(this);
   }
-  relatedProductCompare() {
 
+  onCompare () {
+    this.setState((prevState) => (
+      {isCompareOn: !prevState.isCompareOn}
+    ));
   }
 
   deleteOutfitProcuct() {
@@ -37,7 +42,6 @@ export default class SingleCard extends React.Component {
    this.fetchCategoryNameAndFeatures();
    this.fetchPriceAndImage();
    this.fetchRateAndChangeToUse();
-
   }
 
   fetchCategoryNameAndFeatures() {
@@ -131,27 +135,51 @@ export default class SingleCard extends React.Component {
   }
   render() {
     return (
-      // when client click card, it will redirect page to detail product page
-      <div class="card" onClick={()=> { window.location.href = `http://localhost:3000/?id=${this.props.id}`}}>
 
-        <img class="card-img" src={this.state.img} alt="Product image"
-        // onError={ event => {
-        //   event.target.src= "https://cdn.pixabay.com/photo/2015/01/21/13/21/sale-606687__340.png"
-        //   event.onerror = null
-        // }}
-        />
 
-        <div class="product-info">
-          {/* icon is not designed */}
-          {<p>{this.props.icon}</p>}
-          < ComparisonMedal currentProductFeature={this.props.currentProductFeature} relatedProductFeature={this.state.features} />
 
-          <span class="category">{this.state.category}</span>
+       // when client click card, it will redirect page to detail product page
+      <div className="card" >
+
+        <div className="img-container">
+          <img className="card-img" src={this.state.img} alt="Product image" onClick={()=> { window.location.href = `http://localhost:3000/?id=${this.props.id}`}}
+          // onError={ event => {
+          //   event.target.src= "https://cdn.pixabay.com/photo/2015/01/21/13/21/sale-606687__340.png"
+          //   event.onerror = null
+          // }}
+          />
+
+          {/* icon is star now */}
+          {this.props.icon === 'star' ?
+            <div className="icon-star" >
+              <button onClick={this.onCompare}><span className="star">&#9733;</span></button>
+
+              {/* comparisonMedal appear or not */}
+              { this.state.isCompareOn ?
+              <Modal className="modal">
+                < ComparisonModal currentProductFeature={this.props.currentProductFeature} relatedProductFeature={this.state.features} />
+              </Modal>
+                : null}
+
+            </div>
+
+            : null
+          }
+
+
+        </div>
+
+
+
+
+        <div style={{"marginLeft": "5px"}}>
+
+          <span>{this.state.category}</span>
           <br></br>
-          <span class="name">{this.state.name}</span>
-
-          {(this.state.discount_price) ? <p class="discount-price">${this.state.discount_price}</p> : null}
-          <p class="default-price" style={(this.state.discount_price) ? {"text-decoration": "line-through"} : null}>${this.state.default_price}</p>
+          <span style={{"font": "bold"}}>{this.state.name}</span>
+          {/* origin price or discount price */}
+          {(this.state.discount_price) ? <p style={{"color":"red"}}>${this.state.discount_price}</p> : null}
+          <p style={(this.state.discount_price) ? {"text-decoration": "line-through"} : null}>${this.state.default_price}</p>
 
           {/* rate is not designed */}
           {(this.state.rate) ? <p>{this.state.rate}</p> : null}
