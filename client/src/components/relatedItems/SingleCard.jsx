@@ -26,9 +26,14 @@ export default class SingleCard extends React.Component {
     this.fetchCategoryNameAndFeatures = this.fetchCategoryNameAndFeatures.bind(this);
     this.fetchPriceAndImage = this.fetchPriceAndImage.bind(this);
     this.fetchRateAndChangeToUse = this.fetchRateAndChangeToUse.bind(this);
+    this.onCompare = this.onCompare.bind(this);
   }
 
-
+  onCompare () {
+    this.setState((prevState) => (
+      {isCompareOn: !prevState.isCompareOn}
+    ));
+  }
 
   deleteOutfitProcuct() {
 
@@ -134,10 +139,10 @@ export default class SingleCard extends React.Component {
 
 
        // when client click card, it will redirect page to detail product page
-      <div className="card" onClick={()=> { window.location.href = `http://localhost:3000/?id=${this.props.id}`}}>
+      <div className="card" >
 
         <div className="img-container">
-          <img className="card-img" src={this.state.img} alt="Product image"
+          <img className="card-img" src={this.state.img} alt="Product image" onClick={()=> { window.location.href = `http://localhost:3000/?id=${this.props.id}`}}
           // onError={ event => {
           //   event.target.src= "https://cdn.pixabay.com/photo/2015/01/21/13/21/sale-606687__340.png"
           //   event.onerror = null
@@ -146,8 +151,8 @@ export default class SingleCard extends React.Component {
 
           {/* icon is star now */}
           {this.props.icon === 'star' ?
-            <div className="icon-star" onMouseEnter={() => {this.setState({isCompareOn: true})}} onMouseLeave={()=> {this.setState({isCompareOn:false})}}>
-              <button><span className="star">&#9733;</span></button>
+            <div className="icon-star" >
+              <button onClick={this.onCompare}><span className="star">&#9733;</span></button>
 
               {/* comparisonMedal appear or not */}
               { this.state.isCompareOn ?
