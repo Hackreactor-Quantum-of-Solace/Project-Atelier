@@ -37,7 +37,10 @@ export default class NewReviewForm extends React.Component {
       url: `/reviews?product_id=71697`,
       method: 'post',
       data: {
-        name: this.state.name
+        name: this.state.name,
+        date: this.state.date,
+        summary: this.state.summary,
+        body: this.state.body
       }
     };
 
@@ -68,10 +71,8 @@ export default class NewReviewForm extends React.Component {
             <input name="body" type="text" placeholder="input review" value={this.state.body} onChange={this.handleChange}/>
             <br />
           </label>
-          {/* <button type="button" onClick={(e) => {this.handleSubmit(e)}}>Submit</button> */}
-          <button type="button" onClick={this.handleSubmit}>Submit</button>
+          <button type="submit">Submit</button>
         </form>
-
 
       </div>
     )

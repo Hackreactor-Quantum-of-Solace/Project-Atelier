@@ -11,23 +11,23 @@ export default function ReviewsList(props) {
 
 
   if (props.value === 'helpfulness') {
-    props.review.sort( (a, b) => {
+    props.visibleReviews.sort( (a, b) => {
       return b.helpfulness - a.helpfulness
     });
   } else if (props.value === 'date') {
-    props.review.sort( function(a, b) {
+    props.visibleReviews.sort( function(a, b) {
       return new Date(b.date) - new Date(a.date);
     });
   } else {
-    props.review.sort( function(a, b) {
+    props.visibleReviews.sort( function(a, b) {
       return b.helpfulness - a.helpfulness || new Date(b.date) - new Date(a.date);
     });
   }
 
     return (
       <div>
-        <h2>Review Section</h2>
-        {props.review.map( (reviewObj, index) => <ReviewsTile key ={index} review={reviewObj}/> )}
+        {props.visibleReviews.map( (reviewObj, index) => <ReviewsTile key ={index} review={reviewObj}/>)}
+
       </div>
     )
   }
