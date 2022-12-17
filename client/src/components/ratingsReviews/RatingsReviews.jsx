@@ -18,13 +18,12 @@ export default class RatingsReviews extends React.Component {
     this.getRatingsReviews = this.getRatingsReviews.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleMoreReviews = this.handleMoreReviews.bind(this);
 
   }
 
   componentDidMount () {
     this.getRatingsReviews(this.props.productId);
-    //sort using relevant
-    //render
   }
   getRatingsReviews(id) {
     let config = {
@@ -34,6 +33,7 @@ export default class RatingsReviews extends React.Component {
 
     axios(config)
       .then ( (reviews) => {
+        // console.log(reviewsCount, 'line 36')
         this.setState({
           reviews: reviews.data.results,
           visibleReviews: reviews.data.results.slice(0,2)
@@ -52,7 +52,11 @@ export default class RatingsReviews extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     console.log('sorting by' + this.state.sortValue);
+  }
 
+  handleMoreReviews(event) {
+    event.preventDefault();
+    console.log('handleMoreReviews')
   }
 
   render() {
@@ -81,7 +85,6 @@ export default class RatingsReviews extends React.Component {
        </div>
 
        <NewReviewForm />
-
       </div>
 
 
