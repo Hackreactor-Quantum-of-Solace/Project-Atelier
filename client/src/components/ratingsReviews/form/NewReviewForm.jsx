@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import axios from 'axios';
 
 export default class NewReviewForm extends React.Component {
   constructor(props) {
@@ -32,11 +33,22 @@ export default class NewReviewForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state.name)
-    console.log(this.state.date)
-    console.log(this.state.summary)
-    console.log(this.state.body)
-    //axios.post request
+    let config = {
+      method: 'post',
+      url: `/reviews?product_id=71697`,
+      data: {
+        name: 'mary',
+        date: 'date'
+      }
+    }
+    axios(config)
+    .then ( (res) => {
+      console.log('review saved')
+    })
+    .catch ( (err) => {
+      console.log(err)
+    })
+
   }
 
   renderReviewForm () {
@@ -57,9 +69,9 @@ export default class NewReviewForm extends React.Component {
             <input name="body" type="text" placeholder="input review" value={this.state.body} onChange={this.handleChange}/>
             <br />
           </label>
-
+          <button type="submit">Submit</button>
         </form>
-        <button type="button" onClick={this.handleClick}>Submit</button>
+
       </div>
     )
   }
