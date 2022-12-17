@@ -13,18 +13,18 @@ export default class RatingsReviews extends React.Component {
     this.state = {
       reviews: [],
       visibleReviews: [],
-      sortValue: 'relevant'
+      reviewsCount: 2,
+      sortValue: 'relevance'
     };
     this.getRatingsReviews = this.getRatingsReviews.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleMoreReviews = this.handleMoreReviews.bind(this);
 
   }
 
   componentDidMount () {
     this.getRatingsReviews(this.props.productId);
-    //sort using relevant
-    //render
   }
   getRatingsReviews(id) {
     let config = {
@@ -34,9 +34,10 @@ export default class RatingsReviews extends React.Component {
 
     axios(config)
       .then ( (reviews) => {
+        // console.log(reviewsCount, 'line 36')
         this.setState({
           reviews: reviews.data.results,
-          visibleReviews: reviews.data.results.slice(0,2)
+          visibleReviews: reviews.data.results.slice(0, 2),
         })
       })
       .catch( (err) => {
@@ -52,29 +53,34 @@ export default class RatingsReviews extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     console.log('sorting by' + this.state.sortValue);
+  }
 
+  handleMoreReviews(event) {
+    event.preventDefault();
+    console.log('handleMoreReviews')
   }
 
   render() {
     return (
       <div>
-       <h2>Sorted List of Reviews</h2>
-
-       <div className='list-container'>
-       <ReviewsList review={this.state.reviews} visibleReviews={this.state.visibleReviews} value={this.state.sortValue}/>
-       </div>
-       <form onSubmit={this.handleSubmit}>
-        <label>
+        <h2>Sorted List of Reviews</h2>
+        <div className='list-container'>
+          <ReviewsList reviews={this.state.reviews} visibleReviews={this.state.visibleReviews} value={this.state.sortValue}/>
+        </div>
+        <form onSubmit={this.handleSubmit}>
+          <label>
           Sort by:
-          <select value={this.state.value} onChange={this.handleChange}>
-            <option value="date">date</option>
-            <option value="helpfulness">helpfulness</option>
-            <option value="relevant">relevant</option>
-          </select>
-        </label>
-       </form>
+            <select value={this.state.value} onChange={this.handleChange}>
+              <option value="date">date</option>
+              <option value="helpfulness">helpfulness</option>
+              <option value="relevant">relevant</option>
+            </select>
+          </label>
+        </form>
+        <div>
+          <button onSubmit={this.handleMoreReviews}>More Reviews</button>
+        </div>
        <NewReviewForm />
-
       </div>
 
 
