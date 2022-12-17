@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 
-import ComparisonMedal from './ComparisonMedal.jsx';
-
+import ComparisonModal from './ComparisonModal.jsx';
+import Modal from './Modal.jsx'
 //use helper function get QuarterNumber
 import { roundToNearestQuarter} from '../../../../helpers/helpers.js';
 
@@ -130,7 +130,10 @@ export default class SingleCard extends React.Component {
   }
   render() {
     return (
-      // when client click card, it will redirect page to detail product page
+
+
+
+       // when client click card, it will redirect page to detail product page
       <div className="card" onClick={()=> { window.location.href = `http://localhost:3000/?id=${this.props.id}`}}>
 
         <div className="img-container">
@@ -139,28 +142,39 @@ export default class SingleCard extends React.Component {
           //   event.target.src= "https://cdn.pixabay.com/photo/2015/01/21/13/21/sale-606687__340.png"
           //   event.onerror = null
           // }}
-        />
+          />
+
           {/* icon is star now */}
           {this.props.icon === 'star' ?
-          <button className="icon-star" onMouseEnter={() => {this.setState({isCompareOn: true})}} onMouseLeave={()=> {this.setState({isCompareOn:false})}}>
-            <span className="star">&#9733;</span>
-          </button>
+            <div className="icon-star" onMouseEnter={() => {this.setState({isCompareOn: true})}} onMouseLeave={()=> {this.setState({isCompareOn:false})}}>
+              <button><span className="star">&#9733;</span></button>
+
+              {/* comparisonMedal appear or not */}
+              { this.state.isCompareOn ?
+              <Modal className="modal">
+                < ComparisonModal currentProductFeature={this.props.currentProductFeature} relatedProductFeature={this.state.features} />
+              </Modal>
+                : null}
+
+            </div>
+
             : null
-           }
+          }
+
 
         </div>
 
-        {/* comparisonMedal appear or not */}
-        { this.state.isCompareOn ? < ComparisonMedal currentProductFeature={this.props.currentProductFeature} relatedProductFeature={this.state.features} /> : null}
 
-        <div className="product-info">
+
+
+        <div style={{"marginLeft": "5px"}}>
 
           <span>{this.state.category}</span>
           <br></br>
           <span style={{"font": "bold"}}>{this.state.name}</span>
           {/* origin price or discount price */}
           {(this.state.discount_price) ? <p style={{"color":"red"}}>${this.state.discount_price}</p> : null}
-          <p className="default-price" style={(this.state.discount_price) ? {"text-decoration": "line-through"} : null}>${this.state.default_price}</p>
+          <p style={(this.state.discount_price) ? {"text-decoration": "line-through"} : null}>${this.state.default_price}</p>
 
           {/* rate is not designed */}
           {(this.state.rate) ? <p>{this.state.rate}</p> : null}

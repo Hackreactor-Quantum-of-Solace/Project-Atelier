@@ -11,13 +11,15 @@ export default class RelatedProductsList extends React.Component {
 
   render() {
     return (
-      <div className= "relatedProductsList">
+      <div className= "related-products-list">
         <h2>RELATED PRODUCTS</h2>
         <div className="related-items-container">
         {this.props.relatedItemsId.map(id => (
           <SingleCard key={id} id={id} icon={this.state.icon} currentProductFeature={this.props.currentProductFeature}/>
         ))}
         </div>
+        <div className="modal-container"></div>
+
       </div>
     )
   }

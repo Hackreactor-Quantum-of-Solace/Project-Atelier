@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class ComparisonMedal extends React.Component {
+export default class ComparisonModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,8 +12,8 @@ export default class ComparisonMedal extends React.Component {
 
   render() {
     return (
-      <div className="comparisonMedal" style={{"border": "1px solid red"}}>
-        <h2>Comparing</h2>
+      <div className="comparison-modal">
+        <p>COMPARING</p>
         <div>current
           {this.props.currentProductFeature.map((item, index) => (
             <p key ={index}>c: {item.feature} v: {item.value}</p>
