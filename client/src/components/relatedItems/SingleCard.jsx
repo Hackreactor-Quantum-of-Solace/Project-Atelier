@@ -55,8 +55,7 @@ export default class SingleCard extends React.Component {
         name : response.data.name,
         features : response.data.features
       })
-      //for test
-      // console.log('singlecard',this.state);
+
     })
     .catch((err) => {
       console.log('Fetch Category, Name And Features ERROR', err);
@@ -138,10 +137,11 @@ export default class SingleCard extends React.Component {
 
 
 
-       // when client click card, it will redirect page to detail product page
+
       <div className="card" >
 
         <div className="img-container">
+        {/* when client click card image, it will redirect page to detail product page */}
           <img className="card-img" src={this.state.img} alt="Product image" onClick={()=> { window.location.href = `http://localhost:3000/?id=${this.props.id}`}}
           // onError={ event => {
           //   event.target.src= "https://cdn.pixabay.com/photo/2015/01/21/13/21/sale-606687__340.png"
@@ -152,7 +152,8 @@ export default class SingleCard extends React.Component {
           {/* icon is star now */}
           {this.props.icon === 'star' ?
             <div className="icon-star" >
-              <button onClick={this.onCompare}><span className="star">&#9733;</span></button>
+              {/* mouse hover on star then comparsion modal will appear */}
+              <button onMouseEnter={() => {this.setState({isCompareOn: true})}} onMouseLeave={() => {this.setState({isCompareOn:false})}} ><span className="star">&#9733;</span></button>
 
               {/* comparisonMedal appear or not */}
               { this.state.isCompareOn ?
@@ -172,13 +173,14 @@ export default class SingleCard extends React.Component {
 
 
 
-        <div style={{"marginLeft": "5px"}}>
+        <div className="product-info">
 
           <span>{this.state.category}</span>
           <br></br>
-          <span style={{"font": "bold"}}>{this.state.name}</span>
+          <span className="product-name">{this.state.name}</span>
+
           {/* origin price or discount price */}
-          {(this.state.discount_price) ? <p style={{"color":"red"}}>${this.state.discount_price}</p> : null}
+          {(this.state.discount_price) ? <p className="discount-price">${this.state.discount_price}</p> : null}
           <p style={(this.state.discount_price) ? {"text-decoration": "line-through"} : null}>${this.state.default_price}</p>
 
           {/* rate is not designed */}

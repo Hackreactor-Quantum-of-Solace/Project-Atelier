@@ -18,6 +18,7 @@ export default class RelatedProductsList extends React.Component {
           <SingleCard key={id} id={id} icon={this.state.icon} currentProductFeature={this.props.currentProductFeature}/>
         ))}
         </div>
+        {/* this div is used to contain Modal component. By default, it's empty, when customer hover mouse to star icon, it will wrap modal component into it */}
         <div className="modal-container"></div>
 
       </div>

@@ -221,6 +221,16 @@ html {
 }
 .img-container .icon-star { position: absolute; top:0; right:0; }
 
+.product-info {
+  margin-left: 5px;
+}
+.product-name {
+  font-weight: bold;
+}
+.product-info .discount-price {
+  color:red
+}
+
 /********** comparisonMedal **********/
 .comparison-modal {
  border:1px solid black;
