@@ -12,7 +12,8 @@ export default class RatingsReviews extends React.Component {
     super(props);
     this.state = {
       reviews: [],
-      sortValue: 'relevant'
+      visibleReviews: [],
+      sortValue: 'relevance'
     };
     this.getRatingsReviews = this.getRatingsReviews.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -34,7 +35,8 @@ export default class RatingsReviews extends React.Component {
     axios(config)
       .then ( (reviews) => {
         this.setState({
-          reviews: reviews.data.results
+          reviews: reviews.data.results,
+          visibleReviews: reviews.data.results.slice(0,2)
         })
       })
       .catch( (err) => {
@@ -55,22 +57,29 @@ export default class RatingsReviews extends React.Component {
 
   render() {
     return (
-      <div>
-       <h2>Sorted List of Reviews</h2>
+      <div className='reviews-section-container'>
+        <div className='reviews-header'>
+        <h1>Ratings & Reviews</h1>
+        </div>
 
-       <div className='list-container'>
-       <ReviewsList review={this.state.reviews} value={this.state.sortValue}/>
+       <div className='ratings-container'>
+       <h2>Ratings</h2>
        </div>
+
+       <div className='reviews-container'>
        <form onSubmit={this.handleSubmit}>
         <label>
-          Sort by:
+          {this.state.reviews.length} reviews, sorted by
           <select value={this.state.value} onChange={this.handleChange}>
             <option value="date">date</option>
             <option value="helpfulness">helpfulness</option>
-            <option value="relevant">relevant</option>
+            <option value="relevance">relevant</option>
           </select>
         </label>
        </form>
+       <ReviewsList review={this.state.reviews} visibleReviews={this.state.visibleReviews} value={this.state.sortValue}/>
+       </div>
+
        <NewReviewForm />
 
       </div>
