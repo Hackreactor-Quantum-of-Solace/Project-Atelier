@@ -36,6 +36,8 @@ describe('Overview Component and Subcomponents', function() {
     container = null;
   });
 
+  /***** STYLE ICON *****/
+
   describe('StyleIcon', () => {
     const renderStyleIcon = (currentlySelected = true, onClick) => {
       ReactDOM.render(
@@ -68,5 +70,68 @@ describe('Overview Component and Subcomponents', function() {
       });
       expect(onClick).toHaveBeenCalledTimes(1);
     });
-  })
+  });
+
+  /***** CLICKABLE STAR*****/
+
+  describe('ClickableStar', () => {
+    let outfit = {};
+    const addToOutfit = jest.fn(item => outfit[item] ? outfit[item] += 1 : outfit[item] = 1);
+    const removeFromOutfit = jest.fn(item => {
+      if (outfit[item]) {
+        outfit[item] -= 1;
+      };
+    });
+
+    const renderClickableStar = (inOutfit = false) => {
+      ReactDOM.render(
+        <ClickableStar
+          inOutfit={inOutfit}
+          removeFromOutfit={removeFromOutfit}
+          addToOutfit={addToOutfit}
+        />,
+        container
+      );
+    }
+
+    afterEach(() => {
+      outfit = {};
+    });
+
+    it('should render to the DOM', () => {
+      act(renderClickableStar);
+      expect(document.querySelector('.clickable-star')).not.toBe(null);
+    });
+    it('should display hollow star if not inOutfit', () => {
+      act(() => renderClickableStar(false));
+      expect(document.querySelector('.clickable-star').textContent).toBe('☆');
+    });
+    it('should display solid star if inOutfit', () => {
+      act(() => renderClickableStar(true));
+      expect(document.querySelector('.clickable-star').textContent).toBe('⭐');
+    });
+    it.todo('should toggle the star on click');
+    it('should call removeFromOutfit on click if item is in outfit', () => {
+      act(() => renderClickableStar(true));
+      act(() => {
+        container.querySelector('.clickable-star').dispatchEvent(new MouseEvent("click", { bubbles: true }));
+      });
+      expect(removeFromOutfit).toHaveBeenCalledTimes(1);
+      expect(addToOutfit).toHaveBeenCalledTimes(0);
+    });
+    it('should call addToOutfit on click if item is not in outfit', () => {
+      act(() => renderClickableStar(false));
+      act(() => {
+        container.querySelector('.clickable-star').dispatchEvent(new MouseEvent("click", { bubbles: true }));
+      });
+      expect(addToOutfit).toHaveBeenCalledTimes(1);
+      // NEED MORE ISOLATION IN TESTS...THIS FUNCTION HAS TECHNICALLY BEEN CALLED
+      // FROM PREVIOUS TEST:
+      // expect(removeFromOutfit).toHaveBeenCalledTimes(0);
+    });
+    // it('should rerender when props change', () => {
+    //   act(renderClickableStar);
+
+    // });
+  });
 });
