@@ -14,12 +14,14 @@ export default class ComparisonModal extends React.Component {
     return (
       <div className="comparison-modal">
         <p>COMPARING</p>
-        <div>current
+        <div>
+          <p>{this.props.currentProductName}</p>
           {this.props.currentProductFeature.map((item, index) => (
             <p key ={index}>c: {item.feature} v: {item.value}</p>
           ))}
         </div>
-        <div>related
+        <div>
+          <p>{this.props.relatedProductName}</p>
           {this.props.relatedProductFeature.map((item, index) => (
             <p key={index}>c: {item.feature} v: {item.value}</p>
           ))}

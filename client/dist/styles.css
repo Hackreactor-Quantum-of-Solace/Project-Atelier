@@ -196,16 +196,25 @@ html {
 
 /********** relatedProductsList **********/
 
-
-.related-items-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-
+.related-carousel {
+  display:flex;
+  align-items: center;
+  justify-content:start;
 }
+.related-items-container {
+  width: 50vw;
+  display: flex;
+  overflow-x: hidden;
+}
+
 /********** single Card **********/
 .card {
   border: 1px solid black;
-  max-width: 250px;
+  height: 368px; /*23rem*/
+  width: 208px; /*13rem*/
+  margin-right: 2px;
+  flex-basis: 25%;
+  flex-shrink: 0;
 }
 .img-container {
   position: relative;

@@ -158,7 +158,7 @@ export default class SingleCard extends React.Component {
               {/* comparisonMedal appear or not */}
               { this.state.isCompareOn ?
               <Modal className="modal">
-                < ComparisonModal currentProductFeature={this.props.currentProductFeature} relatedProductFeature={this.state.features} />
+                < ComparisonModal currentProductFeature={this.props.currentProductFeature} relatedProductFeature={this.state.features} relatedProductName={this.state.name} currentProductName={this.props.currentProductName} />
               </Modal>
                 : null}
 
