@@ -37,14 +37,15 @@ export default class RelatedProductsList extends React.Component {
           </button >
           <div className="related-items-container" ref={this.slider} >
             {this.props.relatedItemsId.map((id, index) => (
-              <SingleCard key={index} id={id} icon={this.state.icon} currentProductFeature={this.props.currentProductFeature} currentProductName={this.props.currentProductName}/>
+              <SingleCard key={index} id={id} icon={this.state.icon} currentProductFeature={this.props.currentProductFeature} currentProductName={this.props.currentProductName} />
             ))}
           </div>
           <button style={this.state.arrowRight ? {"visibility":"visible"} : {"visibility":"hidden"}} onClick={this.goLeft}>
             <h1>&#8250;</h1>
           </button>
         </div>
-        {/* this div is used to contain Modal component. By default, it's empty, when customer hover mouse to star icon, it will wrap modal component into it */}
+
+        {/* this div is used to contain Modal component. By default, it's empty, when customer click star icon, it will wrap modal component into it */}
         <div className="modal-container"></div>
 
       </div>

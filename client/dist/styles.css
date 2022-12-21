@@ -195,18 +195,22 @@ html {
 
 
 /********** relatedProductsList **********/
-
+.related-products-list {
+  position: relative;
+}
 .related-carousel {
-  display:flex;
+  display: flex;
   align-items: center;
-  justify-content:start;
+  justify-content: start;
 }
 .related-items-container {
   width: 50vw;
   display: flex;
   overflow-x: hidden;
 }
-
+.modal-container {
+  position: absolute; top:0; right:0;
+}
 /********** single Card **********/
 .card {
   border: 1px solid black;
@@ -243,8 +247,8 @@ html {
 /********** comparisonMedal **********/
 .comparison-modal {
  border:1px solid black;
- width:500px;
- height:400px;
+ width:250px;
+ height:200px;
 }
 
 

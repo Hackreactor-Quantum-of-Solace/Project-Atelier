@@ -29,10 +29,8 @@ export default class SingleCard extends React.Component {
     this.onCompare = this.onCompare.bind(this);
   }
 
-  onCompare () {
-    this.setState((prevState) => (
-      {isCompareOn: !prevState.isCompareOn}
-    ));
+  onCompare (input) {
+    this.setState({isCompareOn : input});
   }
 
   deleteOutfitProcuct() {
@@ -135,9 +133,6 @@ export default class SingleCard extends React.Component {
   render() {
     return (
 
-
-
-
       <div className="card" >
 
         <div className="img-container">
@@ -152,13 +147,13 @@ export default class SingleCard extends React.Component {
           {/* icon is star now */}
           {this.props.icon === 'star' ?
             <div className="icon-star" >
-              {/* mouse hover on star then comparsion modal will appear */}
-              <button onMouseEnter={() => {this.setState({isCompareOn: true})}} onMouseLeave={() => {this.setState({isCompareOn:false})}} ><span className="star">&#9733;</span></button>
+              {/* click on star then comparsion modal will appear */}
+              <button onClick={() => {this.setState({isCompareOn : true})}}><span className="star">&#9733;</span></button>
 
               {/* comparisonMedal appear or not */}
               { this.state.isCompareOn ?
               <Modal className="modal">
-                < ComparisonModal currentProductFeature={this.props.currentProductFeature} relatedProductFeature={this.state.features} relatedProductName={this.state.name} currentProductName={this.props.currentProductName} />
+                < ComparisonModal onCompare={this.onCompare} currentProductFeature={this.props.currentProductFeature} relatedProductFeature={this.state.features} relatedProductName={this.state.name} currentProductName={this.props.currentProductName} />
               </Modal>
                 : null}
 
