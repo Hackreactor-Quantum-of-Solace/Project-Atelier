@@ -232,7 +232,9 @@ html {
   border-bottom: 1px solid #636e72;
   display: block;
 }
-.img-container .icon-star { position: absolute; top:0; right:0; }
+.img-container .icon-star,
+.img-container .icon-delete
+{ position: absolute; top:0; right:0; }
 
 .overlay {
   position:fixed;
@@ -290,6 +292,9 @@ html {
   z-index: 1;
   background-color: white;
 }
+/********** outfitList **********/
+
+
 
 /********** RATINGS AND REVIEWS **********/
 

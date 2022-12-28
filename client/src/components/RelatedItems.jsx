@@ -57,11 +57,12 @@ export default class RelatedItems extends React.Component {
   }
   render() {
     return (
-      <div className = "relatedItems" data-testid="relatedItems">
-         < RelatedProductsList relatedItemsId={this.state.relatedItemsId} currentProductFeature={this.state.currentProductFeature} currentProductName={this.state.currentProductName}/>
+      <div >
+        <RelatedProductsList relatedItemsId={this.state.relatedItemsId} currentProductFeature={this.state.currentProductFeature} currentProductName={this.state.currentProductName}/>
 
-        < OutfitList />
+        <OutfitList currentProductId={this.props.productId}/>
       </div>
+
     )
   }
 }

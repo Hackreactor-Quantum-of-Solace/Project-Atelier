@@ -147,9 +147,9 @@ export default class SingleCard extends React.Component {
           // }}
           />
 
-          {/* icon is star now */}
+          {/* icon is star or delete */}
           {this.props.icon === 'star' ?
-            <div className="icon-star" >
+            (<div className="icon-star" >
               {/* click on star then comparsion modal will appear */}
               <button onClick={() => {this.setState({isCompareOn : true})}}><span className="star">&#9733;</span></button>
 
@@ -158,12 +158,11 @@ export default class SingleCard extends React.Component {
                 <Modal className="modal">
                   <div className="overlay"></div>
                   < ComparisonModal onCompare={this.onCompare} currentProductFeature={this.props.currentProductFeature} relatedProductFeature={this.state.features} relatedProductName={this.state.name} currentProductName={this.props.currentProductName} />
-                </Modal>
-                : null}
-
-            </div>
-
-            : null
+                </Modal> : null}
+              </div>)
+            : (<div className="icon-delete" >
+                <button ><span className="delete">&#215;</span></button>
+              </div>)
           }
 
 
