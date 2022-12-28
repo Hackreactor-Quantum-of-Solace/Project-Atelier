@@ -16,11 +16,11 @@ export default class RelatedProductsList extends React.Component {
   }
   goLeft() {
     //each card width is 208px, each time move 1 card
-    this.slider.current.scrollLeft += 208;
+    this.slider.current.scrollLeft += 0.25 * this.slider.current.offsetWidth;
     this.setState({arrowLeft: true});
   }
   goRight() {
-    this.slider.current.scrollLeft -= 208;
+    this.slider.current.scrollLeft -= 0.25 * this.slider.current.offsetWidth;
     if (this.slider.current.scrollLeft === 0) {
       this.setState({arrowLeft: false})
     }

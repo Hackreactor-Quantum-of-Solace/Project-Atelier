@@ -209,7 +209,7 @@ html {
   overflow-x: hidden;
 }
 .modal-container {
-  position: absolute; top:0; right:0;
+  position: absolute; top:50%; right:50%;
 }
 /********** single Card **********/
 .card {
@@ -234,6 +234,17 @@ html {
 }
 .img-container .icon-star { position: absolute; top:0; right:0; }
 
+.overlay {
+  position:fixed;
+  left:0;
+  top:0;
+  width:100vw;
+  height:100vh;
+  display:block;
+  background-color:#000;
+  opacity:0.5;
+  /* z-index: 0; */
+}
 .product-info {
   margin-left: 5px;
 }
@@ -246,11 +257,39 @@ html {
 
 /********** comparisonMedal **********/
 .comparison-modal {
- border:1px solid black;
- width:250px;
- height:200px;
+  position: relative;
+  border:1px solid black;
+  width:400px;
+  height:150px;
+  display: block;
+  background-color:#fff;
+  /* transform: translate(0, 0); */
+  /* z-index: 1; */
 }
 
+.modal-table .left-side  {
+  text-align: left;
+  width: 40%;
+}
+.modal-table .middle {
+  text-align: center;
+  width:  20%;
+}
+.modal-table .right-side {
+  text-align: right;
+  width: 40%;
+}
+.modal-table{
+  overflow:scroll;
+  height:110px;
+  display: block;
+}
+.modal-table thead {
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+  background-color: white;
+}
 
 /********** RATINGS AND REVIEWS **********/
 

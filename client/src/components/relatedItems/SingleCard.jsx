@@ -23,10 +23,12 @@ export default class SingleCard extends React.Component {
       isCompareOn: false
     };
 
+
     this.fetchCategoryNameAndFeatures = this.fetchCategoryNameAndFeatures.bind(this);
     this.fetchPriceAndImage = this.fetchPriceAndImage.bind(this);
     this.fetchRateAndChangeToUse = this.fetchRateAndChangeToUse.bind(this);
     this.onCompare = this.onCompare.bind(this);
+
   }
 
   onCompare (input) {
@@ -40,6 +42,7 @@ export default class SingleCard extends React.Component {
    this.fetchCategoryNameAndFeatures();
    this.fetchPriceAndImage();
    this.fetchRateAndChangeToUse();
+
   }
 
   fetchCategoryNameAndFeatures() {
@@ -151,10 +154,11 @@ export default class SingleCard extends React.Component {
               <button onClick={() => {this.setState({isCompareOn : true})}}><span className="star">&#9733;</span></button>
 
               {/* comparisonMedal appear or not */}
-              { this.state.isCompareOn ?
-              <Modal className="modal">
-                < ComparisonModal onCompare={this.onCompare} currentProductFeature={this.props.currentProductFeature} relatedProductFeature={this.state.features} relatedProductName={this.state.name} currentProductName={this.props.currentProductName} />
-              </Modal>
+              {this.state.isCompareOn ?
+                <Modal className="modal">
+                  <div className="overlay"></div>
+                  < ComparisonModal onCompare={this.onCompare} currentProductFeature={this.props.currentProductFeature} relatedProductFeature={this.state.features} relatedProductName={this.state.name} currentProductName={this.props.currentProductName} />
+                </Modal>
                 : null}
 
             </div>

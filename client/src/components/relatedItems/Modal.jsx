@@ -11,12 +11,12 @@ export default class Modal extends React.Component {
     this.modal = document.createElement('div');
   }
   componentDidMount() {
-    const modalRoot = document.querySelector('.modal-container');;
+    const modalRoot = document.querySelector('.modal-container');
     modalRoot.appendChild(this.modal);
 
   }
   componentWillUnmount() {
-    const modalRoot = document.querySelector('.modal-container');;
+    const modalRoot = document.querySelector('.modal-container');
     modalRoot.removeChild(this.modal);
 
   }
