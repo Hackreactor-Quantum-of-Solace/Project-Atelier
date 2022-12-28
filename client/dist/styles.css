@@ -195,7 +195,8 @@ html {
 
 
 /********** relatedProductsList **********/
-.related-products-list {
+/* products-list .related-carousel .related-container are also used in outfitlist*/
+.products-list {
   position: relative;
 }
 .related-carousel {
@@ -203,7 +204,7 @@ html {
   align-items: center;
   justify-content: start;
 }
-.related-items-container {
+.related-container {
   width: 50vw;
   display: flex;
   overflow-x: hidden;
@@ -219,6 +220,7 @@ html {
   margin-right: 2px;
   flex-basis: 25%;
   flex-shrink: 0;
+  position: relative;
 }
 .img-container {
   position: relative;
@@ -293,8 +295,21 @@ html {
   background-color: white;
 }
 /********** outfitList **********/
-
-
+.add-outfit {
+  position: relative;
+  border: 1px solid black;
+  height: 368px; /*23rem*/
+  width: 208px; /*13rem*/
+  margin-right: 2px;
+}
+.add-button {
+  position: absolute; top: 40%; left: 20%;
+  font-size: xx-large;
+  display: block;
+  padding: 50px;
+  border-radius: 50%;
+  background-color: #ffeaa7;
+}
 
 /********** RATINGS AND REVIEWS **********/
 
