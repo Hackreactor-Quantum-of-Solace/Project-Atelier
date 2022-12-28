@@ -55,6 +55,7 @@ const deleteOutfitIdInCookie = (id) => {
   let index = outfitList.indexOf(id);
   outfitList.splice(index, 1);
   addOutfitListToCookie(outfitList);
+  return outfitList;
 }
 
 module.exports = {
