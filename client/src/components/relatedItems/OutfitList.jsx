@@ -2,6 +2,7 @@ import React from 'react';
 import SingleCard from './SingleCard.jsx';
 import {addOutfitListToCookie} from '../../../../helpers/helpers.js';
 import {getOutfitListInCookie} from '../../../../helpers/helpers.js';
+import {deleteOutfitIdInCookie} from '../../../../helpers/helpers.js';
 
 export default class OutfitList extends React.Component {
   constructor(props) {
@@ -11,13 +12,16 @@ export default class OutfitList extends React.Component {
       outfitList: getOutfitListInCookie(),
     }
     this.handleClick = this.handleClick.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
   handleClick() {
     //use helper function to save customer specific outfitList into cookie
     addOutfitListToCookie(this.props.currentProductId);
     this.setState({outfitList: getOutfitListInCookie()});
   }
-
+  handleDelete(clickedId) {
+    this.setState({outfitList:deleteOutfitIdInCookie(clickedId)});
+  }
   render() {
     return (
       <div className="outfit-list">
@@ -32,7 +36,7 @@ export default class OutfitList extends React.Component {
           <div>
             {(this.state.outfitList !== undefined) ?
             this.state.outfitList.map((item, index) => (
-              <SingleCard icon={this.state.icon} id={item} key={index}/>
+              <SingleCard icon={this.state.icon} id={item} key={index} handleDelete={this.handleDelete}/>
             ))
             : null}
 

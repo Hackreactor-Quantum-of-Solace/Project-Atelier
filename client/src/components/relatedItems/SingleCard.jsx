@@ -4,7 +4,7 @@ import axios from 'axios';
 import ComparisonModal from './ComparisonModal.jsx';
 import Modal from './Modal.jsx'
 //use helper function get QuarterNumber
-import { roundToNearestQuarter} from '../../../../helpers/helpers.js';
+import {roundToNearestQuarter} from '../../../../helpers/helpers.js';
 
 export default class SingleCard extends React.Component {
   constructor(props) {
@@ -29,15 +29,13 @@ export default class SingleCard extends React.Component {
     this.fetchRateAndChangeToUse = this.fetchRateAndChangeToUse.bind(this);
     this.onCompare = this.onCompare.bind(this);
 
+
   }
 
   onCompare (input) {
     this.setState({isCompareOn : input});
   }
 
-  deleteOutfitProcuct() {
-
-  }
   componentDidMount() {
    this.fetchCategoryNameAndFeatures();
    this.fetchPriceAndImage();
@@ -161,7 +159,7 @@ export default class SingleCard extends React.Component {
                 </Modal> : null}
               </div>)
             : (<div className="icon-delete" >
-                <button ><span className="delete">&#215;</span></button>
+                <button onClick={() => {this.props.handleDelete(this.props.id)}}><span className="delete">&#215;</span></button>
               </div>)
           }
 
