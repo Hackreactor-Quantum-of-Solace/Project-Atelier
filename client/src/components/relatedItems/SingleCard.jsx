@@ -68,7 +68,6 @@ export default class SingleCard extends React.Component {
     })
     .then((response) => {
       var results = response.data.results;
-
       //getDefault function: find the default parameter which is the required image and price
       var getDefault = (arr) => {
         // in case no default parameter
