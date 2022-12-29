@@ -10,11 +10,9 @@ export default class OutfitList extends React.Component {
     this.state = {
       icon: 'delete',
       outfitList: getOutfitListInCookie(),
-      outfitListLength: getOutfitListInCookie().length,
       // need to optimize(both list use carousel)
       arrowLeft: false,
       arrowRight: true
-
     }
     this.handleClick = this.handleClick.bind(this);
     this.handleDelete = this.handleDelete.bind(this);

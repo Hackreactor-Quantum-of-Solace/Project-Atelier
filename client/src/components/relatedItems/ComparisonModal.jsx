@@ -34,7 +34,7 @@ export default class ComparisonModal extends React.Component {
         this.feature.push([false, item.feature, item.value]);
       }
     })
-    console.log(this.feature);
+    // console.log(this.feature);
   }
   closeModal() {
     this.props.onCompare(false);

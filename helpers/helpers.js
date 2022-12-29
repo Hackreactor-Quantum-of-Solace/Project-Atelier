@@ -8,8 +8,8 @@ const roundToNearestQuarter = (rating) => {
 }
 const getOutfitListInCookie = () => {
   //cookie name is 'outfitList' which is defined in setOutfitListToCookie function
-  const strCookie = ";" + document.cookie;
-  const searchPart = strCookie.split(`; outfitList=`);
+  const strCookie = "; " + document.cookie;
+  const searchPart = strCookie.split("; outfitList=");
   // if has cookie_name
   if (searchPart.length === 2) {
     // return the first found of cookie_name 's value and parse it to JS
@@ -32,7 +32,7 @@ const addOutfitListToCookie = (id) => {
       for (var i = 0; i < outfitList.length; i ++) {
         if (outfitList[i] === id) {
           //for testing
-          console.log('product has already exists');
+          console.log('product has already existed');
           return;
         }
       }
