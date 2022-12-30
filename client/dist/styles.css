@@ -195,17 +195,32 @@ html {
 
 
 /********** relatedProductsList **********/
-
-
-.related-items-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-
+/* products-list .related-carousel .related-container are also used in outfitlist*/
+.products-list {
+  position: relative;
+}
+.related-carousel {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+.related-container {
+  width: 50vw;
+  display: flex;
+  overflow-x: hidden;
+}
+.modal-container {
+  position: absolute; top:50%; right:50%;
 }
 /********** single Card **********/
 .card {
   border: 1px solid black;
-  max-width: 250px;
+  height: 368px; /*23rem*/
+  width: 208px; /*13rem*/
+  margin-right: 2px;
+  flex-basis: 25%;
+  flex-shrink: 0;
+  position: relative;
 }
 .img-container {
   position: relative;
@@ -219,15 +234,82 @@ html {
   border-bottom: 1px solid #636e72;
   display: block;
 }
-.img-container .icon-star { position: absolute; top:0; right:0; }
+.img-container .icon-star,
+.img-container .icon-delete
+{ position: absolute; top:0; right:0; }
+
+.overlay {
+  position:fixed;
+  left:0;
+  top:0;
+  width:100vw;
+  height:100vh;
+  display:block;
+  background-color:#000;
+  opacity:0.5;
+  /* z-index: 0; */
+}
+.product-info {
+  margin-left: 5px;
+}
+.product-name {
+  font-weight: bold;
+}
+.product-info .discount-price {
+  color:red
+}
 
 /********** comparisonMedal **********/
 .comparison-modal {
- border:1px solid black;
- width:500px;
- height:400px;
+  position: relative;
+  border:1px solid black;
+  width:400px;
+  height:150px;
+  display: block;
+  background-color:#fff;
+  /* transform: translate(0, 0); */
+  /* z-index: 1; */
 }
 
+.modal-table .left-side  {
+  text-align: left;
+  width: 40%;
+}
+.modal-table .middle {
+  text-align: center;
+  width:  20%;
+}
+.modal-table .right-side {
+  text-align: right;
+  width: 40%;
+}
+.modal-table{
+  overflow:scroll;
+  height:110px;
+  display: block;
+}
+.modal-table thead {
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+  background-color: white;
+}
+/********** outfitList **********/
+.add-outfit {
+  position: relative;
+  border: 1px solid black;
+  height: 368px; /*23rem*/
+  width: 208px; /*13rem*/
+  margin-right: 2px;
+}
+.add-button {
+  position: absolute; top: 40%; left: 20%;
+  font-size: xx-large;
+  display: block;
+  padding: 50px;
+  border-radius: 50%;
+  background-color: #ffeaa7;
+}
 
 /********** RATINGS AND REVIEWS **********/
 
