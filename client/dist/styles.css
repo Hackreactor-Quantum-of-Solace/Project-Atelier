@@ -247,7 +247,8 @@ html {
   display:block;
   background-color:#000;
   opacity:0.5;
-  /* z-index: 0; */
+
+  z-index: 1;
 }
 .product-info {
   margin-left: 5px;
@@ -268,7 +269,7 @@ html {
   display: block;
   background-color:#fff;
   /* transform: translate(0, 0); */
-  /* z-index: 1; */
+  z-index: 2;
 }
 
 .modal-table .left-side  {
@@ -291,7 +292,7 @@ html {
 .modal-table thead {
   position: sticky;
   top: 0px;
-  z-index: 1;
+  z-index: 3;
   background-color: white;
 }
 /********** outfitList **********/
