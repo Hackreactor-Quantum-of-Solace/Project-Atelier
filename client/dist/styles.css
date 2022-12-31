@@ -150,18 +150,21 @@ html {
 .style-icons {
   display: flex;
   flex-wrap: wrap;
+  gap: 10px;
 }
 
 .style-icon {
   width: 21%;
+  height: 70px;
   box-sizing: border-box;
   cursor: pointer;
+  overflow: hidden;
 }
 
 .style-icon > img {
   width: 100%;
   border-radius: 50%;
-  height: auto;
+  height: 100%;
 }
 
 .currently-selected {
