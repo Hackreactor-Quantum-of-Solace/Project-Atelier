@@ -36,14 +36,22 @@ export default class ImageGallery extends React.Component {
             {this.props.currentStyle.photos && this.props.currentStyle.photos.map((photo, i) => {
               if (i == this.props.currentImageIndex) {
                 return (
-                  <div className="img-gallery-thumbnail selected-thumbnail" key={i} data-index={i}>
-                    <img className="thumbnail-img" src={photo.thumbnail_url}></img>
+                  <div className="img-gallery-thumbnail selected-thumbnail"
+                    key={i}
+                    data-index={i}
+                    style={{ backgroundImage: `url(${photo.thumbnail_url})` }}
+                  >
+                    {/* <img className="thumbnail-img" src={photo.thumbnail_url}></img> */}
                   </div>
                 );
               } else {
                 return (
-                  <div className="img-gallery-thumbnail" key={i} data-index={i}>
-                    <img className="thumbnail-img" src={photo.thumbnail_url}></img>
+                  <div className="img-gallery-thumbnail"
+                    key={i}
+                    data-index={i}
+                    style={{ backgroundImage: `url(${photo.thumbnail_url})` }}
+                  >
+                    {/* <img className="thumbnail-img" src={photo.thumbnail_url}></img> */}
                   </div>
                 );
               }
