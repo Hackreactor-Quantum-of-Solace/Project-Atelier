@@ -16,7 +16,7 @@ html {
 
 .image-gallery {
   width: 70%;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   box-sizing: border-box;
   height: 80%;
 }
@@ -125,13 +125,14 @@ html {
 
 .user-selection-bar {
   width: 30%;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   box-sizing: border-box;
+  padding-left: 8px;
 }
 
 .ov-product-info {
   width: 100%;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .ov-product-rating {
@@ -176,12 +177,12 @@ html {
   display: flex;
   box-sizing: border-box;
   width: 100%;
-  border: 1px solid green;
+  /* border: 1px solid green; */
 }
 
 .ov-po-left-column {
   width: 70%;
-  border-right: 1px solid #444;
+  /* border-right: 1px solid #444; */
 }
 
 .ov-po-right-column {
