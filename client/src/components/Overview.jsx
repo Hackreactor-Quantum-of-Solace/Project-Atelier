@@ -15,7 +15,8 @@ export default class Overview extends React.Component {
       product_styles: [],
       currentStyle: {},
       product_rating: 0,
-      imageGalleryView: 'default' // 'default' or 'expanded'
+      imageGalleryView: 'default', // 'default' or 'expanded'
+      currentImageIndex: 0
     };
     this.getProductInfo = this.getProductInfo.bind(this);
     this.getProductStyles = this.getProductStyles.bind(this);
@@ -23,6 +24,7 @@ export default class Overview extends React.Component {
     this.getProductRating = this.getProductRating.bind(this);
     this._getSizeInfoForStyle = this._getSizeInfoForStyle.bind(this);
     this.toggleImageGalleryView = this.toggleImageGalleryView.bind(this);
+    this.changeCurrentImageIndex = this.changeCurrentImageIndex.bind(this);
   }
 
   getProductInfo(id) {
@@ -56,7 +58,11 @@ export default class Overview extends React.Component {
   }
 
   changeCurrentStyle(style) {
-    this.setState({ currentStyle: style });
+    this.setState({ currentStyle: style, currentImageIndex: 0 });
+  }
+
+  changeCurrentImageIndex(index) {
+    this.setState({ currentImageIndex: index });
   }
 
   componentDidMount() {
@@ -88,6 +94,8 @@ export default class Overview extends React.Component {
         <ImageGallery
           currentStyle={this.state.currentStyle}
           toggleView={this.toggleImageGalleryView}
+          currentImageIndex={this.state.currentImageIndex}
+          changeCurrentImageIndex={this.changeCurrentImageIndex}
         />
         <div className={`user-selection-bar${collapsedSideBar}`}>
           <ProductInfo product_info={this.state.product_info} rating={this.state.product_rating} />
