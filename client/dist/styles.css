@@ -51,12 +51,10 @@ html {
 }
 
 .img-gallery-thumbnail {
+  flex-shrink: 0;
   width: 80px;
   height: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #222;
+  background-size: cover;
 }
 
 .selected-thumbnail {
@@ -65,8 +63,8 @@ html {
 
 .img-gallery-thumbnail > img {
   max-width: 100%;
+  margin: auto auto;
   max-height: 100%;
-  margin: auto;
 }
 
 .img-icon {
