@@ -3,19 +3,12 @@ import React from 'react';
 export default class ImageGallery extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      currentImageIndex: 0
-    }
     this.changeMainImage = this.changeMainImage.bind(this);
     this.handleThumbnailClick = this.handleThumbnailClick.bind(this);
   }
 
-  componentDidMount() {
-    this.setState({ currentImageIndex: 0 });
-  }
-
   changeMainImage(index) {
-    this.setState({ currentImageIndex: index });
+    this.props.changeCurrentImageIndex(index);
   }
 
   handleThumbnailClick(e) {
@@ -30,27 +23,37 @@ export default class ImageGallery extends React.Component {
   }
 
   render() {
-    let currentImage = this.props.currentStyle.photos ? this.props.currentStyle.photos[this.state.currentImageIndex] : {};
+    let currentImage = this.props.currentStyle.photos ? this.props.currentStyle.photos[this.props.currentImageIndex] : {};
+    let leftArrowHidden = this.props.currentImageIndex == 0;
+    let rightArrowHidden = this.props.currentStyle.photos ? this.props.currentImageIndex == this.props.currentStyle.photos.length - 1 : true;
     return (
       <div className="image-gallery">
         <div className="main-image-container">
           <img src={currentImage.url} alt={this.props.currentStyle.name}></img>
           <div className="img-expand-icon img-icon" onClick={this.props.toggleView}>&#x26F6;</div>
-          <div className="img-left-arrow img-icon">&#706;</div>
-          <div className="img-right-arrow img-icon">&#707;</div>
+          <div className="img-left-arrow img-icon" hidden={leftArrowHidden}>&#706;</div>
+          <div className="img-right-arrow img-icon" hidden={rightArrowHidden}>&#707;</div>
 
           <div className="thumbnails-container" onClick={this.handleThumbnailClick}>
             {this.props.currentStyle.photos && this.props.currentStyle.photos.map((photo, i) => {
-              if (i === this.state.currentImageIndex) {
+              if (i === this.props.currentImageIndex) {
                 return (
-                  <div className="img-gallery-thumbnail selected-thumbnail" key={i} data-index={i}>
-                    <img className="thumbnail-img" src={photo.thumbnail_url}></img>
+                  <div className="img-gallery-thumbnail selected-thumbnail"
+                    key={i}
+                    data-index={i}
+                    style={{ backgroundImage: `url(${photo.thumbnail_url})` }}
+                  >
+                    {/* <img className="thumbnail-img" src={photo.thumbnail_url}></img> */}
                   </div>
                 );
               } else {
                 return (
-                  <div className="img-gallery-thumbnail" key={i} data-index={i}>
-                    <img className="thumbnail-img" src={photo.thumbnail_url}></img>
+                  <div className="img-gallery-thumbnail"
+                    key={i}
+                    data-index={i}
+                    style={{ backgroundImage: `url(${photo.thumbnail_url})` }}
+                  >
+                    {/* <img className="thumbnail-img" src={photo.thumbnail_url}></img> */}
                   </div>
                 );
               }
