@@ -5,6 +5,7 @@ export default class ImageGallery extends React.Component {
     super(props);
     this.changeMainImage = this.changeMainImage.bind(this);
     this.handleThumbnailClick = this.handleThumbnailClick.bind(this);
+    this.handleArrowClick = this.handleArrowClick.bind(this);
   }
 
   changeMainImage(index) {
@@ -22,6 +23,14 @@ export default class ImageGallery extends React.Component {
     }
   }
 
+  handleArrowClick(direction) {
+    if (direction === 'back') {
+      this.props.changeCurrentImageIndex(this.props.currentImageIndex - 1);
+    } else if (direction === 'next') {
+      this.props.changeCurrentImageIndex(this.props.currentImageIndex + 1);
+    }
+  }
+
   render() {
     let currentImage = this.props.currentStyle.photos ? this.props.currentStyle.photos[this.props.currentImageIndex] : {};
     let leftArrowHidden = this.props.currentImageIndex == 0;
@@ -31,8 +40,16 @@ export default class ImageGallery extends React.Component {
         <div className="main-image-container">
           <img src={currentImage.url} alt={this.props.currentStyle.name}></img>
           <div className="img-expand-icon img-icon" onClick={this.props.toggleView}>&#x26F6;</div>
-          <div className="img-left-arrow img-icon" hidden={leftArrowHidden}>&#706;</div>
-          <div className="img-right-arrow img-icon" hidden={rightArrowHidden}>&#707;</div>
+          <div
+            className="img-left-arrow img-icon"
+            hidden={leftArrowHidden}
+            onClick={() => this.handleArrowClick('back')}
+          >&#706;</div>
+          <div
+            className="img-right-arrow img-icon"
+            hidden={rightArrowHidden}
+            onClick={() => this.handleArrowClick('next')}
+          >&#707;</div>
 
           <div className="thumbnails-container" onClick={this.handleThumbnailClick}>
             {this.props.currentStyle.photos && this.props.currentStyle.photos.map((photo, i) => {
