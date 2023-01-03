@@ -192,5 +192,28 @@ describe('Overview Component and Subcomponents', function() {
       expect(selectQty).toHaveBeenCalledTimes(1);
     });
     it.todo('should have a default value of "-"');
-  })
+  });
+
+  /***** PRODUCT INFO *****/
+  describe('ProductInfo', () => {
+    const renderProductInfo = (product_info=exampleData.productInfo71697, rating=4.5) => {
+      ReactDOM.render(
+        <ProductInfo
+          product_info={product_info}
+          rating={rating}
+        />,
+        container);
+    }
+    it('should render ProductInfo component to the DOM', () => {
+      act(renderProductInfo);
+      expect(document.querySelector('.ov-product-info')).not.toBe(null);
+    });
+    it('should still render if product info is non-existent', () => {
+      act(() => renderProductInfo(null));
+      expect(document.querySelector('.ov-product-info')).not.toBe(null);
+    });
+  });
+
+  /***** PRODUCT OVERVIEW *****/
+  describe.skip('ProductOverview', () => {});
 });
