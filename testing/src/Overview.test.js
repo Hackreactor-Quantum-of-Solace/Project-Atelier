@@ -136,6 +136,7 @@ describe('Overview Component and Subcomponents', function() {
   });
 
   /***** STAR RATING *****/
+
   describe('StarRating', () => {
     const renderStarRating = () => {
       ReactDOM.render(<StarRating rating={3.8} />, container);
@@ -150,5 +151,46 @@ describe('Overview Component and Subcomponents', function() {
       const overlayWidth = overlay.style.width;
       expect(overlayWidth).toBe('25%');
     });
+  });
+
+  /***** QuantitySelector *****/
+
+  describe('QuantitySelector', () => {
+    const renderQtySel = (maxQty=15, currentQty=0, selectQty=()=>{}) => {
+      ReactDOM.render(
+        <QuantitySelector
+          maxQuantity={maxQty}
+          currentQuantity={currentQty}
+          selectQuantity={selectQty}
+        />,
+        container
+      );
+    }
+    it('should render QuantitySelector to the DOM', () => {
+      act(renderQtySel);
+      expect(document.querySelector('.quantity-selector')).not.toBe(null);
+    });
+    it('should set the selected option to the currentQuantity', () => {
+      act(() => renderQtySel(12, 2));
+      const qtySelector = document.querySelector('.quantity-selector');
+      const selected = qtySelector.options[qtySelector.selectedIndex];
+      expect(selected.text).toBe('2');
+    });
+    it('should only have options up to the maxQuantity amount', () => {
+      act(() => renderQtySel(12));
+      const qtySelector = document.querySelector('.quantity-selector');
+      const lastOption = qtySelector.options[qtySelector.options.length - 1];
+      expect(lastOption.text).toBe('12');
+    });
+    it('should call selectQuantity function on change', () => {
+      let newQty = '0';
+      const selectQty = jest.fn();
+      act(() => renderQtySel(12, 1, selectQty));
+      const qtySelector = document.querySelector('.quantity-selector');
+      expect(selectQty).toHaveBeenCalledTimes(0);
+      act(() => qtySelector.dispatchEvent(new Event('change', { bubbles: true })));
+      expect(selectQty).toHaveBeenCalledTimes(1);
+    });
+    it.todo('should have a default value of "-"');
   })
 });
