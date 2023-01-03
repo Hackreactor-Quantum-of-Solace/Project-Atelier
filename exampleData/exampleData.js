@@ -83,7 +83,7 @@ module.exports = {
                     },
                     "2580531": {
                         "quantity": 4,
-                        "size": "XL"
+                        "size": "XXL"
                     }
                 }
             },

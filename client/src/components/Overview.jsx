@@ -7,6 +7,8 @@ import ProductInfo from './overview/ProductInfo.jsx';
 import StyleSelector from './overview/StyleSelector.jsx';
 import ProductOverview from './overview/ProductOverview.jsx';
 
+import { getSizeInfoForStyle } from '../../../helpers/helpers.js'
+
 export default class Overview extends React.Component {
   constructor(props) {
     super(props);
@@ -22,7 +24,7 @@ export default class Overview extends React.Component {
     this.getProductStyles = this.getProductStyles.bind(this);
     this.changeCurrentStyle = this.changeCurrentStyle.bind(this);
     this.getProductRating = this.getProductRating.bind(this);
-    this._getSizeInfoForStyle = this._getSizeInfoForStyle.bind(this);
+    // this._getSizeInfoForStyle = this._getSizeInfoForStyle.bind(this);
     this.toggleImageGalleryView = this.toggleImageGalleryView.bind(this);
     this.changeCurrentImageIndex = this.changeCurrentImageIndex.bind(this);
   }
@@ -76,17 +78,17 @@ export default class Overview extends React.Component {
     this.setState({ imageGalleryView });
   }
 
-  _getSizeInfoForStyle(style) {
-    let sizeInfo = {};
-    for (const sku in style.skus) {
-      const skuInfo = style.skus[sku];
-      sizeInfo[skuInfo.size] = { sku, quantity: skuInfo.quantity }
-    }
-    return sizeInfo;
-  }
+  // _getSizeInfoForStyle(style) {
+  //   let sizeInfo = {};
+  //   for (const sku in style.skus) {
+  //     const skuInfo = style.skus[sku];
+  //     sizeInfo[skuInfo.size] = { sku, quantity: skuInfo.quantity }
+  //   }
+  //   return sizeInfo;
+  // }
 
   render() {
-    const sizeInfo = this._getSizeInfoForStyle(this.state.currentStyle);
+    const sizeInfo = getSizeInfoForStyle(this.state.currentStyle);
     let expandedView = this.state.imageGalleryView === 'default' ? '' : ' expanded-view';
     let collapsedSideBar = this.state.imageGalleryView === 'default' ? '' : ' collapsed-sidebar';
     return (

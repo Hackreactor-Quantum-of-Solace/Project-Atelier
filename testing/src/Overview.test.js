@@ -19,6 +19,8 @@ import StyleSelector from '../../client/src/components/overview/StyleSelector';
 
 import exampleData from '../../exampleData/exampleData';
 
+import { getSizeInfoForStyle } from '../../helpers/helpers.js';
+
 /***** React Component Tests *****/
 
 describe('Overview Component and Subcomponents', function() {
@@ -227,6 +229,21 @@ describe('Overview Component and Subcomponents', function() {
     it('should still render if product info is non-existent', () => {
       act(() => renderProductOverview(null));
       expect(document.querySelector('.ov-product-overview')).not.toBe(null);
-    })
+    });
+  });
+
+  /***** SIZE SELECTOR *****/
+  describe('SizeSelector', () => {
+    const style = exampleData.styles71697.results[0];
+    const sizeInfo = getSizeInfoForStyle(style);
+    let selectedSize = '';
+    const selectSizeFn = jest.fn(size => selectedSize = size);
+    const renderSizeSelector = (sizeOptions=Object.keys(sizeInfo), selectSize=selectSizeFn) => {
+      ReactDOM.render(<SizeSelector sizeOptions={sizeOptions} selectSize={selectSize} />, container);
+    };
+    it('should render SizeSelector component to the DOM', () => {
+      act(renderSizeSelector);
+      expect(document.querySelector('.size-selector')).not.toBe(null);
+    });
   });
 });
