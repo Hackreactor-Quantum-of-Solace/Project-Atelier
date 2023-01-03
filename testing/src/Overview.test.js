@@ -10,6 +10,7 @@ import AddToCart from '../../client/src/components/overview/AddToCart.jsx';
 import ClickableStar from '../../client/src/components/overview/ClickableStar.jsx';
 import ImageGallery from '../../client/src/components/overview/ImageGallery.jsx';
 import ProductInfo from '../../client/src/components/overview/ProductInfo.jsx';
+import ProductOverview from '../../client/src/components/overview/ProductOverview.jsx';
 import QuantitySelector from '../../client/src/components/overview/QuantitySelector.jsx';
 import SizeSelector from '../../client/src/components/overview/SizeSelector.jsx';
 import StarRating from '../../client/src/components/overview/StarRating.jsx';
@@ -215,5 +216,17 @@ describe('Overview Component and Subcomponents', function() {
   });
 
   /***** PRODUCT OVERVIEW *****/
-  describe.skip('ProductOverview', () => {});
+  describe('ProductOverview', () => {
+    const renderProductOverview = (product_info=exampleData.productInfo71697) => {
+      ReactDOM.render(<ProductOverview product_info={product_info} />, container);
+    }
+    it('should render ProductOverview component to the DOM', () => {
+      act(renderProductOverview);
+      expect(document.querySelector('.ov-product-overview')).not.toBe(null);
+    });
+    it('should still render if product info is non-existent', () => {
+      act(() => renderProductOverview(null));
+      expect(document.querySelector('.ov-product-overview')).not.toBe(null);
+    })
+  });
 });
