@@ -131,13 +131,13 @@ export default class SingleCard extends React.Component {
     });
   }
   render() {
+    var url =  window.location.href.split('?').shift() + `?id=${this.props.id}`;
     return (
-
       <div className="card" >
 
         <div className="img-container">
         {/* when client click card image, it will redirect page to detail product page */}
-          <img className="card-img" src={this.state.img} alt="Product image" onClick={()=> { window.location.href = `http://localhost:3000/?id=${this.props.id}`}}
+          <img className="card-img" src={this.state.img} alt="Product image" onClick={()=> {window.location.href = url}}
           // onError={ event => {
           //   event.target.src= "https://cdn.pixabay.com/photo/2015/01/21/13/21/sale-606687__340.png"
           //   event.onerror = null

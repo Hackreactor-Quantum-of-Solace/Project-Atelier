@@ -16,7 +16,7 @@ html {
 
 .image-gallery {
   width: 70%;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   box-sizing: border-box;
   height: 80%;
 }
@@ -51,12 +51,10 @@ html {
 }
 
 .img-gallery-thumbnail {
+  flex-shrink: 0;
   width: 80px;
   height: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #222;
+  background-size: cover;
 }
 
 .selected-thumbnail {
@@ -65,8 +63,8 @@ html {
 
 .img-gallery-thumbnail > img {
   max-width: 100%;
+  margin: auto auto;
   max-height: 100%;
-  margin: auto;
 }
 
 .img-icon {
@@ -127,13 +125,14 @@ html {
 
 .user-selection-bar {
   width: 30%;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   box-sizing: border-box;
+  padding-left: 8px;
 }
 
 .ov-product-info {
   width: 100%;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .ov-product-rating {
@@ -150,18 +149,21 @@ html {
 .style-icons {
   display: flex;
   flex-wrap: wrap;
+  gap: 10px;
 }
 
 .style-icon {
   width: 21%;
+  height: 70px;
   box-sizing: border-box;
   cursor: pointer;
+  overflow: hidden;
 }
 
 .style-icon > img {
   width: 100%;
   border-radius: 50%;
-  height: auto;
+  height: 100%;
 }
 
 .currently-selected {
@@ -175,12 +177,12 @@ html {
   display: flex;
   box-sizing: border-box;
   width: 100%;
-  border: 1px solid green;
+  /* border: 1px solid green; */
 }
 
 .ov-po-left-column {
   width: 70%;
-  border-right: 1px solid #444;
+  /* border-right: 1px solid #444; */
 }
 
 .ov-po-right-column {
@@ -247,7 +249,8 @@ html {
   display:block;
   background-color:#000;
   opacity:0.5;
-  /* z-index: 0; */
+
+  z-index: 1;
 }
 .product-info {
   margin-left: 5px;
@@ -268,7 +271,7 @@ html {
   display: block;
   background-color:#fff;
   /* transform: translate(0, 0); */
-  /* z-index: 1; */
+  z-index: 2;
 }
 
 .modal-table .left-side  {
@@ -291,7 +294,7 @@ html {
 .modal-table thead {
   position: sticky;
   top: 0px;
-  z-index: 1;
+  z-index: 3;
   background-color: white;
 }
 /********** outfitList **********/
