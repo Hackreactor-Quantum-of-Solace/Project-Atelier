@@ -134,4 +134,21 @@ describe('Overview Component and Subcomponents', function() {
 
     // });
   });
+
+  /***** STAR RATING *****/
+  describe('StarRating', () => {
+    const renderStarRating = () => {
+      ReactDOM.render(<StarRating rating={3.8} />, container);
+    }
+    it('should render StarRating to the DOM', () => {
+      act(renderStarRating);
+      expect(document.querySelector('.star-rating')).not.toBe(null);
+    });
+    it('should subtract overlay by the nearest quarter percentage point', () => {
+      act(renderStarRating);
+      const overlay = document.querySelector('.stars-overlay');
+      const overlayWidth = overlay.style.width;
+      expect(overlayWidth).toBe('25%');
+    });
+  })
 });
