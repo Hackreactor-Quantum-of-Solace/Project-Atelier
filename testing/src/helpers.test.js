@@ -1,4 +1,5 @@
-import { roundToNearestQuarter } from '../../helpers/helpers.js';
+import exampleData from '../../exampleData/exampleData.js';
+import { roundToNearestQuarter, getSizeInfoForStyle } from '../../helpers/helpers.js';
 
 /***** Unit Tests for roundToNearestQuarter helper function *****/
 
@@ -13,3 +14,14 @@ describe('roundToNearestQuarter', function() {
     expect(roundToNearestQuarter(3.13)).toBe(3.25);
   });
 });
+
+describe('getSizeInfoForStyle', () => {
+  it('should return an object with sku and quantity info for each size key', () => {
+    let style = exampleData.styles71697.results[0];
+    let sizeInfo = getSizeInfoForStyle(style);
+    expect(Object.keys(sizeInfo)).not.toBe(null);
+    expect(Object.keys(sizeInfo).length).toBe(6);
+    expect(sizeInfo.XS.sku).toBe('2580526');
+    expect(sizeInfo.XS.quantity).toBe(8);
+  });
+})
