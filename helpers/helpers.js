@@ -58,9 +58,19 @@ const deleteOutfitIdInCookie = (id) => {
   return outfitList;
 }
 
+const getSizeInfoForStyle = (style) => {
+  let sizeInfo = {};
+  for (const sku in style.skus) {
+    const skuInfo = style.skus[sku];
+    sizeInfo[skuInfo.size] = { sku, quantity: skuInfo.quantity }
+  }
+  return sizeInfo;
+}
+
 module.exports = {
   roundToNearestQuarter,
   getOutfitListInCookie,
   addOutfitListToCookie,
-  deleteOutfitIdInCookie
+  deleteOutfitIdInCookie,
+  getSizeInfoForStyle
 };
