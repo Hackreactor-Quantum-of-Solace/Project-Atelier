@@ -14,7 +14,7 @@ export default class App extends React.Component {
     this.state = {
       product_id: new URLSearchParams(window.location.search).get('id'),
       cart: {},
-      outfit: getOutfitListInCookie(),
+      outfit: getOutfitListInCookie() === undefined ? [] : getOutfitListInCookie(),
     }
     this.addToCart = this.addToCart.bind(this);
     this.removeFromCart = this.removeFromCart.bind(this);
