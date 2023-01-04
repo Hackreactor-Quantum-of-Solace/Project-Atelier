@@ -60,7 +60,9 @@ export default class RelatedItems extends React.Component {
       <>
         <RelatedProductsList relatedItemsId={this.state.relatedItemsId} currentProductFeature={this.state.currentProductFeature} currentProductName={this.state.currentProductName}/>
 
-        <OutfitList currentProductId={this.props.productId}/>
+        <OutfitList currentProductId={this.props.productId} outfit={this.props.outfit}
+        addToOutfit={this.props.addToOutfit}
+        removeFromOutfit={this.props.removeFromOutfit}/>
       </>
 
     )
