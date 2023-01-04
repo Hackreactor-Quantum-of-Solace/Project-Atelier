@@ -139,6 +139,20 @@ html {
   display: flex;
   align-items: center;
   gap: 8px;
+  margin-top: 10px;
+}
+
+.ov-category {
+  font-size: 12px;
+}
+
+.ov-product-name {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.ov-price {
+  font-size: 12px;
 }
 
 .collapsed-sidebar {
@@ -146,6 +160,14 @@ html {
 }
 
 /********** STYLE SELECTOR **********/
+.style-label {
+  font-size: 12px;
+}
+
+.style-style {
+  font-weight: bold;
+}
+
 .style-icons {
   display: flex;
   flex-wrap: wrap;
@@ -191,8 +213,38 @@ html {
 
 /********** ADD TO CART **********/
 
+.add-to-cart {
+  margin: 15px 5px;
+  gap: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.size-selector {
+  width: 62%;
+  height: 40px;
+  font-weight: bold;
+  font-size: 12px;
+  padding-left: 8px;
+}
+
+.quantity-selector {
+  width: 32%;
+  height: 40px;
+}
+
+.add-to-cart-button {
+  width: 78%;
+  height: 40px;
+  font-weight: bold;
+  font-size: 12px;
+}
+
 .clickable-star {
   font-size: 20px;
+  height: 40px;
+  width: 40px;
 }
 
 
@@ -422,11 +474,17 @@ html {
 } */
 
 
-button {
+/* button {
   background-color: green;
+} */
+
+.scroller {
+
+  height: 400px;
+  overflow-y: scroll;
+  scrollbar-color: yellow;
+  scrollbar-width: thin;
 }
-
-
 
 
 

@@ -25,7 +25,7 @@ export default function ReviewsList(props) {
   }
 
     return (
-      <div>
+      <div class="scroller">
         {props.visibleReviews.map( (reviewObj, index) => <ReviewsTile key ={index} review={reviewObj}/>)}
 
       </div>

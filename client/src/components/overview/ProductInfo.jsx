@@ -12,7 +12,7 @@ export default function(props) {
           <a href="#">Read all reviews</a>
         </span>
       </div>
-      <p className="ov-category">{product_info.category}</p>
+      <p className="ov-category">CATEGORY - {product_info.category && product_info.category.toUpperCase()}</p>
       <h2 className="ov-product-name">{product_info.name}</h2>
       <p className="ov-price">{price}</p>
     </div>

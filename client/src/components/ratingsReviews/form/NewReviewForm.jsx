@@ -38,7 +38,7 @@ export default class NewReviewForm extends React.Component {
       method: 'post',
       data: {
         name: this.state.name,
-        date: this.state.date,
+        date: new Date,
         summary: this.state.summary,
         body: this.state.body
       }
