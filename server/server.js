@@ -1,3 +1,4 @@
+const expressStaticGzip = require('express-static-gzip');
 require('dotenv').config();
 
 const path = require('path');
@@ -11,8 +12,9 @@ const app = express();
 app.use(morgan('tiny'));
 app.use(authentication);
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '../client/dist/')));
-
+app.use(expressStaticGzip(path.join(__dirname, '../client/dist/'), {
+  enableBrotli: true
+  }));
 app.all('/products*', rerouteToAPI);
 app.all('/reviews*', rerouteToAPI);
 app.all('/qa*', rerouteToAPI);
