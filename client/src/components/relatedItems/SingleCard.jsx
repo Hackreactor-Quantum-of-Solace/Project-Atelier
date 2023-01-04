@@ -4,7 +4,7 @@ import axios from 'axios';
 import ComparisonModal from './ComparisonModal.jsx';
 import Modal from './Modal.jsx'
 //use helper function get QuarterNumber
-import { roundToNearestQuarter} from '../../../../helpers/helpers.js';
+import {roundToNearestQuarter} from '../../../../helpers/helpers.js';
 
 export default class SingleCard extends React.Component {
   constructor(props) {
@@ -23,25 +23,24 @@ export default class SingleCard extends React.Component {
       isCompareOn: false
     };
 
+
     this.fetchCategoryNameAndFeatures = this.fetchCategoryNameAndFeatures.bind(this);
     this.fetchPriceAndImage = this.fetchPriceAndImage.bind(this);
     this.fetchRateAndChangeToUse = this.fetchRateAndChangeToUse.bind(this);
     this.onCompare = this.onCompare.bind(this);
-  }
 
-  onCompare () {
-    this.setState((prevState) => (
-      {isCompareOn: !prevState.isCompareOn}
-    ));
-  }
-
-  deleteOutfitProcuct() {
 
   }
+
+  onCompare (input) {
+    this.setState({isCompareOn : input});
+  }
+
   componentDidMount() {
    this.fetchCategoryNameAndFeatures();
    this.fetchPriceAndImage();
    this.fetchRateAndChangeToUse();
+
   }
 
   fetchCategoryNameAndFeatures() {
@@ -55,8 +54,7 @@ export default class SingleCard extends React.Component {
         name : response.data.name,
         features : response.data.features
       })
-      //for test
-      // console.log('singlecard',this.state);
+
     })
     .catch((err) => {
       console.log('Fetch Category, Name And Features ERROR', err);
@@ -70,7 +68,6 @@ export default class SingleCard extends React.Component {
     })
     .then((response) => {
       var results = response.data.results;
-
       //getDefault function: find the default parameter which is the required image and price
       var getDefault = (arr) => {
         // in case no default parameter
@@ -134,36 +131,35 @@ export default class SingleCard extends React.Component {
     });
   }
   render() {
+    var url =  window.location.href.split('?').shift() + `?id=${this.props.id}`;
     return (
-
-
-
-       // when client click card, it will redirect page to detail product page
       <div className="card" >
 
         <div className="img-container">
-          <img className="card-img" src={this.state.img} alt="Product image" onClick={()=> { window.location.href = `http://localhost:3000/?id=${this.props.id}`}}
+        {/* when client click card image, it will redirect page to detail product page */}
+          <img className="card-img" src={this.state.img} alt="Product image" onClick={()=> {window.location.href = url}}
           // onError={ event => {
           //   event.target.src= "https://cdn.pixabay.com/photo/2015/01/21/13/21/sale-606687__340.png"
           //   event.onerror = null
           // }}
           />
 
-          {/* icon is star now */}
+          {/* icon is star or delete */}
           {this.props.icon === 'star' ?
-            <div className="icon-star" >
-              <button onClick={this.onCompare}><span className="star">&#9733;</span></button>
+            (<div className="icon-star" >
+              {/* click on star then comparsion modal will appear */}
+              <button onClick={() => {this.setState({isCompareOn : true})}}><span className="star">&#9733;</span></button>
 
               {/* comparisonMedal appear or not */}
-              { this.state.isCompareOn ?
-              <Modal className="modal">
-                < ComparisonModal currentProductFeature={this.props.currentProductFeature} relatedProductFeature={this.state.features} />
-              </Modal>
-                : null}
-
-            </div>
-
-            : null
+              {this.state.isCompareOn ?
+                <Modal className="modal">
+                  <div className="overlay"></div>
+                  < ComparisonModal onCompare={this.onCompare} currentProductFeature={this.props.currentProductFeature} relatedProductFeature={this.state.features} relatedProductName={this.state.name} currentProductName={this.props.currentProductName} />
+                </Modal> : null}
+              </div>)
+            : (<div className="icon-delete" >
+                <button onClick={() => {this.props.handleDelete(this.props.id)}}><span className="delete">&#215;</span></button>
+              </div>)
           }
 
 
@@ -172,13 +168,14 @@ export default class SingleCard extends React.Component {
 
 
 
-        <div style={{"marginLeft": "5px"}}>
+        <div className="product-info">
 
           <span>{this.state.category}</span>
           <br></br>
-          <span style={{"font": "bold"}}>{this.state.name}</span>
+          <span className="product-name">{this.state.name}</span>
+
           {/* origin price or discount price */}
-          {(this.state.discount_price) ? <p style={{"color":"red"}}>${this.state.discount_price}</p> : null}
+          {(this.state.discount_price) ? <p className="discount-price">${this.state.discount_price}</p> : null}
           <p style={(this.state.discount_price) ? {"text-decoration": "line-through"} : null}>${this.state.default_price}</p>
 
           {/* rate is not designed */}

@@ -18,37 +18,39 @@ export default class NewReviewForm extends React.Component {
       this.renderReviewForm = this.renderReviewForm.bind(this);
   }
 
-  handleClickForm(event) {
-    //want form to appear
+  handleClickForm() {
     this.setState({showForm: true});
-    console.log(this.state.showForm, 'line 22')
-    // this.renderReviewForm();
-
-
   }
+
   handleChange(event) {
-    this.setState({[event.target.name]: event.target.value})
-    //need multi targets
+    this.setState({[event.target.name]: event.target.value});
    }
 
-  handleSubmit(event) {
+  handleSubmit() {
     event.preventDefault();
-    let config = {
-      method: 'post',
-      url: `/reviews?product_id=71697`,
-      data: {
-        name: 'mary',
-        date: 'date'
-      }
-    }
-    axios(config)
-    .then ( (res) => {
-      console.log('review saved')
-    })
-    .catch ( (err) => {
-      console.log(err)
-    })
+    console.log(this.state.name)
+    console.log(this.state.date)
+    console.log(this.state.summary)
+    console.log(this.state.body)
 
+    let config = {
+      url: `/reviews?product_id=71697`,
+      method: 'post',
+      data: {
+        name: this.state.name,
+        date: this.state.date,
+        summary: this.state.summary,
+        body: this.state.body
+      }
+    };
+
+    axios(config)
+      .then ( (review) => {
+        console.log('post successful')
+      })
+      .catch( (err) => {
+        console.log(err);
+      });
   }
 
   renderReviewForm () {
@@ -57,7 +59,7 @@ export default class NewReviewForm extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <label>
             Name:
-            <input name="name" type="text" placeholder="input name" value={this.state.name} onChange={this.handleChange}/>
+            <input name="name" type="text" placeholder="input name" value={this.state.name} onChange={(e) => {this.handleChange(e)}}/>
             <br />
             Date:
             <input name="date" type="text" placeholder="input date" value={this.state.date} onChange={this.handleChange}/>

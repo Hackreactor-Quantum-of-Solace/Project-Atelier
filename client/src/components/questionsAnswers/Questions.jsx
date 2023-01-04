@@ -13,7 +13,7 @@ export default class Questions extends React.Component {
     return (
       <div>
         <h3>User: {this.props.asker}</h3>
-        <span>Asks: {this.props.body}</span>
+        <span>Q: {this.props.body}</span>
         <div>
           <h5>responses</h5>
           {Object.keys(this.props.answerList).map(key => (

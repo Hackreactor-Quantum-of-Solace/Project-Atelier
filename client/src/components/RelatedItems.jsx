@@ -12,7 +12,8 @@ export default class RelatedItems extends React.Component {
     this.state = {
       //save relatedItemsId of the overview product
       relatedItemsId : [],
-      currentProductFeature : []
+      currentProductFeature : [],
+      currentProductName: ''
     }
 
     this.getRelatedItemsId = this.getRelatedItemsId.bind(this);
@@ -45,7 +46,8 @@ export default class RelatedItems extends React.Component {
     })
     .then((response) => {
       this.setState({
-        currentProductFeature : response.data.features
+        currentProductFeature : response.data.features,
+        currentProductName: response.data.name
       });
       // console.log(this.state)
     })
@@ -55,11 +57,12 @@ export default class RelatedItems extends React.Component {
   }
   render() {
     return (
-      <div className = "relatedItems" data-testid="relatedItems">
-         < RelatedProductsList relatedItemsId={this.state.relatedItemsId} currentProductFeature={this.state.currentProductFeature}/>
+      <div >
+        <RelatedProductsList relatedItemsId={this.state.relatedItemsId} currentProductFeature={this.state.currentProductFeature} currentProductName={this.state.currentProductName}/>
 
-        < OutfitList />
+        <OutfitList currentProductId={this.props.productId}/>
       </div>
+
     )
   }
 }
