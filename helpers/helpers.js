@@ -7,7 +7,7 @@ const roundToNearestQuarter = (rating) => {
   return remainder >= 13 ? (quarters + 1) * 0.25 : quarters * 0.25;
 }
 const getOutfitListInCookie = () => {
-  //cookie name is 'outfitList' which is defined in setOutfitListToCookie function
+  //cookie name is 'outfitList' which is defined in addOutfitListToCookie function
   const strCookie = "; " + document.cookie;
   const searchPart = strCookie.split("; outfitList=");
   // if has cookie_name
