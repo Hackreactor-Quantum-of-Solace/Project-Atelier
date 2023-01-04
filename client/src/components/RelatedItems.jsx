@@ -57,11 +57,11 @@ export default class RelatedItems extends React.Component {
   }
   render() {
     return (
-      <div >
+      <>
         <RelatedProductsList relatedItemsId={this.state.relatedItemsId} currentProductFeature={this.state.currentProductFeature} currentProductName={this.state.currentProductName}/>
 
         <OutfitList currentProductId={this.props.productId}/>
-      </div>
+      </>
 
     )
   }

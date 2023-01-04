@@ -5,7 +5,7 @@ import ComparisonModal from './ComparisonModal.jsx';
 import Modal from './Modal.jsx'
 //use helper function get QuarterNumber
 import {roundToNearestQuarter} from '../../../../helpers/helpers.js';
-
+import StarRating from './StarRating.jsx'
 export default class SingleCard extends React.Component {
   constructor(props) {
     super(props);
@@ -14,12 +14,13 @@ export default class SingleCard extends React.Component {
       category : 'CATEGORY',
       name : 'NAME',
       features: [],
-      default_price : 0,
+      default_price: 0,
       //if discount_price is null or zero means there's no discount
-      discount_price : null,
+      discount_price: null,
       //default url image used to test
-      img : 'https://cdn.pixabay.com/photo/2015/01/21/13/21/sale-606687__340.png',
-      rate : 0,
+      img: 'https://cdn.pixabay.com/photo/2015/01/21/13/21/sale-606687__340.png',
+      rate: 0,
+      totalCounts: 0,
       isCompareOn: false
     };
 
@@ -116,15 +117,15 @@ export default class SingleCard extends React.Component {
         } else {
           avgRealRate = totalRates / totalCounts;
         }
-       return avgRealRate;
+       return [avgRealRate,totalCounts];
       };
 
-      var avgRate = getAvgRate(rates);
+      var [avgRate, totalCounts] = getAvgRate(rates);
 
       //use helper function roundToNearestQuarter make QuarterNumber
       var rate = roundToNearestQuarter(avgRate);
 
-      this.setState({rate});
+      this.setState({rate,totalCounts});
     })
     .catch((err) => {
       console.log('Fetch Rates And Change to use ERROR', err);
@@ -179,7 +180,7 @@ export default class SingleCard extends React.Component {
           <p style={(this.state.discount_price) ? {"text-decoration": "line-through"} : null}>${this.state.default_price}</p>
 
           {/* rate is not designed */}
-          {(this.state.rate) ? <p>{this.state.rate}</p> : null}
+          {(this.state.rate) ? <><StarRating rating={this.state.rate}/></> : null}
 
         </div>
       </div>
