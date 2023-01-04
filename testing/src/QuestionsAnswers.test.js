@@ -16,6 +16,6 @@ test('test for mount', async () => {
   //await screen.findByRole('heading')
 
   // ASSERT
-  expect(getByText('Q&A section')).toBeInTheDocument();
+  expect(getByText('QUESTIONS & ANSWERS')).toBeInTheDocument();
   //expect(screen.getByRole('button')).toBeDisabled()
 })

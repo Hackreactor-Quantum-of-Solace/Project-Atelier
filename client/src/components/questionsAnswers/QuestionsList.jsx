@@ -15,7 +15,6 @@ export default class QuestionsList extends React.Component {
   render () {
     return (
       <div>
-        <h3>I hold the questions and answers!</h3>
         <div>
           {this.props.qList.map(q => (
             <Questions key={q.question_id} body={q.question_body} date= {q.question_date}

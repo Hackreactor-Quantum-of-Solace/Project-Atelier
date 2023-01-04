@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 import QuestionsList from './questionsAnswers/QuestionsList.jsx';
-
+import QuestionSearch from './questionsAnswers/QuestionSearch.jsx';
 
 export default class QuestionsAnswers extends React.Component {
   constructor(props) {
@@ -27,8 +27,9 @@ export default class QuestionsAnswers extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Q&A section</h1>
+      <div className={`questions-container`}>
+        <h5 className="questions-title">QUESTIONS & ANSWERS</h5>
+        <QuestionSearch/>
         <QuestionsList qList={ this.state.questionsAndAnswers } />
       </div>
     );
