@@ -33,7 +33,6 @@ export default class RatingsReviews extends React.Component {
 
     axios(config)
       .then ( (reviews) => {
-        // console.log(reviewsCount, 'line 36')
         this.setState({
           reviews: reviews.data.results,
           visibleReviews: reviews.data.results.slice(0,2)
@@ -46,12 +45,13 @@ export default class RatingsReviews extends React.Component {
 
   handleChange(event) {
     //reset state
-    this.setState({sortValue: event.target.value});
+    this.setState({sortValue: event.target.value}); //setState is asynch
+    console.log('sorting by ' + this.state.sortValue);
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log('sorting by' + this.state.sortValue);
+
   }
 
   handleMoreReviews(event) {
@@ -83,7 +83,11 @@ export default class RatingsReviews extends React.Component {
        </form>
        <ReviewsList review={this.state.reviews} visibleReviews={this.state.visibleReviews} value={this.state.sortValue}/>
        </div>
-
+       <div>
+        <button onSubmit={this.handleMoreReviews}>
+          More Reviews
+        </button>
+       </div>
        <NewReviewForm />
       </div>
 
