@@ -1,35 +1,19 @@
 import React from 'react';
 import SingleCard from './SingleCard.jsx';
-import {addOutfitListToCookie} from '../../../../helpers/helpers.js';
-import {getOutfitListInCookie} from '../../../../helpers/helpers.js';
-import {deleteOutfitIdInCookie} from '../../../../helpers/helpers.js';
 
 export default class OutfitList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       icon: 'delete',
-      outfitList: getOutfitListInCookie(),
       // need to optimize(both list use carousel)
       arrowLeft: false,
       arrowRight: true
     }
-    this.handleClick = this.handleClick.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
     // need to optimize(both list use carousel)
     this.slider = React.createRef();
     this.goLeft = this.goLeft.bind(this);
     this.goRight = this.goRight.bind(this);
-  }
-
-  handleClick() {
-    //use helper function to save customer specific outfitList into cookie
-    addOutfitListToCookie(this.props.currentProductId);
-    this.setState({outfitList: getOutfitListInCookie()});
-
-  }
-  handleDelete(clickedId) {
-    this.setState({outfitList: deleteOutfitIdInCookie(clickedId)})
   }
 
    // need to optimize(both list use carousel)
