@@ -6,10 +6,12 @@ export default class ImageGallery extends React.Component {
     this.changeMainImage = this.changeMainImage.bind(this);
     this.handleThumbnailClick = this.handleThumbnailClick.bind(this);
     this.handleArrowClick = this.handleArrowClick.bind(this);
+    this.scrollThumbnailIntoView = this.scrollThumbnailIntoView.bind(this);
   }
 
   changeMainImage(index) {
     this.props.changeCurrentImageIndex(index);
+    this.scrollThumbnailIntoView(index);
   }
 
   handleThumbnailClick(e) {
@@ -25,9 +27,25 @@ export default class ImageGallery extends React.Component {
 
   handleArrowClick(direction) {
     if (direction === 'back') {
-      this.props.changeCurrentImageIndex(this.props.currentImageIndex - 1);
+      let index = parseInt(this.props.currentImageIndex) - 1;
+      this.props.changeCurrentImageIndex(index);
+      this.scrollThumbnailIntoView(index);
     } else if (direction === 'next') {
-      this.props.changeCurrentImageIndex(this.props.currentImageIndex + 1);
+      let index = parseInt(this.props.currentImageIndex) + 1;
+      this.props.changeCurrentImageIndex(index);
+      this.scrollThumbnailIntoView(index)
+    }
+  }
+
+  scrollThumbnailIntoView(index) {
+    let thumbnails = document.querySelectorAll('.img-gallery-thumbnail');
+    let thumbnailContainer = document.querySelector('.thumbnails-container');
+    let thRect = thumbnails[index].getBoundingClientRect();
+    let containerRect = thumbnailContainer.getBoundingClientRect();
+    if (thRect.top > containerRect.bottom) {
+      console.log('scrolling up');
+    } else if (thRect.bottom < containerRect.top) {
+      console.log('scrolling down');
     }
   }
 
