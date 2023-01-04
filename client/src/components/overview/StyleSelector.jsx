@@ -4,7 +4,12 @@ export default function(props) {
   let currentStyle = props.currentStyle || {};
   return (
     <div className="style-selector">
-      <h4 className="style-label">Style ><span className="current-style-name">{currentStyle.name}</span></h4>
+      <p className="style-label">
+        <span className="style-style">STYLE > </span>
+        <span className="current-style-name">
+          {currentStyle.name && currentStyle.name.toUpperCase()}
+        </span>
+      </p>
       <div className="style-icons">
         {props.styles.map((style, i) => (
           <StyleIcon
