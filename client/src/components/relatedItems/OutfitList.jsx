@@ -55,16 +55,16 @@ export default class OutfitList extends React.Component {
           <button style={this.state.arrowLeft ? {"visibility":"visible"} : {"visibility":"hidden"}} onClick={this.goRight}>
             <h1>&#8249;</h1>
           </button >
-            <div className="add-outfit" onClick={this.handleClick}>
+            <div className="add-outfit" onClick={() => {this.props.addToOutfit(this.props.currentProductId)}}>
              <h1>Add to Outfit</h1>
              <button className="add-button" ><span>&#43;</span></button>
             </div>
           <div className="related-container" ref={this.slider}>
 
 
-              {(this.state.outfitList !== undefined) ?
-              this.state.outfitList.map((item, index) => (
-                <SingleCard icon={this.state.icon} id={item} key={item} handleDelete={this.handleDelete}/>
+              {(this.props.outfit !== undefined) ?
+              this.props.outfit.map((item, index) => (
+                <SingleCard icon={this.state.icon} id={item} key={item} handleDelete={(clickedId) =>{this.props.removeFromOutfit(clickedId)}}/>
               ))
               : null}
 
