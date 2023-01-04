@@ -171,7 +171,7 @@ html {
 .style-icons {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 1vw;
 }
 
 .style-icon {
@@ -215,27 +215,27 @@ html {
 
 .add-to-cart {
   margin: 15px 5px;
-  gap: 15px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
 .size-selector {
-  width: 62%;
+  width: 17vw;
   height: 40px;
   font-weight: bold;
   font-size: 12px;
   padding-left: 8px;
+  margin-bottom: 10px;
 }
 
 .quantity-selector {
-  width: 32%;
+  width: 8vw;
   height: 40px;
 }
 
 .add-to-cart-button {
-  width: 78%;
+  width: 21vw;
   height: 40px;
   font-weight: bold;
   font-size: 12px;
@@ -244,7 +244,7 @@ html {
 .clickable-star {
   font-size: 20px;
   height: 40px;
-  width: 40px;
+  width: 4.5vw;
 }
 
 
