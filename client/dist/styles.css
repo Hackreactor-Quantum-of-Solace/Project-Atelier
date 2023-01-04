@@ -175,8 +175,8 @@ html {
 }
 
 .style-icon {
-  width: 21%;
-  height: 70px;
+  width: 6vw;
+  height: 6vw;
   box-sizing: border-box;
   cursor: pointer;
   overflow: hidden;
