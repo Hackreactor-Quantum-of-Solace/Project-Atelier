@@ -22,8 +22,8 @@ export default function ReviewsTile (props) {
       <p className="review-body">{props.review.body}</p>
       {imagesArr.map( (imagesObj, index) => <ReviewsImages key={index} images ={imagesObj}/>)}
       <p className="name">{props.review.reviewer_name}</p>
-      <p className="recommend">recommend: {props.review.recommend}</p>
-      <p className="helpfulness">helpfulness: {props.review.helpfulness}</p>
+      <p className="recommend">Recommend: {props.review.recommend}</p>
+      <p className="helpfulness">Helpful? Yes ({props.review.helpfulness})</p>
     </div>
   )
 }
