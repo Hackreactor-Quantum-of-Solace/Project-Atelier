@@ -1,5 +1,6 @@
 import React from 'react';
 import ReviewsImages from './ReviewsImages.jsx';
+import StarRating from './StarRating.jsx';
 
 //maps through all the reviews and formats them into 'tiles'
 export default function ReviewsTile (props) {
@@ -17,7 +18,8 @@ export default function ReviewsTile (props) {
   return (
     <div className="tile">
       <h3 className="summary">{props.review.summary}</h3>
-      <p className="rating">rating (need to convert to stars): {props.review.rating}</p>
+      {/* <p className="rating">rating (need to convert to stars): {props.review.rating}</p> */}
+      <p className="rating"><StarRating rating={props.review.rating}/></p>
       <p className="date">{date}</p>
       <p className="review-body">{props.review.body}</p>
       {imagesArr.map( (imagesObj, index) => <ReviewsImages key={index} images ={imagesObj}/>)}
