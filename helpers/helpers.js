@@ -11,11 +11,15 @@ const getOutfitListInCookie = () => {
   const strCookie = "; " + document.cookie;
   const searchPart = strCookie.split("; outfitList=");
   // if has cookie_name
-  if (searchPart.length === 2) {
-    // return the first found of cookie_name 's value and parse it to JS
-    return JSON.parse(searchPart.pop().split(';').shift());
-  } else {
-    return undefined;
+  try {
+    if (searchPart.length === 2) {
+      // return the first found of cookie_name 's value and parse it to JS
+      return JSON.parse(searchPart.pop().split(';').shift());
+    } else {
+      return undefined;
+    }
+  } catch (err) {
+    console.log("cookie error", err);
   }
 }
 const addOutfitListToCookie = (id) => {
