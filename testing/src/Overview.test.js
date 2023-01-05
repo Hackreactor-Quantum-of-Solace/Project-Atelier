@@ -245,5 +245,20 @@ describe('Overview Component and Subcomponents', function() {
       act(renderSizeSelector);
       expect(document.querySelector('.size-selector')).not.toBe(null);
     });
+    it('should call selectSize fn when selector changes', () => {
+      act(renderSizeSelector);
+      let sizeSelector = document.querySelector('.size-selector');
+
+      // change value to 'XS'
+      sizeSelector.value = sizeSelector.options[1].value;
+      expect(selectSizeFn).toHaveBeenCalledTimes(0);
+      expect(selectedSize).toBe('');
+
+      // dispatch 'change' event
+      let change = new Event('change', { bubbles: true });
+      act(() => sizeSelector.dispatchEvent(new Event('change', { bubbles: true })));
+      expect(selectSizeFn).toHaveBeenCalledTimes(1);
+      expect(selectedSize).toBe('XS');
+    });
   });
 });
