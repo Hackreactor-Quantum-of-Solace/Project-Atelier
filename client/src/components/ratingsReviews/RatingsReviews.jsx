@@ -94,6 +94,10 @@ export default class RatingsReviews extends React.Component {
   handleMoreReviews(event) {
     event.preventDefault();
     console.log('handleMoreReviews')
+
+    this.setState({
+      visibleReviews: this.state.reviews.slice(0,4)
+    });
   }
 
   render() {
@@ -122,7 +126,7 @@ export default class RatingsReviews extends React.Component {
        <ReviewsList review={this.state.reviews} visibleReviews={this.state.visibleReviews} value={this.state.sortValue} increaseHelpfulnessCount={this.increaseHelpfulnessCount}/>
        </div>
        <div>
-        <button onSubmit={this.handleMoreReviews}>
+        <button onClick={this.handleMoreReviews}>
           More Reviews
         </button>
        </div>
