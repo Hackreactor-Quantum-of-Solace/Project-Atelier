@@ -8,7 +8,6 @@ export default class RelatedItems extends React.Component {
   constructor(props) {
     //suppose each product will be loaded with `?id=${givenNumber}` in the url
     super(props);
-    //console.log('relateItems',this.props.productId)
     this.state = {
       //save relatedItemsId of the overview product
       relatedItemsId : [],
@@ -49,7 +48,6 @@ export default class RelatedItems extends React.Component {
         currentProductFeature : response.data.features,
         currentProductName: response.data.name
       });
-      // console.log(this.state)
     })
     .catch((err) => {
       console.log('Get Current Product Feature ERROR', err);
@@ -58,9 +56,14 @@ export default class RelatedItems extends React.Component {
   render() {
     return (
       <>
-        <RelatedProductsList relatedItemsId={this.state.relatedItemsId} currentProductFeature={this.state.currentProductFeature} currentProductName={this.state.currentProductName}/>
+        <RelatedProductsList
+        relatedItemsId={this.state.relatedItemsId}
+        currentProductFeature={this.state.currentProductFeature}
+        currentProductName={this.state.currentProductName}/>
 
-        <OutfitList currentProductId={this.props.productId} outfit={this.props.outfit}
+        <OutfitList
+        productId={this.props.productId}
+        outfit={this.props.outfit}
         addToOutfit={this.props.addToOutfit}
         removeFromOutfit={this.props.removeFromOutfit}/>
       </>
