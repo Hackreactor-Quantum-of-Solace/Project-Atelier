@@ -37,10 +37,7 @@ html {
 }
 
 .thumbnails-container {
-  display: flex;
-  flex-direction: column;
   width: 100px;
-  gap: 5px;
   position: absolute;
   z-index: 2;
   left: 20px;
@@ -48,6 +45,13 @@ html {
   cursor: pointer;
   height: 425px;
   overflow: hidden;
+}
+
+.thumbnails-slider {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
 }
 
 .img-gallery-thumbnail {

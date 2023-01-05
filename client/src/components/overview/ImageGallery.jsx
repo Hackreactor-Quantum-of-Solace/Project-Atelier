@@ -70,29 +70,31 @@ export default class ImageGallery extends React.Component {
           >&#707;</div>
 
           <div className="thumbnails-container" onClick={this.handleThumbnailClick}>
-            {this.props.currentStyle.photos && this.props.currentStyle.photos.map((photo, i) => {
-              if (i == this.props.currentImageIndex) {
-                return (
-                  <div className="img-gallery-thumbnail selected-thumbnail"
-                    key={i}
-                    data-index={i}
-                    style={{ backgroundImage: `url(${photo.thumbnail_url})` }}
-                  >
-                    {/* <img className="thumbnail-img" src={photo.thumbnail_url}></img> */}
-                  </div>
-                );
-              } else {
-                return (
-                  <div className="img-gallery-thumbnail"
-                    key={i}
-                    data-index={i}
-                    style={{ backgroundImage: `url(${photo.thumbnail_url})` }}
-                  >
-                    {/* <img className="thumbnail-img" src={photo.thumbnail_url}></img> */}
-                  </div>
-                );
-              }
-            })}
+            <div className="thumbnails-slider">
+              {this.props.currentStyle.photos && this.props.currentStyle.photos.map((photo, i) => {
+                if (i == this.props.currentImageIndex) {
+                  return (
+                    <div className="img-gallery-thumbnail selected-thumbnail"
+                      key={i}
+                      data-index={i}
+                      style={{ backgroundImage: `url(${photo.thumbnail_url})` }}
+                    >
+                      {/* <img className="thumbnail-img" src={photo.thumbnail_url}></img> */}
+                    </div>
+                  );
+                } else {
+                  return (
+                    <div className="img-gallery-thumbnail"
+                      key={i}
+                      data-index={i}
+                      style={{ backgroundImage: `url(${photo.thumbnail_url})` }}
+                    >
+                      {/* <img className="thumbnail-img" src={photo.thumbnail_url}></img> */}
+                    </div>
+                  );
+                }
+              })}
+            </div>
           </div>
         </div>
       </div>
