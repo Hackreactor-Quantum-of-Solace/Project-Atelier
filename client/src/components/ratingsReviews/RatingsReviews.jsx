@@ -103,8 +103,8 @@ export default class RatingsReviews extends React.Component {
         </div>
 
        <div className='ratings-container'>
-       <h2>Ratings</h2>
-       <AverageRating averageRating={this.state.averageRating}/>
+          <h2>Ratings</h2>
+          <span><h2>{this.state.averageRating}</h2> <AverageRating averageRating={this.state.averageRating}/></span>
        </div>
 
        <div className='reviews-container'>

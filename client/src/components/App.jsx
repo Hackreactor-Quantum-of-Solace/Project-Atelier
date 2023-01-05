@@ -80,12 +80,14 @@ export default class App extends React.Component {
           removeFromOutfit={this.removeFromOutfit}
           inOutfit={this.state.outfit.includes(this.state.product_id)}
         />
-        <RatingsReviews productId={this.state.product_id} />
+        <RelatedItems
+          productId={this.state.product_id}
+          outfit={this.state.outfit}
+          addToOutfit={this.addToOutfit}
+          removeFromOutfit={this.removeFromOutfit}
+        />
         <QuestionsAnswers productId={this.state.product_id} />
-        <RelatedItems productId={this.state.product_id}
-        outfit={this.state.outfit}
-        addToOutfit={this.addToOutfit}
-        removeFromOutfit={this.removeFromOutfit}/>
+        <RatingsReviews productId={this.state.product_id} />
       </div>
     );
   }
