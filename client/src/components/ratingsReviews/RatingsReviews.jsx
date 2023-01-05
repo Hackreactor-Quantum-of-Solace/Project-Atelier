@@ -5,6 +5,7 @@ import ReviewsList from './list/ReviewsList.jsx';
 import ReviewsTile from './list/ReviewsTile.jsx';
 import ReviewsSort from './list/ReviewsSort.jsx';
 import NewReviewForm from './form/NewReviewForm.jsx';
+import AverageRating from './list/AverageRating.jsx';
 
 
 export default class RatingsReviews extends React.Component {
@@ -13,19 +14,23 @@ export default class RatingsReviews extends React.Component {
     this.state = {
       reviews: [],
       visibleReviews: [],
+      averageRating: 0,
       sortValue: 'relevance'
     };
     this.getRatingsReviews = this.getRatingsReviews.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleMoreReviews = this.handleMoreReviews.bind(this);
+    this.increaseHelpfulnessCount = this.increaseHelpfulnessCount.bind(this);
 
   }
 
   componentDidMount () {
     this.getRatingsReviews(this.props.productId);
   }
+
   getRatingsReviews(id) {
+
     let config = {
       url: `/reviews?product_id=${id}`,
       method: 'get'
@@ -33,11 +38,43 @@ export default class RatingsReviews extends React.Component {
 
     axios(config)
       .then ( (reviews) => {
+        var totalRating = 0;
+
+        for (var i = 0; i < reviews.data.results.length; i++) {
+          totalRating = totalRating + reviews.data.results[i].rating
+        }
+
         this.setState({
           reviews: reviews.data.results,
-          visibleReviews: reviews.data.results.slice(0,2)
-        })
+          visibleReviews: reviews.data.results.slice(0,2),
+          averageRating: totalRating/reviews.data.results.length
+        });
+
       })
+      .catch( (err) => {
+        console.log(err);
+      });
+  }
+
+  increaseHelpfulnessCount(reviewId, helpfulnessCount) {
+    console.log('hello', reviewId)
+
+    // console.log(helpfulnessCount, 'helpfulnessCount RatingsReviews')
+    // helpfulnessCount++
+    // console.log(helpfulnessCount, 'helpfulnessCount + 1, RatingsReviews')
+
+    let config = {
+      url: `/reviews/${reviewId}/helpful`,
+      method: 'put',
+      data: {
+        helpfulnessCount: helpfulnessCount++
+      }
+    };
+
+    axios(config)
+      .then (
+    this.getRatingsReviews(this.props.productId)
+    )
       .catch( (err) => {
         console.log(err);
       });
@@ -68,6 +105,7 @@ export default class RatingsReviews extends React.Component {
 
        <div className='ratings-container'>
        <h2>Ratings</h2>
+       <AverageRating averageRating={this.state.averageRating}/>
        </div>
 
        <div className='reviews-container'>
@@ -81,7 +119,7 @@ export default class RatingsReviews extends React.Component {
           </select>
         </label>
        </form>
-       <ReviewsList review={this.state.reviews} visibleReviews={this.state.visibleReviews} value={this.state.sortValue}/>
+       <ReviewsList review={this.state.reviews} visibleReviews={this.state.visibleReviews} value={this.state.sortValue} increaseHelpfulnessCount={this.increaseHelpfulnessCount}/>
        </div>
        <div>
         <button onSubmit={this.handleMoreReviews}>
@@ -92,16 +130,9 @@ export default class RatingsReviews extends React.Component {
       </div>
 
 
+
+
+
     )
   }
 }
-
-/**
- * NOTES/QUESTIONS/CONFIRMATIONS
- *
- * This is the whole Ratings&Review Section
- * Renders the Ratings Sections
- * Renders a sorted list of reviews, with default being Relevant
- * Add new review button
- * More review button
- */
