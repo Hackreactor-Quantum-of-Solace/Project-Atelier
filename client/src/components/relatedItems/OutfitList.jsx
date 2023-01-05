@@ -10,12 +10,17 @@ export default class OutfitList extends React.Component {
       arrowLeft: false,
       arrowRight: true
     }
+    this.keyCount = 0;
+    this.getKey = this.getKey.bind(this);
+
     // need to optimize(both list use carousel)
     this.slider = React.createRef();
     this.goLeft = this.goLeft.bind(this);
     this.goRight = this.goRight.bind(this);
   }
-
+  getKey () {
+    return this.keyCount++;
+  }
    // need to optimize(both list use carousel)
   goLeft() {
     //each card width is 208px, each time move 1 card
@@ -39,7 +44,7 @@ export default class OutfitList extends React.Component {
           <button style={this.state.arrowLeft ? {"visibility":"visible"} : {"visibility":"hidden"}} onClick={this.goRight}>
             <h1>&#8249;</h1>
           </button >
-            <div className="add-outfit" onClick={() => {this.props.addToOutfit(this.props.currentProductId)}}>
+            <div className="add-outfit" onClick={() => {this.props.addToOutfit(this.props.productId)}}>
              <h1>Add to Outfit</h1>
              <button className="add-button" ><span>&#43;</span></button>
             </div>
@@ -47,8 +52,8 @@ export default class OutfitList extends React.Component {
 
 
               {(this.props.outfit !== undefined) ?
-              this.props.outfit.map((item, index) => (
-                <SingleCard icon={this.state.icon} id={item} key={item} handleDelete={(clickedId) =>{this.props.removeFromOutfit(clickedId)}}/>
+              this.props.outfit.map((item) => (
+                <SingleCard icon={this.state.icon} id={item} key={this.getKey()} handleDelete={(clickedId) =>{this.props.removeFromOutfit(clickedId)}}/>
               ))
               : null}
 
