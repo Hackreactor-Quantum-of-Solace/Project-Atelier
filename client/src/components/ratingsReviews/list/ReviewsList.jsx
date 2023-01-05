@@ -3,9 +3,6 @@ import ReviewsTile from './ReviewsTile.jsx'
 
 export default function ReviewsList(props) {
 
-  console.log(props, 'line 6 ReviewsList')
-
-
   // function compareHelpfulness(a, b) {
   //   return a - b;
   // }
@@ -27,13 +24,12 @@ export default function ReviewsList(props) {
   }
 
     return (
-      <div class="scroller">
+      <div className="scroller">
         {props.visibleReviews.map( (reviewObj, index) => <ReviewsTile key ={index} review={reviewObj} increaseHelpfulnessCount={props.increaseHelpfulnessCount}/>)}
       </div>
     )
   }
 
-  // increaseHelpfulnessCount={this.increaseHelpfulnessCount}
 
 
 

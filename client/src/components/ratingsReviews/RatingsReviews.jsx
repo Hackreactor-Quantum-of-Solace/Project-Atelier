@@ -15,7 +15,8 @@ export default class RatingsReviews extends React.Component {
       reviews: [],
       visibleReviews: [],
       averageRating: 0,
-      sortValue: 'relevance'
+      sortValue: 'relevance',
+      end: 2
     };
     this.getRatingsReviews = this.getRatingsReviews.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -39,29 +40,24 @@ export default class RatingsReviews extends React.Component {
     axios(config)
       .then ( (reviews) => {
         var totalRating = 0;
-
+        //calculating average rating
         for (var i = 0; i < reviews.data.results.length; i++) {
           totalRating = totalRating + reviews.data.results[i].rating
         }
 
         this.setState({
           reviews: reviews.data.results,
-          visibleReviews: reviews.data.results.slice(0,2),
+          visibleReviews: reviews.data.results.slice(0,this.state.end),
           averageRating: totalRating/reviews.data.results.length
         });
 
       })
-      .catch( (err) => {
+        .catch( (err) => {
         console.log(err);
       });
   }
 
   increaseHelpfulnessCount(reviewId, helpfulnessCount) {
-    console.log('hello', reviewId)
-
-    // console.log(helpfulnessCount, 'helpfulnessCount RatingsReviews')
-    // helpfulnessCount++
-    // console.log(helpfulnessCount, 'helpfulnessCount + 1, RatingsReviews')
 
     let config = {
       url: `/reviews/${reviewId}/helpful`,
@@ -73,15 +69,14 @@ export default class RatingsReviews extends React.Component {
 
     axios(config)
       .then (
-    this.getRatingsReviews(this.props.productId)
-    )
+       this.getRatingsReviews(this.props.productId)
+      )
       .catch( (err) => {
         console.log(err);
       });
   }
 
   handleChange(event) {
-    //reset state
     this.setState({sortValue: event.target.value}); //setState is asynch
     console.log('sorting by ' + this.state.sortValue);
   }
@@ -93,10 +88,10 @@ export default class RatingsReviews extends React.Component {
 
   handleMoreReviews(event) {
     event.preventDefault();
-    console.log('handleMoreReviews')
-
+    //rendering 2 additional reviews
+    this.state.end = this.state.end + 2;
     this.setState({
-      visibleReviews: this.state.reviews.slice(0,4)
+      visibleReviews: this.state.reviews.slice(0,this.state.end)
     });
   }
 
@@ -132,11 +127,6 @@ export default class RatingsReviews extends React.Component {
        </div>
        <NewReviewForm />
       </div>
-
-
-
-
-
     )
   }
 }
