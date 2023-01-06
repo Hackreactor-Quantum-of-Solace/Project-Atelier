@@ -5,6 +5,7 @@ import ReviewsList from './list/ReviewsList.jsx';
 import ReviewsTile from './list/ReviewsTile.jsx';
 import ReviewsSort from './list/ReviewsSort.jsx';
 import NewReviewForm from './form/NewReviewForm.jsx';
+import AverageRating from './list/AverageRating.jsx';
 
 
 export default class RatingsReviews extends React.Component {
@@ -13,19 +14,24 @@ export default class RatingsReviews extends React.Component {
     this.state = {
       reviews: [],
       visibleReviews: [],
-      sortValue: 'relevance'
+      averageRating: 0,
+      sortValue: 'relevance',
+      end: 2
     };
     this.getRatingsReviews = this.getRatingsReviews.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleMoreReviews = this.handleMoreReviews.bind(this);
+    this.increaseHelpfulnessCount = this.increaseHelpfulnessCount.bind(this);
 
   }
 
   componentDidMount () {
     this.getRatingsReviews(this.props.productId);
   }
+
   getRatingsReviews(id) {
+
     let config = {
       url: `/reviews?product_id=${id}`,
       method: 'get'
@@ -33,18 +39,44 @@ export default class RatingsReviews extends React.Component {
 
     axios(config)
       .then ( (reviews) => {
+        var totalRating = 0;
+        //calculating average rating
+        for (var i = 0; i < reviews.data.results.length; i++) {
+          totalRating = totalRating + reviews.data.results[i].rating
+        }
+
         this.setState({
           reviews: reviews.data.results,
-          visibleReviews: reviews.data.results.slice(0,2)
-        })
+          visibleReviews: reviews.data.results.slice(0,this.state.end),
+          averageRating: totalRating/reviews.data.results.length
+        });
+
       })
+        .catch( (err) => {
+        console.log(err);
+      });
+  }
+
+  increaseHelpfulnessCount(reviewId, helpfulnessCount) {
+
+    let config = {
+      url: `/reviews/${reviewId}/helpful`,
+      method: 'put',
+      data: {
+        helpfulnessCount: helpfulnessCount++
+      }
+    };
+
+    axios(config)
+      .then (
+       this.getRatingsReviews(this.props.productId)
+      )
       .catch( (err) => {
         console.log(err);
       });
   }
 
   handleChange(event) {
-    //reset state
     this.setState({sortValue: event.target.value}); //setState is asynch
     console.log('sorting by ' + this.state.sortValue);
   }
@@ -56,7 +88,11 @@ export default class RatingsReviews extends React.Component {
 
   handleMoreReviews(event) {
     event.preventDefault();
-    console.log('handleMoreReviews')
+    //rendering 2 additional reviews
+    this.state.end = this.state.end + 2;
+    this.setState({
+      visibleReviews: this.state.reviews.slice(0,this.state.end)
+    });
   }
 
   render() {
@@ -67,7 +103,8 @@ export default class RatingsReviews extends React.Component {
         </div>
 
        <div className='ratings-container'>
-       <h2>Ratings</h2>
+          <h2>Ratings</h2>
+          <span><h2>{this.state.averageRating}</h2> <AverageRating averageRating={this.state.averageRating}/></span>
        </div>
 
        <div className='reviews-container'>
@@ -81,27 +118,15 @@ export default class RatingsReviews extends React.Component {
           </select>
         </label>
        </form>
-       <ReviewsList review={this.state.reviews} visibleReviews={this.state.visibleReviews} value={this.state.sortValue}/>
+       <ReviewsList review={this.state.reviews} visibleReviews={this.state.visibleReviews} value={this.state.sortValue} increaseHelpfulnessCount={this.increaseHelpfulnessCount}/>
        </div>
        <div>
-        <button onSubmit={this.handleMoreReviews}>
+        <button onClick={this.handleMoreReviews}>
           More Reviews
         </button>
        </div>
        <NewReviewForm />
       </div>
-
-
     )
   }
 }
-
-/**
- * NOTES/QUESTIONS/CONFIRMATIONS
- *
- * This is the whole Ratings&Review Section
- * Renders the Ratings Sections
- * Renders a sorted list of reviews, with default being Relevant
- * Add new review button
- * More review button
- */
