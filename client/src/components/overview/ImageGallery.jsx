@@ -40,12 +40,19 @@ export default class ImageGallery extends React.Component {
   scrollThumbnailIntoView(index) {
     let thumbnails = document.querySelectorAll('.img-gallery-thumbnail');
     let thumbnailContainer = document.querySelector('.thumbnails-container');
+    let slider = document.querySelector('.thumbnails-slider');
     let thRect = thumbnails[index].getBoundingClientRect();
+    let sliderRect = slider.getBoundingClientRect();
     let containerRect = thumbnailContainer.getBoundingClientRect();
     if (thRect.top > containerRect.bottom) {
       console.log('scrolling up');
+      console.log(`sliderRect: ${sliderRect.y}`);
+      // slider.style.position = 'absolute';
+      // slider.style.top = `${parseInt(sliderRect.top) - 85}px`;
     } else if (thRect.bottom < containerRect.top) {
       console.log('scrolling down');
+      // slider.style.position = 'absolute';
+      // slider.style.top = `${parseInt(sliderRect.top) + 85}px`;
     }
   }
 
