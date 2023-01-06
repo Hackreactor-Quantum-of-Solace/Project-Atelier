@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import SingleCard from './SingleCard.jsx';
 
 export default class RelatedProductsList extends React.Component {
@@ -9,11 +10,19 @@ export default class RelatedProductsList extends React.Component {
       arrowLeft: false,
       arrowRight:true
     };
+    this.keyCount = 0;
+    this.getKey = this.getKey.bind(this);
+
     this.slider = React.createRef();
     this.goLeft = this.goLeft.bind(this);
     this.goRight = this.goRight.bind(this);
 
   }
+
+  getKey () {
+    return this.keyCount++;
+  }
+
   goLeft() {
     //each card width is 208px, each time move 1 card
     this.slider.current.scrollLeft += 0.25 * this.slider.current.offsetWidth;
@@ -28,6 +37,7 @@ export default class RelatedProductsList extends React.Component {
   }
 
   render() {
+
     return (
       <div className= "products-list">
         <h2>RELATED PRODUCTS</h2>
@@ -36,8 +46,13 @@ export default class RelatedProductsList extends React.Component {
             <h1>&#8249;</h1>
           </button >
           <div className="related-container" ref={this.slider} >
-            {this.props.relatedItemsId.map((id, index) => (
-              <SingleCard key={id} id={id} icon={this.state.icon} currentProductFeature={this.props.currentProductFeature} currentProductName={this.props.currentProductName} />
+            {this.props.relatedProductsData.map((product) => (
+              <SingleCard key={this.getKey()}
+              id= {product.id}
+              productData={product}
+              icon={this.state.icon}
+              currentProductFeature={this.props.currentProductFeature}
+              currentProductName={this.props.currentProductName} />
             ))}
           </div>
           <button style={this.state.arrowRight ? {"visibility":"visible"} : {"visibility":"hidden"}} onClick={this.goLeft}>
