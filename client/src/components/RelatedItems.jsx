@@ -9,14 +9,14 @@ export default class RelatedItems extends React.Component {
     //suppose each product will be loaded with `?id=${givenNumber}` in the url
     super(props);
     this.state = {
-      //save relatedItemsId of the overview product
-      relatedItemsId : [],
       currentProductFeature : [],
-      currentProductName: ''
+      currentProductName: '',
+      relatedProductsData :[]
     }
 
     this.getRelatedItemsId = this.getRelatedItemsId.bind(this);
     this.getCurrentProductFeature = this.getCurrentProductFeature.bind(this);
+
   }
   componentDidMount() {
     this.getRelatedItemsId();
@@ -29,15 +29,24 @@ export default class RelatedItems extends React.Component {
       url : `/products/${this.props.productId}/related`,
     })
     .then((response) => {
-      this.setState({
-        relatedItemsId: response.data
-      });
+      //fetch related products data
+      let parameter = JSON.stringify(response.data);
+      axios({
+        method: 'get',
+        url : `/related?relatedProductsId=${parameter}`
+      })
+      .then((res) => {
+        this.setState({
+          relatedProductsData: res.data
+        });
+      })
     })
     .catch((err) => {
       console.log('Get Related Items ID ERROR', err);
     });
 
   }
+
   getCurrentProductFeature() {
     axios({
       method: 'get',
@@ -57,15 +66,15 @@ export default class RelatedItems extends React.Component {
     return (
       <>
         <RelatedProductsList
-        relatedItemsId={this.state.relatedItemsId}
         currentProductFeature={this.state.currentProductFeature}
-        currentProductName={this.state.currentProductName}/>
+        currentProductName={this.state.currentProductName}
+        relatedProductsData={this.state.relatedProductsData}/>
 
-        <OutfitList
+        {/* <OutfitList
         productId={this.props.productId}
         outfit={this.props.outfit}
         addToOutfit={this.props.addToOutfit}
-        removeFromOutfit={this.props.removeFromOutfit}/>
+        removeFromOutfit={this.props.removeFromOutfit}/> */}
       </>
 
     )
