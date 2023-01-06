@@ -19,7 +19,6 @@ export default class RatingsReviews extends React.Component {
       filter: 'relevant',
       helpfulness: 0,
       helpfulnessClickedCount: 0,
-
     };
     this.getRatingsReviews = this.getRatingsReviews.bind(this);
     this.increaseHelpfulnessCount = this.increaseHelpfulnessCount.bind(this);
