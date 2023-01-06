@@ -34,7 +34,6 @@ export default class OutfitList extends React.Component {
     }
 
   }
-
   render() {
     return (
       <div className="products-list">
@@ -51,9 +50,9 @@ export default class OutfitList extends React.Component {
           <div className="related-container" ref={this.slider}>
 
 
-              {(this.props.outfit !== undefined) ?
-              this.props.outfit.map((item) => (
-                <SingleCard icon={this.state.icon} id={item} key={this.getKey()} handleDelete={(clickedId) =>{this.props.removeFromOutfit(clickedId)}}/>
+              {(this.props.outfitProductsData !== undefined) ?
+              this.props.outfitProductsData.map((product) => (
+                <SingleCard icon={this.state.icon} productData={product} key={this.getKey()} handleDelete={(clickedId) =>{this.props.removeFromOutfit(clickedId)}}/>
               ))
               : null}
 

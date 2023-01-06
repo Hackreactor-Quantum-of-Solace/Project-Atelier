@@ -19,6 +19,7 @@ export default class SingleCard extends React.Component {
 
 
   render() {
+    //productData.id is a number
     var url =  window.location.href.split('?').shift() + `?id=${this.props.productData.id}`;
     return (
       <div className="card" >
@@ -46,7 +47,7 @@ export default class SingleCard extends React.Component {
                 </Modal> : null}
               </div>)
             : (<div className="icon-delete" >
-                <button onClick={() => {this.props.handleDelete(this.props.id)}}><span className="delete">&#215;</span></button>
+                <button onClick={() => {this.props.handleDelete(this.props.productData.id.toString())}}><span className="delete">&#215;</span></button>
               </div>)
           }
 

@@ -77,25 +77,25 @@ const fetchRates = async (id, options) => {
   };
 }
 
-const relatedItems = (req, res) => {
+const relatedItems = async (req, res) => {
   const options = {
     method: req.method,
     headers: { Authorization: req.headers.Authorization }
   };
   //related products array
   let relatedProductsId = JSON.parse(req.url.split('=').pop());
-  let relatedProducts = [];
-  Promise.all(relatedProductsId.map((id) => {
-    return Promise.all(
+
+
+  const relatedProducts = await Promise.all(relatedProductsId.map(async (id) => {
+    const product = await Promise.all(
       [
         fetchCategoryNameAndFeatures(id, options),
         fetchPriceAndImage(id, options),
-        fetchRates(id, options),
-      ])
-    .then((value) => {
-      //default singleCard info
-     var singleCard = {
-      id: '71703',
+        fetchRates(id, options)
+      ]
+    );
+    var singleCard = {
+      id: 0,
       category : 'CATEGORY',
       name : 'NAME',
       features: [],
@@ -105,15 +105,14 @@ const relatedItems = (req, res) => {
       //default url image used to test
       img: 'https://cdn.pixabay.com/photo/2015/01/21/13/21/sale-606687__340.png',
       rate: 0
-     }
-      value.forEach((item) => {
-        singleCard = {...singleCard, ...item};
-      });
-      relatedProducts.push(singleCard);
-    })
-  }))
-  .then(() => {
-    res.send(relatedProducts);
-  })
+    }
+
+    product.forEach((item) => {
+      singleCard = {...singleCard, ...item};
+    });
+
+    return singleCard;
+  }));
+  res.send(relatedProducts);
 }
 module.exports = relatedItems;
