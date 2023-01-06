@@ -3,6 +3,10 @@ import Overview from './Overview.jsx';
 import RatingsReviews from './ratingsReviews/RatingsReviews.jsx';
 import QuestionsAnswers from './QuestionsAnswers.jsx';
 import RelatedItems from './RelatedItems.jsx';
+import {addOutfitListToCookie} from '../../../helpers/helpers.js';
+import {getOutfitListInCookie} from '../../../helpers/helpers.js';
+import {deleteOutfitIdInCookie} from '../../../helpers/helpers.js';
+
 
 export default class App extends React.Component {
   constructor(props) {
@@ -10,7 +14,7 @@ export default class App extends React.Component {
     this.state = {
       product_id: new URLSearchParams(window.location.search).get('id'),
       cart: {},
-      outfit: []
+      outfit: getOutfitListInCookie() === undefined ? [] : getOutfitListInCookie(),
     }
     this.addToCart = this.addToCart.bind(this);
     this.removeFromCart = this.removeFromCart.bind(this);
@@ -44,23 +48,26 @@ export default class App extends React.Component {
 
   addToOutfit(product_id) {
     console.log(`adding to outfit: ${product_id}`);
-    if (!this.state.outfit.includes(product_id)) {
-      this.setState({
-        outfit: [
-          ...this.state.outfit,
-          product_id
-        ]
-      });
-    }
+    addOutfitListToCookie(product_id);
+    // if (!this.state.outfit.includes(product_id)) {
+    //   this.setState({
+    //     outfit: [
+    //       ...this.state.outfit,
+    //       product_id
+    //     ]
+    //   });
+    // }
+    this.setState({outfit: getOutfitListInCookie()});
   }
 
   removeFromOutfit(product_id) {
     console.log(`removing from outfit: ${product_id}`);
-    if (this.state.outfit.includes(product_id)) {
-      let index = this.state.outfit.indexOf(product_id);
-      let outfit = this.state.outfit.slice(0, index).concat(this.state.outfit.slice(index + 1));
-      this.setState({ outfit });
-    }
+    // if (this.state.outfit.includes(product_id)) {
+    //   let index = this.state.outfit.indexOf(product_id);
+    //   let outfit = this.state.outfit.slice(0, index).concat(this.state.outfit.slice(index + 1));
+    //   this.setState({ outfit });
+    // }
+    this.setState({outfit: deleteOutfitIdInCookie(product_id)})
   }
 
   render() {
@@ -73,9 +80,14 @@ export default class App extends React.Component {
           removeFromOutfit={this.removeFromOutfit}
           inOutfit={this.state.outfit.includes(this.state.product_id)}
         />
-        <RatingsReviews productId={this.state.product_id} />
+        <RelatedItems
+          productId={this.state.product_id}
+          outfit={this.state.outfit}
+          addToOutfit={this.addToOutfit}
+          removeFromOutfit={this.removeFromOutfit}
+        />
         <QuestionsAnswers productId={this.state.product_id} />
-        <RelatedItems productId={this.state.product_id}/>
+        <RatingsReviews productId={this.state.product_id} />
       </div>
     );
   }

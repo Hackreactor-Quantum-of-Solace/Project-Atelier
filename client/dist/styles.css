@@ -482,7 +482,13 @@ html {
   background-color: green;
 } */
 
+.scroller {
 
+  height: 400px;
+  overflow-y: scroll;
+  scrollbar-color: yellow;
+  scrollbar-width: thin;
+}
 
 
 
