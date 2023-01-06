@@ -390,6 +390,12 @@ html {
 
 }
 
+/* .ratings-container {
+  display: flex;
+  background-color: rgb(128, 128, 128);
+
+} */
+
 .reviews-container {
   display:grid;
   grid-column: 2;
@@ -462,19 +468,15 @@ html {
 
 /********** reviews images ********/
 
-/* .images-container {
+.images-container {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-} */
-
-/* .review-images {
-  display: inline;
-  margin: 20px;
-} */
+}
 
 .review-images {
-
+  display: inline;
+  margin: 20px;
   grid-row: 4;
   gap: 5px;
 }
@@ -485,7 +487,7 @@ html {
   object-fit: cover;
   /*color board website :https://flatuicolors.com/palette/us */
   /* border-bottom: 1px solid #636e72;
-} */
+}
 
 .scroller {
 

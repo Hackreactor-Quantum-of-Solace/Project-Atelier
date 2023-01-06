@@ -5,9 +5,10 @@ import StarRating from './StarRating.jsx';
 //maps through all the reviews and formats them into 'tiles'
 export default function ReviewsTile (props) {
 
-  // console.log(props, 'line 8 ReviewsTile')
+  console.log(props, 'line 8 ReviewsTile')
   // console.log(props.review.helpfulness, 'helpfulness ReviewsTile');
   let imagesArr = props.review.photos
+  console.log(imagesArr, 'line 11, ReviewTile')
 
   let formattedDate = new Date(props.review.date)
   let month = formattedDate.getMonth()
@@ -27,8 +28,8 @@ export default function ReviewsTile (props) {
       <p className="name">{props.review.reviewer_name}</p>
       <p className="recommend">Recommend {props.review.recommend}</p>
       <p className="helpfulness">Helpful?
-        <span style={{textDecorationLine: 'underline'}} onClick={() => props.increaseHelpfulnessCount(props.review.review_id, props.review.helpfulness)} >Yes</span>
-         ({props.review.helpfulness})
+        <span style={{textDecorationLine: 'underline'}} onClick={() => props.increaseHelpfulnessCount(props.review.review_id, props.review.helpfulness)} >Yes </span>
+          ({props.review.helpfulness})
       </p>
     </div>
   )

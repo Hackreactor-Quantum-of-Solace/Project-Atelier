@@ -107,12 +107,14 @@ export default class RatingsReviews extends React.Component {
       return (
         <div className='reviews-section-container'>
           <div className='reviews-header'>
-            <h4>RATINGS & REVIEWS</h4>
+            <h3>RATINGS & REVIEWS</h3>
           </div>
           <div className='ratings-container'>
-            <span>
+            {/* <span>
             {this.state.averageRating} <AverageRating averageRating={this.state.averageRating}/>
-            </span>
+            </span> */}
+            <h1>{Math.round(this.state.averageRating) * 10/10}</h1>
+            <AverageRating averageRating={this.state.averageRating}/>
           </div>
           <div className='reviews-container'>
             <form onSubmit={this.handleSubmit}>
