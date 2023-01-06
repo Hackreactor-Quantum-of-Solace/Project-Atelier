@@ -99,12 +99,11 @@ export default class RatingsReviews extends React.Component {
     return (
       <div className='reviews-section-container'>
         <div className='reviews-header'>
-        <h1>Ratings & Reviews</h1>
+        <h4>RATINGS & REVIEWS</h4>
         </div>
 
        <div className='ratings-container'>
-          <h2>Ratings</h2>
-          <span><h2>{this.state.averageRating}</h2> <AverageRating averageRating={this.state.averageRating}/></span>
+          <span><h1>{this.state.averageRating}</h1> <AverageRating averageRating={this.state.averageRating}/></span>
        </div>
 
        <div className='reviews-container'>
