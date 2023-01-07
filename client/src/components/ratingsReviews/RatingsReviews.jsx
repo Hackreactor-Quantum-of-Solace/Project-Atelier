@@ -27,11 +27,12 @@ export default class RatingsReviews extends React.Component {
   }
 
   componentDidMount () {
-    this.getRatingsReviews(this.props.productId);
+    this.getRatingsReviews(this.props.productId, this.state.filter);
+    console.log(this.state.filter, 'line 31')
   }
 
   getRatingsReviews(id, filter) {
-
+    console.log(filter, 'line 34')
     let config = {
       url: `/reviews?product_id=${id}&sort=${filter}`,
       method: 'get'
@@ -54,18 +55,8 @@ export default class RatingsReviews extends React.Component {
       });
   }
 
-  increaseHelpfulnessCount(reviewId, helpfulnessCount) {
-
-    // console.log(this.state.helpfulness, 'line 64')
-    // console.log(this.state.helpfulnessClickedCount, 'line 65')
-    // this.state.helpfulnessClickedCount = this.state.helpfulnessClickedCount + 1;
-    // console.log(this.state.helpfulnessClickedCount, 'line 67')
-
-    // this.setState({
-    //   helpfulness: helpfulnessCount + 1,
-    //   // helpfulnessClickedCount: this.state.helpfulnessClickedCount
-    // });
-
+  increaseHelpfulnessCount(reviewId, helpfulnessCount, filter) {
+    console.log(filter, 'line 59')
     let config = {
       url: `/reviews/${reviewId}/helpful`,
       method: 'put',
@@ -75,7 +66,7 @@ export default class RatingsReviews extends React.Component {
     };
     axios(config)
       .then (
-        this.getRatingsReviews(this.props.productId)
+        this.getRatingsReviews(this.props.productId, filter)
       )
       .catch( (err) => {
         console.log(err);
@@ -101,8 +92,6 @@ export default class RatingsReviews extends React.Component {
   }
 
   render() {
-    // console.log(this.state.helpfulnessClickedCount, 'line 110')
-    // console.log(this.state.helpfulness, 'line 111')
     // if (this.state.helpfulnessClickedCount <= 1) {
       return (
         <div className='reviews-section-container'>
@@ -129,6 +118,7 @@ export default class RatingsReviews extends React.Component {
               visibleReviews={this.state.visibleReviews}
               helpfulness={this.state.helpfulness}
               increaseHelpfulnessCount={this.increaseHelpfulnessCount}
+              filter={this.state.filter}
             />
           </div>
           <NewReviewForm />
@@ -140,6 +130,5 @@ export default class RatingsReviews extends React.Component {
         </div>
       )
     // }
-
   }
 }
