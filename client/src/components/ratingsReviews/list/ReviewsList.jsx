@@ -9,6 +9,7 @@ export default function ReviewsList(props) {
         key ={index}
         review={reviewObj}
         // helpfulness={props.helpfulness}
+        filter={props.filter}
         increaseHelpfulnessCount={props.increaseHelpfulnessCount}
         />)}
       </div>
