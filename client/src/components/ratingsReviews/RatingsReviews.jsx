@@ -27,11 +27,10 @@ export default class RatingsReviews extends React.Component {
   }
 
   componentDidMount () {
-    this.getRatingsReviews(this.props.productId);
+    this.getRatingsReviews(this.props.productId, this.props.filter);
   }
 
-  getRatingsReviews(id, filter) {
-
+  getRatingsReviews(id, filter='relevant') {
     let config = {
       url: `/reviews?product_id=${id}&sort=${filter}`,
       method: 'get'
@@ -55,17 +54,6 @@ export default class RatingsReviews extends React.Component {
   }
 
   increaseHelpfulnessCount(reviewId, helpfulnessCount) {
-
-    // console.log(this.state.helpfulness, 'line 64')
-    // console.log(this.state.helpfulnessClickedCount, 'line 65')
-    // this.state.helpfulnessClickedCount = this.state.helpfulnessClickedCount + 1;
-    // console.log(this.state.helpfulnessClickedCount, 'line 67')
-
-    // this.setState({
-    //   helpfulness: helpfulnessCount + 1,
-    //   // helpfulnessClickedCount: this.state.helpfulnessClickedCount
-    // });
-
     let config = {
       url: `/reviews/${reviewId}/helpful`,
       method: 'put',
@@ -101,8 +89,6 @@ export default class RatingsReviews extends React.Component {
   }
 
   render() {
-    // console.log(this.state.helpfulnessClickedCount, 'line 110')
-    // console.log(this.state.helpfulness, 'line 111')
     // if (this.state.helpfulnessClickedCount <= 1) {
       return (
         <div className='reviews-section-container'>
@@ -140,6 +126,5 @@ export default class RatingsReviews extends React.Component {
         </div>
       )
     // }
-
   }
 }
