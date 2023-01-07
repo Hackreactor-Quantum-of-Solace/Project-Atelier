@@ -22,7 +22,11 @@ export default class QuestionsList extends React.Component {
               answerList={q.answers}/>
           ))}
         </div>
+        <div className="qa-flexbox">
+          <button className="question-button" onClick={this.props.moreQuestions}>MORE ANSWERED QUESTIONS</button>
           <PostQuestions />
+        </div>
+
       </div>
     )
   }

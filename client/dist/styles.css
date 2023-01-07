@@ -580,3 +580,35 @@ html {
   font-weight: lighter;
   padding-top: 8px;
 }
+
+.question-button {
+  background: none;
+  font-weight: bold;
+  border: 1px solid #70797c;
+  padding: 10px;
+  color: #000;
+  margin-right: 15px;
+}
+
+.question-button:active {
+  outline: none;
+  background-color: rgb(228, 228, 228);
+}
+
+.qa-flexbox {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.more-answers {
+  font-size: 9px;
+  font-weight: bold;
+  padding-left: 20px;
+  position: absolute;
+  transform: translateY(-23px);
+}
+
+.more-answers:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}

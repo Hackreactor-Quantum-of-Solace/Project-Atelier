@@ -5,14 +5,26 @@ import Answers from './Answers.jsx';
 export default class Questions extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      answerEnd: 2
+    }
+    this.showMoreAnswers = this.showMoreAnswers.bind(this);
   }
 
-
+  showMoreAnswers () {
+    this.setState ({
+      answerEnd: this.state.answerEnd + 2
+    });
+  }
 
   render () {
     var hide = false;
-    if(Object.keys(this.props.answerList).length === 0) {
+    if (Object.keys(this.props.answerList).length === 0) {
       hide = true;
+    }
+    var hideMore = false;
+    if (Object.keys(this.props.answerList).length <= this.state.answerEnd) {
+      hideMore = true;
     }
     return (
       <div>
@@ -21,7 +33,7 @@ export default class Questions extends React.Component {
         <div className="break-big"></div>
         <span className="question answer" hidden={hide}> A:  </span>
         <div>
-          {Object.keys(this.props.answerList).map(key => (
+          {Object.keys(this.props.answerList).slice(0, this.state.answerEnd).map(key => (
             <Answers key={key}
               user={this.props.answerList[key].answerer_name}
               body={this.props.answerList[key].body}
@@ -29,6 +41,8 @@ export default class Questions extends React.Component {
               helpfulness={this.props.answerList[key].helpfulness}/>
           ))}
         </div>
+        <span className="more-answers" hidden={hideMore} onClick={this.showMoreAnswers}>LOAD MORE ANSWERS</span>
+
       </div>
     )
   }
