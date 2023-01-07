@@ -17,7 +17,6 @@ export default class RatingsReviews extends React.Component {
       averageRating: 0,
       end: 2,
       filter: 'relevant',
-      helpfulness: 0,
       helpfulnessClickedCount: 0,
     };
     this.getRatingsReviews = this.getRatingsReviews.bind(this);
@@ -32,6 +31,7 @@ export default class RatingsReviews extends React.Component {
   }
 
   getRatingsReviews(id, filter) {
+
     let config = {
       url: `/reviews?product_id=${id}&sort=${filter}`,
       method: 'get'
@@ -70,7 +70,7 @@ export default class RatingsReviews extends React.Component {
       url: `/reviews/${reviewId}/helpful`,
       method: 'put',
       data: {
-        helpfulnessCount: helpfulnessCount++
+        helpfulnessCount: helpfulnessCount + 1
       }
     };
     axios(config)
@@ -107,35 +107,36 @@ export default class RatingsReviews extends React.Component {
       return (
         <div className='reviews-section-container'>
           <div className='reviews-header'>
-          <h4>RATINGS & REVIEWS</h4>
+            <h3>RATINGS & REVIEWS</h3>
           </div>
-         <div className='ratings-container'>
-            <span><h1>{this.state.averageRating}</h1> <AverageRating averageRating={this.state.averageRating}/></span>
-         </div>
-         <div className='reviews-container'>
-         <form onSubmit={this.handleSubmit}>
-          <label>
-            {this.state.reviews.length} reviews, sorted by
-            <select value={this.state.value} onChange={this.handleSort}>
-              <option value="relevant">relevant</option>
-              <option value="newest">newest</option>
-              <option value="helpful">helpful</option>
-            </select>
-          </label>
-         </form>
-         <ReviewsList
-           review={this.state.reviews}
-           visibleReviews={this.state.visibleReviews}
-           helpfulness={this.state.helpfulness}
-           increaseHelpfulnessCount={this.increaseHelpfulnessCount}
-         />
-         </div>
-         <div>
-          <button onClick={this.handleListMoreReviews}>
-            More Reviews
-          </button>
-         </div>
-         <NewReviewForm />
+          <div className='ratings-container'>
+            <h1>{Math.round(this.state.averageRating) * 10/10}</h1>
+            <AverageRating averageRating={this.state.averageRating}/>
+          </div>
+          <div className='reviews-container'>
+            <form onSubmit={this.handleSubmit}>
+              <label>
+                {this.state.reviews.length} reviews, sorted by
+                <select value={this.state.value} onChange={this.handleSort}>
+                  <option value="relevant">relevant</option>
+                  <option value="newest">newest</option>
+                  <option value="helpful">helpful</option>
+                </select>
+              </label>
+            </form>
+            <ReviewsList
+              review={this.state.reviews}
+              visibleReviews={this.state.visibleReviews}
+              helpfulness={this.state.helpfulness}
+              increaseHelpfulnessCount={this.increaseHelpfulnessCount}
+            />
+          </div>
+          <NewReviewForm />
+          <div>
+            <button onClick={this.handleListMoreReviews}>
+              More Reviews
+            </button>
+          </div>
         </div>
       )
     // }
