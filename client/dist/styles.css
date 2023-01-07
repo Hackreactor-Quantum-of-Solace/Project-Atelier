@@ -3,6 +3,7 @@
 html {
   font-family: "adobe-clean", sans-serif;
   color: #444;
+
 }
 
 /********** OVERVIEW **********/
@@ -383,11 +384,9 @@ html {
 /** CSS GRID LAYOUT **/
 .reviews-section-container {
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  column-gap: 75px;
-  /* row-gap: 60px; */
+  grid-template-columns: 2fr 4fr;
+  column-gap: 10px;
   align-items: start;
-  background-color: rgb(156, 156, 156);
 }
 
 .reviews-section-header {
@@ -397,15 +396,27 @@ html {
 .ratings-container {
   display: grid;
   grid-column: 1;
-  background-color: rgb(128, 128, 128);
-
 }
 
 .reviews-container {
   display:grid;
   grid-column: 2;
-  background-color: rgb(189, 189, 189);
+}
 
+/********** RATINGS **********/
+.ratings {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.ratings-stars {
+  grid-column: 2;
+  grid-row: 1;
+}
+/********** RATINGS **********/
+.ratings {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 /********** REVIEWS TILE **********/
@@ -414,26 +425,27 @@ html {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(4, 1fr);
-  border: 1px solid black;
-  max-width: 600px;
-  background-color: rgb(160, 170, 167);
-  /* align-items: center; */
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  max-width: 700px;
 }
 
-.rating {
-  grid-column: 1 / span 3
+.reviews-stars {
+  grid-column: 1 / span 3;
+  grid-row: 1;
 }
 
 .name {
   grid-column: 4;
   grid-row: 1;
-  color: green;
+  color: #444;
   font-style: italic;
 }
 
 .date {
   grid-column: 5 / -1;
-  color: blue;
+  grid-row: 1;
+  color: #444;
 }
 
 .summary {
@@ -455,44 +467,26 @@ html {
 
 .helpfulness {
   grid-row: 5;
-  grid-column: 1;
+  grid-column: 1 / span 2;
 }
 
 /********** reviews images ********/
 
-/* .images-container {
+.images-container {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-} */
-
-/* .review-images {
-  display: inline;
-  margin: 20px;
-} */
+}
 
 .review-images {
-
+  display: inline;
+  margin: 20px;
   grid-row: 4;
   gap: 5px;
 }
 
-/* .reviews-img {
-  width: 100%;
-  height: 240px;
-  object-fit: cover;
-  /*color board website :https://flatuicolors.com/palette/us */
-  /* border-bottom: 1px solid #636e72;
-} */
-
-
-/* button {
-  background-color: green;
-} */
-
 .scroller {
-
-  height: 400px;
+  height: 1200px;
   overflow-y: scroll;
   scrollbar-color: yellow;
   scrollbar-width: thin;

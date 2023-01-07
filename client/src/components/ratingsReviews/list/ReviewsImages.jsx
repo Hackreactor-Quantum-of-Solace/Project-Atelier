@@ -7,11 +7,4 @@ export default function ReviewsImages (props) {
       <img src={props.images.url} width="80px" height="80px"/>
     </div>
   )
-
-
-
-
-
-
-
 }

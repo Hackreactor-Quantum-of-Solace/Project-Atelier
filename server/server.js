@@ -1,4 +1,5 @@
 const expressStaticGzip = require('express-static-gzip');
+const relatedItems = require('./relatedItems.js');
 require('dotenv').config();
 
 const path = require('path');
@@ -20,6 +21,9 @@ app.all('/reviews*', rerouteToAPI);
 app.all('/qa*', rerouteToAPI);
 app.all('/cart*', rerouteToAPI);
 app.all('/interactions*', rerouteToAPI);
+
+//used to deal with all related products call
+app.get('/related*', relatedItems);
 
 const port = process.env.PORT || 3000;
 app.listen(port, function() {
