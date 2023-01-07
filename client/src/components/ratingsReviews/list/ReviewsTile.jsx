@@ -5,10 +5,7 @@ import StarRating from './StarRating.jsx';
 //maps through all the reviews and formats them into 'tiles'
 export default function ReviewsTile (props) {
 
-  console.log(props, 'line 8 ReviewsTile')
-  // console.log(props.review.helpfulness, 'helpfulness ReviewsTile');
   let imagesArr = props.review.photos
-  console.log(imagesArr, 'line 11, ReviewTile')
 
   let formattedDate = new Date(props.review.date)
   let month = formattedDate.getMonth()
@@ -20,7 +17,6 @@ export default function ReviewsTile (props) {
   return (
     <div className="tile">
       <h3 className="summary">{props.review.summary}</h3>
-      {/* <p className="rating">rating (need to convert to stars): {props.review.rating}</p> */}
       <p className="reviews-stars"><StarRating rating={props.review.rating}/></p>
       <p className="date">{date}</p>
       <p className="review-body">{props.review.body}</p>

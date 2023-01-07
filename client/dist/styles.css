@@ -485,13 +485,13 @@ html {
   width: 100%;
   height: 240px;
   object-fit: cover;
-  /*color board website :https://flatuicolors.com/palette/us */
-  /* border-bottom: 1px solid #636e72;
-}
+  color board website :https://flatuicolors.com/palette/us
+  border-bottom: 1px solid #636e72;
+} */
 
 .scroller {
 
-  height: 1000px;
+  height: 1200px;
   overflow-y: scroll;
   scrollbar-color: yellow;
   scrollbar-width: thin;

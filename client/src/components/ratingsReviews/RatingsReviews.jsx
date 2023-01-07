@@ -17,7 +17,6 @@ export default class RatingsReviews extends React.Component {
       averageRating: 0,
       end: 2,
       filter: 'relevant',
-      helpfulness: 0,
       helpfulnessClickedCount: 0,
     };
     this.getRatingsReviews = this.getRatingsReviews.bind(this);
@@ -32,6 +31,7 @@ export default class RatingsReviews extends React.Component {
   }
 
   getRatingsReviews(id, filter) {
+
     let config = {
       url: `/reviews?product_id=${id}&sort=${filter}`,
       method: 'get'
@@ -56,21 +56,11 @@ export default class RatingsReviews extends React.Component {
 
   increaseHelpfulnessCount(reviewId, helpfulnessCount) {
 
-    // console.log(this.state.helpfulness, 'line 64')
-    // console.log(this.state.helpfulnessClickedCount, 'line 65')
-    // this.state.helpfulnessClickedCount = this.state.helpfulnessClickedCount + 1;
-    // console.log(this.state.helpfulnessClickedCount, 'line 67')
-
-    // this.setState({
-    //   helpfulness: helpfulnessCount + 1,
-    //   // helpfulnessClickedCount: this.state.helpfulnessClickedCount
-    // });
-
     let config = {
       url: `/reviews/${reviewId}/helpful`,
       method: 'put',
       data: {
-        helpfulnessCount: helpfulnessCount++
+        helpfulnessCount: helpfulnessCount + 1
       }
     };
     axios(config)
@@ -110,9 +100,6 @@ export default class RatingsReviews extends React.Component {
             <h3>RATINGS & REVIEWS</h3>
           </div>
           <div className='ratings-container'>
-            {/* <span>
-            {this.state.averageRating} <AverageRating averageRating={this.state.averageRating}/>
-            </span> */}
             <h1>{Math.round(this.state.averageRating) * 10/10}</h1>
             <AverageRating averageRating={this.state.averageRating}/>
           </div>
