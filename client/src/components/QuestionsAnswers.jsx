@@ -32,6 +32,17 @@ export default class QuestionsAnswers extends React.Component {
 
   filterQuestions (filter) {
     console.log(filter.target.value);
+    var filterHold = []
+    for(var x = 0; x < this.state.questionsAndAnswers.length; x++) {
+      var lowerBody = this.state.questionsAndAnswers[x].question_body.toLowerCase();
+      var lowerFilter = filter.target.value.toLowerCase();
+      if (lowerBody.includes(lowerFilter)) {
+        filterHold.push(this.state.questionsAndAnswers[x]);
+      }
+    };
+    this.setState({
+      filteredQuestions: filterHold
+    }, () => {this.updateVisibleQuestions()});
   }
 
   updateVisibleQuestions () {
