@@ -15,7 +15,6 @@ export default class QuestionsList extends React.Component {
   render () {
     return (
       <div>
-        <h3>I hold the questions and answers!</h3>
         <div>
           {this.props.qList.map(q => (
             <Questions key={q.question_id} body={q.question_body} date= {q.question_date}
@@ -23,7 +22,11 @@ export default class QuestionsList extends React.Component {
               answerList={q.answers}/>
           ))}
         </div>
+        <div className="qa-flexbox">
+          <button className="question-button" onClick={this.props.moreQuestions}>MORE ANSWERED QUESTIONS</button>
           <PostQuestions />
+        </div>
+
       </div>
     )
   }
