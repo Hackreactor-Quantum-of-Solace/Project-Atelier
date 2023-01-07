@@ -4,6 +4,8 @@ import StarRating from './StarRating.jsx';
 
 //maps through all the reviews and formats them into 'tiles'
 export default function ReviewsTile (props) {
+  // console.log(props.filter, 'line 7 ReviewsTile')
+
 
   let imagesArr = props.review.photos
 
@@ -24,7 +26,7 @@ export default function ReviewsTile (props) {
       <p className="name">{props.review.reviewer_name}</p>
       <p className="recommend">Recommend {props.review.recommend}</p>
       <p className="helpfulness">Helpful?
-        <span style={{textDecorationLine: 'underline'}} onClick={() => props.increaseHelpfulnessCount(props.review.review_id, props.review.helpfulness)} >Yes </span>
+        <span style={{textDecorationLine: 'underline'}} onClick={() => props.increaseHelpfulnessCount(props.review.review_id, props.review.helpfulness, props.filter)} >Yes </span>
           ({props.review.helpfulness})
       </p>
     </div>

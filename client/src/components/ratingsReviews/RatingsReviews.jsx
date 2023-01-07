@@ -27,10 +27,12 @@ export default class RatingsReviews extends React.Component {
   }
 
   componentDidMount () {
-    this.getRatingsReviews(this.props.productId, this.props.filter);
+    this.getRatingsReviews(this.props.productId, this.state.filter);
+    console.log(this.state.filter, 'line 31')
   }
 
-  getRatingsReviews(id, filter='relevant') {
+  getRatingsReviews(id, filter) {
+    console.log(filter, 'line 34')
     let config = {
       url: `/reviews?product_id=${id}&sort=${filter}`,
       method: 'get'
@@ -53,7 +55,8 @@ export default class RatingsReviews extends React.Component {
       });
   }
 
-  increaseHelpfulnessCount(reviewId, helpfulnessCount) {
+  increaseHelpfulnessCount(reviewId, helpfulnessCount, filter) {
+    console.log(filter, 'line 59')
     let config = {
       url: `/reviews/${reviewId}/helpful`,
       method: 'put',
@@ -63,7 +66,7 @@ export default class RatingsReviews extends React.Component {
     };
     axios(config)
       .then (
-        this.getRatingsReviews(this.props.productId)
+        this.getRatingsReviews(this.props.productId, filter)
       )
       .catch( (err) => {
         console.log(err);
@@ -115,6 +118,7 @@ export default class RatingsReviews extends React.Component {
               visibleReviews={this.state.visibleReviews}
               helpfulness={this.state.helpfulness}
               increaseHelpfulnessCount={this.increaseHelpfulnessCount}
+              filter={this.state.filter}
             />
           </div>
           <NewReviewForm />
