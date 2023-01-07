@@ -56,6 +56,16 @@ export default class RatingsReviews extends React.Component {
 
   increaseHelpfulnessCount(reviewId, helpfulnessCount) {
 
+    // console.log(this.state.helpfulness, 'line 64')
+    // console.log(this.state.helpfulnessClickedCount, 'line 65')
+    // this.state.helpfulnessClickedCount = this.state.helpfulnessClickedCount + 1;
+    // console.log(this.state.helpfulnessClickedCount, 'line 67')
+
+    // this.setState({
+    //   helpfulness: helpfulnessCount + 1,
+    //   // helpfulnessClickedCount: this.state.helpfulnessClickedCount
+    // });
+
     let config = {
       url: `/reviews/${reviewId}/helpful`,
       method: 'put',
