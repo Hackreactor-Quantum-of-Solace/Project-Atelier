@@ -428,6 +428,7 @@ html {
   border-bottom: 1px solid black;
   border-top: 1px solid black;
   max-width: 700px;
+  max-height: 350px;
 }
 
 .reviews-stars {
@@ -525,13 +526,6 @@ html {
 }
 
 /******** Questions **********/
-.scroller {
-
-  height: 400px;
-  overflow-y: scroll;
-  scrollbar-color: yellow;
-  scrollbar-width: thin;
-}
 
 .question {
   font-weight: bolder;
