@@ -1,8 +1,27 @@
-# Project-Atelier
-Front End Capstone for HackReactor
+# Atelier
+- RPP2207 Front End Capstone Project
+- Authors: Nate Foster, Debra Zhang, Michaelangelo Bellinghausen, Mary Ann Hereford
+- Quantum of Solace
+- Deployed @http://localhost:3000/?id=71704 (parameter id change when product change)
 
-Initial install of dependencies:
-1. npm install
+## Widget Leaders:
+- Overview - Nate Foster
+- Questions and Answers - Michaelangelo Bellinghausen
+- Ratings and Reviews - Mary Ann Hereford
+- Related Items - Debra Zhang
+
+## Description:
+Welcome to Team Quantum of Solace's Atelier FEC Project! This is a front-end shopping page getting data from given API and render page with function below:
+- Overview: Image Gallery, star rating by quarter number( e.g. 3.75), zoom in and out production image, quantity selector, add to cart, style selector
+- Question and Answers: post questions, question search, question list
+- Ratings and reviews: retrieving reviews and ratings, sorting reviews, and clicking on the helpful link.
+- Related Items: See related single product's information, comparison modal pop up, add to outfit list into cookie to record every customer's unique outfit list
+
+## Screenshots
+<img width="1599" alt="Screen Shot 2023-01-09 at 10 24 00" src="https://user-images.githubusercontent.com/104948556/211382450-332ab3da-7a16-4b1f-9dbc-b4883e8b18f7.png">
+<img width="1599" alt="Screen Shot 2023-01-09 at 10 24 12" src="https://user-images.githubusercontent.com/104948556/211382836-c996ae99-d399-4f8c-a3fe-90f2ef469e4d.png">
+<img width="1605" alt="Screen Shot 2023-01-09 at 10 24 29" src="https://user-images.githubusercontent.com/104948556/211383027-29a18ab6-6b8b-48fa-923b-d11ddcf78de9.png">
+<img width="1605" alt="Screen Shot 2023-01-09 at 10 24 39" src="https://user-images.githubusercontent.com/104948556/211383155-b87114a3-0159-47e9-8d2e-105c604a2129.png">
 
 ## To Interact with the API:
 1. Copy the example.env file, and rename the copy '.env'
@@ -13,42 +32,69 @@ Anytime you want to run development build:
 2. In a separate terminal window start server: npm run server-dev
 3. navigate to designated url in browser (likely http://localhost:3000)
 
-## How to set up your own repo:
-1. go to your local folder of this repo (cli: cd <FolderName>)
-2. clone it from remote to your local(cli: git clone https://github.com/Hackreactor-Quantum-of-Solace/Project-Atelier.git)
-3. set up the upstream to your local main branch(cli: git remote add upstream https://github.com/Hackreactor-Quantum-of-Solace/Project-Atelier.git)
-the main branch is used to pull data from remote main branch
-4. set up the branch of your own work and change to it(cli: git checkout -b <your branch name>)
-if you do it first time it is empty now!
-5. change to your local main branch and get data from remote(cli: git pull upstream main)
-you should see the change of your main branch if there's some new code on remote main
-6. change to your local branch and merge data from your local main branch to your own local branch
-git checkout <your branch name>
-git merge main
-7. write on your own branch and push it to <remote your branch>
-git push -u origin <branch name you want to create on remote>
-8. pull request to merge your code into main
-work it on remote your own branch, find merge button, write commit
+## Questions and Answers guide section
 
-## How to set up a new test:
-1. create a new file in testing/src with the format *tested_component*.test.js. ex: Overview.test.js
+The Questions and Answers section in this project is intended to be easy to understand from a parent to children perspective. QuestionsAnswers.jsx makes a single API call with the product tag passed into it from App.jsx.
 
-2. set up the imports as in the App.test.js and make sure you have at least a relative path to your tested component where 'App' is
+From QuestionsAnswers.jsx the requested data is processed into a master array in state and a visibleQuestions array which is sliced from the incoming data at a specified 'listEnd' number.
 
-3. documentation for writing tests can be found here https://jestjs.io/
+The visibleQuestions are passed into QuestionsList.jsx along with the increaseQuestionView method via props.
+
+The bound filterQuestions method is passed into QuestionSearch.jsx via props and passes state data upwards where QuestionsAnswers.jsx uses it to manage the filtered list.
+
+This is demonstrated below.
+
+### Search Functionality Demonstration
+![Search Functionality demonstration](readmeImageHosting/SearchFunctionality.gif)
+
+
+The increaseQuestionView modifies the listEnd state when the MORE ANSWERED QUESTIONS button is pressed, changing props passed down and triggering a rerender.
+
+A similar functionality can be found in Questions.jsx with the showMoreAnswers method where the answerEnd state is modified when the LOAD MORE ANSWERS underlined text is pressed.
+
+both are demonstrated below. The LOAD MORE ANSWERS trigger disappears when no more answers are present for a question.
+
+### More Questions and More Answers Demonstration
+![More Questions and More Answers demonstration](readmeImageHosting/moreQuestionsAndAnswers.gif)
+
+One last demonstratable point remains. In the QuestionSearch.jsx there is a span containing the class name "img-magnify-glass", this span contains the unicode for the magnifying glass.
+
+While the icon serves no purpose in and of itself, the icon does contain a tab index for the purposes of intuitive navigation via keyboard. From the typing field, if the user were to tab, they would be taken to this icon before a second press would then take them to the MORE ANSWERED QUESTIONS button.
+
+this is demonstrated below
+
+### Tab Index Demonstration
+![Tab Index Demonstration](readmeImageHosting/tabIndexDemo.gif)
+
+Any CSS classes found in the HTML can be found in the styles.css in 1 of three comment titles.
+
+-QUESTIONS ANSWERS: for the main flex container.
+
+-Q&A Search Bar: for the search bar and related styles.
+
+-Questions: for all remaining styles.
+
+
+### Questions And Answers Relationship Map
+
+App __ QuestionsAnswers __ QuestionsList __ Questions __ Answers
+
+                        |                |_ PostQuestions
+
+                        |_ QuestionSearch
 
 ## Ratings and Reviews:
 
 This is the section where the User will be able to read reviews written by purchasers of the product.
 
-Currently, the maximum number of reviews is set to 5 but this can be increased or decreased. Additionally, only two reviews will upload initially. If the user would like to see more reviews, they can click on the 'More Reviews' button (see screenshot below).
+Currently, the maximum number of reviews is set to 5 but this can be increased or decreased. Additionally, only two reviews will be uploaded initially. If the user would like to see more reviews, they can click on the 'More Reviews' button (see screenshot below).
 
-<insert screenshot>
+<img width="1599" alt="Screen Shot 2023-01-08 at 12.27.42" src="https://drive.google.com/file/d/14CW57wli9CZgpoi2Oj54ZO6bj1TYjDsp/view?usp=sharing">
 
 The User may also sort the reviews by making a selection from the dropdown menu. The options are (1) by relevance which is the default sorting algorithm or (2) by date by selecting 'newest' or (3) by helpfulness by selecting 'helpful'.  (see screenshot below).
 
-<insert screenshot>
+<img width="1599" alt="Screen Shot 2023-01-08 at 12.27.21" src="https://drive.google.com/file/d/14PlQ_Oc9wzv9D0ockjd6Wo0xEpMdLyAL/view?usp=sharing">
 
 Finally, the User may also click on 'Helpful? Yes' and this will increase the number to reflect the User finding the review helpful. (see screenshot below).
 
-<insert screenshot>
+<img width="1599" alt="Screen Shot 2023-01-08 at 12.28.32" src="https://drive.google.com/file/d/14RvIi0ZHGhhyCuiEODe1FidDdEwvmZZx/view?usp=sharing">
