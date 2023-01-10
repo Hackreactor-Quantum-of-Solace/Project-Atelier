@@ -4,7 +4,7 @@
 - Quantum of Solace
 - Deployed @http://localhost:3000/?id=71704 (parameter id change when product change)
 
-## Widge Leaders:
+## Widget Leaders:
 - Overview - Nate Foster
 - Questions and Answers - Michaelangelo Bellinghausen
 - Ratings and Reviews - Mary Ann Hereford
@@ -14,7 +14,7 @@
 Welcome to Team Quantum of Solace's Atelier FEC Project! This is a front-end shopping page getting data from given API and render page with function below:
 - Overview: Image Gallery, star rating by quarter number( e.g. 3.75), zoom in and out production image, quantity selector, add to cart, style selector
 - Question and Answers: post questions, question search, question list
-- Ratings and reviews: new review form, review list, ratings
+- Ratings and reviews: retrieving reviews and ratings, sorting reviews, and clicking on the helpful link.
 - Related Items: See related single product's information, comparison modal pop up, add to outfit list into cookie to record every customer's unique outfit list
 
 ## Screenshots
@@ -80,5 +80,21 @@ Any CSS classes found in the HTML can be found in the styles.css in 1 of three c
 App __ QuestionsAnswers __ QuestionsList __ Questions __ Answers
 
                         |                |_ PostQuestions
-                        
+
                         |_ QuestionSearch
+
+## Ratings and Reviews:
+
+This is the section where the User will be able to read reviews written by purchasers of the product.
+
+Currently, the maximum number of reviews is set to 5 but this can be increased or decreased. Additionally, only two reviews will be uploaded initially. If the user would like to see more reviews, they can click on the 'More Reviews' button (see screenshot below).
+
+<img width="1599" alt="Screen Shot 2023-01-08 at 12.27.42" src="https://drive.google.com/file/d/14CW57wli9CZgpoi2Oj54ZO6bj1TYjDsp/view?usp=sharing">
+
+The User may also sort the reviews by making a selection from the dropdown menu. The options are (1) by relevance which is the default sorting algorithm or (2) by date by selecting 'newest' or (3) by helpfulness by selecting 'helpful'.  (see screenshot below).
+
+<img width="1599" alt="Screen Shot 2023-01-08 at 12.27.21" src="https://drive.google.com/file/d/14PlQ_Oc9wzv9D0ockjd6Wo0xEpMdLyAL/view?usp=sharing">
+
+Finally, the User may also click on 'Helpful? Yes' and this will increase the number to reflect the User finding the review helpful. (see screenshot below).
+
+<img width="1599" alt="Screen Shot 2023-01-08 at 12.28.32" src="https://drive.google.com/file/d/14RvIi0ZHGhhyCuiEODe1FidDdEwvmZZx/view?usp=sharing">
