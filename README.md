@@ -31,3 +31,7 @@ Anytime you want to run development build:
 1. In one terminal window build webpack: npm run client-dev
 2. In a separate terminal window start server: npm run server-dev
 3. navigate to designated url in browser (likely http://localhost:3000)
+
+## Questions and Answers guide section
+
+![ gif that should work](readmeImageHosting/moreQuestionsAndAnswers.gif)
