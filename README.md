@@ -89,12 +89,12 @@ This is the section where the User will be able to read reviews written by purch
 
 Currently, the maximum number of reviews is set to 5 but this can be increased or decreased. Additionally, only two reviews will be uploaded initially. If the user would like to see more reviews, they can click on the 'More Reviews' button (see screenshot below).
 
-<img width="1599" alt="Screen Shot 2023-01-08 at 12.27.42" src="https://drive.google.com/file/d/14CW57wli9CZgpoi2Oj54ZO6bj1TYjDsp">
+<img width="1599" alt="Screen Shot 2023-01-08 at 12.27.42" src="https://drive.google.com/uc?export=view&id=14CW57wli9CZgpoi2Oj54ZO6bj1TYjDsp">
 
 The User may also sort the reviews by making a selection from the dropdown menu. The options are (1) by relevance which is the default sorting algorithm or (2) by date by selecting 'newest' or (3) by helpfulness by selecting 'helpful'.  (see screenshot below).
 
-<img width="1599" alt="Screen Shot 2023-01-08 at 12.27.21" src="https://drive.google.com/file/d/14PlQ_Oc9wzv9D0ockjd6Wo0xEpMdLyAL">
+<img width="1599" alt="Screen Shot 2023-01-08 at 12.27.21" src="https://drive.google.com/uc?export=view&id=14PlQ_Oc9wzv9D0ockjd6Wo0xEpMdLyAL">
 
 Finally, the User may also click on 'Helpful? Yes' and this will increase the number to reflect the User finding the review helpful. (see screenshot below).
 
-<img width="1599" alt="Screen Shot 2023-01-08 at 12.28.32" src="https://drive.google.com/file/d/14RvIi0ZHGhhyCuiEODe1FidDdEwvmZZx">
+<img width="1599" alt="Screen Shot 2023-01-08 at 12.28.32" src="https://drive.google.com/uc?export=view&id=14RvIi0ZHGhhyCuiEODe1FidDdEwvmZZx">
