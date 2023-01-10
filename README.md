@@ -69,11 +69,16 @@ this is demonstrated below
 Any CSS classes found in the HTML can be found in the styles.css in 1 of three comment titles.
 
 -QUESTIONS ANSWERS: for the main flex container.
+
 -Q&A Search Bar: for the search bar and related styles.
+
 -Questions: for all remaining styles.
+
 
 ### Questions And Answers Relationship Map
 
 App __ QuestionsAnswers __ QuestionsList __ Questions __ Answers
+
                         |                |_ PostQuestions
+                        
                         |_ QuestionSearch
